@@ -30,7 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 /**
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/CoreAnimation_framework/../../../QuartzCore/Reference/CAEAGLLayer_Class/CAEGLLayer/CAEGLLayer.html">CAEGLLayer Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/CoreAnimation_framework/../../../QuartzCore/Reference/CAEAGLLayer_Class/CAEGLLayer/CAEGLLayer.html">CAEGLLayer Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -43,7 +43,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ CAEGLLayer /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ CAEGLLayer /*</name>*/.class);
 
     /*<constructors>*/

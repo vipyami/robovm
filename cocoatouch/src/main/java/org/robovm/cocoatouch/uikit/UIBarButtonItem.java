@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html">UIBarButtonItem Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html">UIBarButtonItem Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIBarButtonItem /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIBarButtonItem /*</name>*/.class);
 
     /*<constructors>*/
@@ -55,67 +54,67 @@ import org.robovm.rt.bro.ptr.*;
     public UIBarButtonItem() {}
     
     private static final Selector initWithBarButtonSystemItem$target$action$ = Selector.register("initWithBarButtonSystemItem:target:action:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithBarButtonSystemItem(UIBarButtonItem __self__, Selector __cmd__, UIBarButtonSystemItem systemItem, NSObject target, Selector action);
+    @Bridge private native static @Pointer long objc_initWithBarButtonSystemItem(UIBarButtonItem __self__, Selector __cmd__, UIBarButtonSystemItem systemItem, NSObject target, Selector action);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithBarButtonSystemItem:target:action:">- (id)initWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem target:(id)target action:(SEL)action</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithBarButtonSystemItem:target:action:">- (id)initWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem target:(id)target action:(SEL)action</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIBarButtonItem(UIBarButtonSystemItem systemItem, NSObject target, Selector action) {
         super((SkipInit) null);
-        setHandle(objc_initWithBarButtonSystemItem(this, initWithBarButtonSystemItem$target$action$, systemItem, target, action));
+        initObject(objc_initWithBarButtonSystemItem(this, initWithBarButtonSystemItem$target$action$, systemItem, target, action));
     }
     
     private static final Selector initWithCustomView$ = Selector.register("initWithCustomView:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithCustomView(UIBarButtonItem __self__, Selector __cmd__, UIView customView);
+    @Bridge private native static @Pointer long objc_initWithCustomView(UIBarButtonItem __self__, Selector __cmd__, UIView customView);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithCustomView:">- (id)initWithCustomView:(UIView *)customView</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithCustomView:">- (id)initWithCustomView:(UIView *)customView</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIBarButtonItem(UIView customView) {
         super((SkipInit) null);
-        setHandle(objc_initWithCustomView(this, initWithCustomView$, customView));
+        initObject(objc_initWithCustomView(this, initWithCustomView$, customView));
     }
     
     private static final Selector initWithImage$landscapeImagePhone$style$target$action$ = Selector.register("initWithImage:landscapeImagePhone:style:target:action:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithImage(UIBarButtonItem __self__, Selector __cmd__, UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action);
+    @Bridge private native static @Pointer long objc_initWithImage(UIBarButtonItem __self__, Selector __cmd__, UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithImage:landscapeImagePhone:style:target:action:">- (id)initWithImage:(UIImage *)image landscapeImagePhone:(UIImage *)landscapeImagePhone style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithImage:landscapeImagePhone:style:target:action:">- (id)initWithImage:(UIImage *)image landscapeImagePhone:(UIImage *)landscapeImagePhone style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIBarButtonItem(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action) {
         super((SkipInit) null);
-        setHandle(objc_initWithImage(this, initWithImage$landscapeImagePhone$style$target$action$, image, landscapeImagePhone, style, target, action));
+        initObject(objc_initWithImage(this, initWithImage$landscapeImagePhone$style$target$action$, image, landscapeImagePhone, style, target, action));
     }
     
     private static final Selector initWithImage$style$target$action$ = Selector.register("initWithImage:style:target:action:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithImage(UIBarButtonItem __self__, Selector __cmd__, UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action);
+    @Bridge private native static @Pointer long objc_initWithImage(UIBarButtonItem __self__, Selector __cmd__, UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithImage:style:target:action:">- (id)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithImage:style:target:action:">- (id)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action) {
         super((SkipInit) null);
-        setHandle(objc_initWithImage(this, initWithImage$style$target$action$, image, style, target, action));
+        initObject(objc_initWithImage(this, initWithImage$style$target$action$, image, style, target, action));
     }
     
     private static final Selector initWithTitle$style$target$action$ = Selector.register("initWithTitle:style:target:action:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithTitle(UIBarButtonItem __self__, Selector __cmd__, String title, UIBarButtonItemStyle style, NSObject target, Selector action);
+    @Bridge private native static @Pointer long objc_initWithTitle(UIBarButtonItem __self__, Selector __cmd__, String title, UIBarButtonItemStyle style, NSObject target, Selector action);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithTitle:style:target:action:">- (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/initWithTitle:style:target:action:">- (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIBarButtonItem(String title, UIBarButtonItemStyle style, NSObject target, Selector action) {
         super((SkipInit) null);
-        setHandle(objc_initWithTitle(this, initWithTitle$style$target$action$, title, style, target, action));
+        initObject(objc_initWithTitle(this, initWithTitle$style$target$action$, title, style, target, action));
     }
     /*</constructors>*/
     /*<properties>*/
     
     private static final Selector action = Selector.register("action");
-    @Bridge(symbol = "objc_msgSend") private native static Selector objc_getAction(UIBarButtonItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static Selector objc_getActionSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static Selector objc_getAction(UIBarButtonItem __self__, Selector __cmd__);
+    @Bridge private native static Selector objc_getActionSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/action">@property(nonatomic) SEL action</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/action">@property(nonatomic) SEL action</a>
      * @since Available in iOS 2.0 and later.
      */
     public Selector getAction() {
@@ -123,10 +122,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setAction$ = Selector.register("setAction:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setAction(UIBarButtonItem __self__, Selector __cmd__, Selector action);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setActionSuper(ObjCSuper __super__, Selector __cmd__, Selector action);
+    @Bridge private native static void objc_setAction(UIBarButtonItem __self__, Selector __cmd__, Selector action);
+    @Bridge private native static void objc_setActionSuper(ObjCSuper __super__, Selector __cmd__, Selector action);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/action">@property(nonatomic) SEL action</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/action">@property(nonatomic) SEL action</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setAction(Selector action) {
@@ -134,10 +133,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector customView = Selector.register("customView");
-    @Bridge(symbol = "objc_msgSend") private native static UIView objc_getCustomView(UIBarButtonItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIView objc_getCustomViewSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIView objc_getCustomView(UIBarButtonItem __self__, Selector __cmd__);
+    @Bridge private native static UIView objc_getCustomViewSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/customView">@property(nonatomic, retain) UIView *customView</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/customView">@property(nonatomic, retain) UIView *customView</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIView getCustomView() {
@@ -145,10 +144,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setCustomView$ = Selector.register("setCustomView:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setCustomView(UIBarButtonItem __self__, Selector __cmd__, UIView customView);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setCustomViewSuper(ObjCSuper __super__, Selector __cmd__, UIView customView);
+    @Bridge private native static void objc_setCustomView(UIBarButtonItem __self__, Selector __cmd__, UIView customView);
+    @Bridge private native static void objc_setCustomViewSuper(ObjCSuper __super__, Selector __cmd__, UIView customView);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/customView">@property(nonatomic, retain) UIView *customView</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/customView">@property(nonatomic, retain) UIView *customView</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setCustomView(UIView customView) {
@@ -156,10 +155,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector possibleTitles = Selector.register("possibleTitles");
-    @Bridge(symbol = "objc_msgSend") private native static NSSet objc_getPossibleTitles(UIBarButtonItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSSet objc_getPossibleTitlesSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSSet objc_getPossibleTitles(UIBarButtonItem __self__, Selector __cmd__);
+    @Bridge private native static NSSet objc_getPossibleTitlesSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/possibleTitles">@property(nonatomic, copy) NSSet *possibleTitles</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/possibleTitles">@property(nonatomic, copy) NSSet *possibleTitles</a>
      * @since Available in iOS 2.0 and later.
      */
     public NSSet getPossibleTitles() {
@@ -167,10 +166,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setPossibleTitles$ = Selector.register("setPossibleTitles:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setPossibleTitles(UIBarButtonItem __self__, Selector __cmd__, NSSet possibleTitles);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setPossibleTitlesSuper(ObjCSuper __super__, Selector __cmd__, NSSet possibleTitles);
+    @Bridge private native static void objc_setPossibleTitles(UIBarButtonItem __self__, Selector __cmd__, NSSet possibleTitles);
+    @Bridge private native static void objc_setPossibleTitlesSuper(ObjCSuper __super__, Selector __cmd__, NSSet possibleTitles);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/possibleTitles">@property(nonatomic, copy) NSSet *possibleTitles</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/possibleTitles">@property(nonatomic, copy) NSSet *possibleTitles</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setPossibleTitles(NSSet possibleTitles) {
@@ -178,10 +177,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector style = Selector.register("style");
-    @Bridge(symbol = "objc_msgSend") private native static UIBarButtonItemStyle objc_getStyle(UIBarButtonItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIBarButtonItemStyle objc_getStyleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIBarButtonItemStyle objc_getStyle(UIBarButtonItem __self__, Selector __cmd__);
+    @Bridge private native static UIBarButtonItemStyle objc_getStyleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/style">@property(nonatomic) UIBarButtonItemStyle style</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/style">@property(nonatomic) UIBarButtonItemStyle style</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIBarButtonItemStyle getStyle() {
@@ -189,10 +188,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setStyle$ = Selector.register("setStyle:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setStyle(UIBarButtonItem __self__, Selector __cmd__, UIBarButtonItemStyle style);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setStyleSuper(ObjCSuper __super__, Selector __cmd__, UIBarButtonItemStyle style);
+    @Bridge private native static void objc_setStyle(UIBarButtonItem __self__, Selector __cmd__, UIBarButtonItemStyle style);
+    @Bridge private native static void objc_setStyleSuper(ObjCSuper __super__, Selector __cmd__, UIBarButtonItemStyle style);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/style">@property(nonatomic) UIBarButtonItemStyle style</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/style">@property(nonatomic) UIBarButtonItemStyle style</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setStyle(UIBarButtonItemStyle style) {
@@ -200,10 +199,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector target = Selector.register("target");
-    @Bridge(symbol = "objc_msgSend") private native static NSObject objc_getTarget(UIBarButtonItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSObject objc_getTargetSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSObject objc_getTarget(UIBarButtonItem __self__, Selector __cmd__);
+    @Bridge private native static NSObject objc_getTargetSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/target">@property(nonatomic, assign) id target</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/target">@property(nonatomic, assign) id target</a>
      * @since Available in iOS 2.0 and later.
      */
     public NSObject getTarget() {
@@ -211,10 +210,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTarget$ = Selector.register("setTarget:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTarget(UIBarButtonItem __self__, Selector __cmd__, NSObject target);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTargetSuper(ObjCSuper __super__, Selector __cmd__, NSObject target);
+    @Bridge private native static void objc_setTarget(UIBarButtonItem __self__, Selector __cmd__, NSObject target);
+    @Bridge private native static void objc_setTargetSuper(ObjCSuper __super__, Selector __cmd__, NSObject target);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/target">@property(nonatomic, assign) id target</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/target">@property(nonatomic, assign) id target</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setTarget(NSObject target) {
@@ -222,10 +221,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector tintColor = Selector.register("tintColor");
-    @Bridge(symbol = "objc_msgSend") private native static UIColor objc_getTintColor(UIBarButtonItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIColor objc_getTintColorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getTintColor(UIBarButtonItem __self__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getTintColorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/tintColor">@property(nonatomic, retain) UIColor *tintColor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/tintColor">@property(nonatomic, retain) UIColor *tintColor</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIColor getTintColor() {
@@ -233,10 +232,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTintColor$ = Selector.register("setTintColor:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTintColor(UIBarButtonItem __self__, Selector __cmd__, UIColor tintColor);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTintColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor tintColor);
+    @Bridge private native static void objc_setTintColor(UIBarButtonItem __self__, Selector __cmd__, UIColor tintColor);
+    @Bridge private native static void objc_setTintColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor tintColor);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/tintColor">@property(nonatomic, retain) UIColor *tintColor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/tintColor">@property(nonatomic, retain) UIColor *tintColor</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setTintColor(UIColor tintColor) {
@@ -244,10 +243,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector width = Selector.register("width");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getWidth(UIBarButtonItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getWidthSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getWidth(UIBarButtonItem __self__, Selector __cmd__);
+    @Bridge private native static float objc_getWidthSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/width">@property(nonatomic) CGFloat width</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/width">@property(nonatomic) CGFloat width</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getWidth() {
@@ -255,10 +254,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setWidth$ = Selector.register("setWidth:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setWidth(UIBarButtonItem __self__, Selector __cmd__, float width);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setWidthSuper(ObjCSuper __super__, Selector __cmd__, float width);
+    @Bridge private native static void objc_setWidth(UIBarButtonItem __self__, Selector __cmd__, float width);
+    @Bridge private native static void objc_setWidthSuper(ObjCSuper __super__, Selector __cmd__, float width);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/width">@property(nonatomic) CGFloat width</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarButtonItem/width">@property(nonatomic) CGFloat width</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setWidth(float width) {
@@ -268,10 +267,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector backButtonBackgroundImageForState$barMetrics$ = Selector.register("backButtonBackgroundImageForState:barMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getBackButtonBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIControlState state, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getBackButtonBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state, UIBarMetrics barMetrics);
+    @Bridge private native static UIImage objc_getBackButtonBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIControlState state, UIBarMetrics barMetrics);
+    @Bridge private native static UIImage objc_getBackButtonBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backButtonBackgroundImageForState:barMetrics:">- (UIImage *)backButtonBackgroundImageForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backButtonBackgroundImageForState:barMetrics:">- (UIImage *)backButtonBackgroundImageForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIImage getBackButtonBackgroundImage(UIControlState state, UIBarMetrics barMetrics) {
@@ -279,10 +278,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector backButtonBackgroundVerticalPositionAdjustmentForBarMetrics$ = Selector.register("backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getBackButtonBackgroundVerticalPositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getBackButtonBackgroundVerticalPositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
+    @Bridge private native static float objc_getBackButtonBackgroundVerticalPositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
+    @Bridge private native static float objc_getBackButtonBackgroundVerticalPositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:">- (CGFloat)backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:">- (CGFloat)backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public float getBackButtonBackgroundVerticalPositionAdjustment(UIBarMetrics barMetrics) {
@@ -290,23 +289,21 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector backButtonTitlePositionAdjustmentForBarMetrics$ = Selector.register("backButtonTitlePositionAdjustmentForBarMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static @ByVal UIOffset objc_getBackButtonTitlePositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getBackButtonTitlePositionAdjustment_stret(@StructRet UIOffset __ret__, UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static @ByVal UIOffset objc_getBackButtonTitlePositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getBackButtonTitlePositionAdjustmentSuper_stret(@StructRet UIOffset __ret__, ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
+    @Bridge private native static @ByVal UIOffset objc_getBackButtonTitlePositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
+    @Bridge private native static @ByVal UIOffset objc_getBackButtonTitlePositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backButtonTitlePositionAdjustmentForBarMetrics:">- (UIOffset)backButtonTitlePositionAdjustmentForBarMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backButtonTitlePositionAdjustmentForBarMetrics:">- (UIOffset)backButtonTitlePositionAdjustmentForBarMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIOffset getBackButtonTitlePositionAdjustment(UIBarMetrics barMetrics) {
-        if (X86) { if (customClass) { return objc_getBackButtonTitlePositionAdjustmentSuper(getSuper(), backButtonTitlePositionAdjustmentForBarMetrics$, barMetrics); } else { return objc_getBackButtonTitlePositionAdjustment(this, backButtonTitlePositionAdjustmentForBarMetrics$, barMetrics); } } else { UIOffset __ret__ = new UIOffset(); if (customClass) { objc_getBackButtonTitlePositionAdjustmentSuper_stret(__ret__, getSuper(), backButtonTitlePositionAdjustmentForBarMetrics$, barMetrics); } else { objc_getBackButtonTitlePositionAdjustment_stret(__ret__, this, backButtonTitlePositionAdjustmentForBarMetrics$, barMetrics); } return __ret__; }
+        if (customClass) { return objc_getBackButtonTitlePositionAdjustmentSuper(getSuper(), backButtonTitlePositionAdjustmentForBarMetrics$, barMetrics); } else { return objc_getBackButtonTitlePositionAdjustment(this, backButtonTitlePositionAdjustmentForBarMetrics$, barMetrics); }
     }
     
     private static final Selector backgroundImageForState$style$barMetrics$ = Selector.register("backgroundImageForState:style:barMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
+    @Bridge private native static UIImage objc_getBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
+    @Bridge private native static UIImage objc_getBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backgroundImageForState:style:barMetrics:">- (UIImage *)backgroundImageForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backgroundImageForState:style:barMetrics:">- (UIImage *)backgroundImageForState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIImage getBackgroundImage(UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics) {
@@ -314,10 +311,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector backgroundImageForState$barMetrics$ = Selector.register("backgroundImageForState:barMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIControlState state, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state, UIBarMetrics barMetrics);
+    @Bridge private native static UIImage objc_getBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIControlState state, UIBarMetrics barMetrics);
+    @Bridge private native static UIImage objc_getBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backgroundImageForState:barMetrics:">- (UIImage *)backgroundImageForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backgroundImageForState:barMetrics:">- (UIImage *)backgroundImageForState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIImage getBackgroundImage(UIControlState state, UIBarMetrics barMetrics) {
@@ -325,10 +322,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector backgroundVerticalPositionAdjustmentForBarMetrics$ = Selector.register("backgroundVerticalPositionAdjustmentForBarMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getBackgroundVerticalPositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getBackgroundVerticalPositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
+    @Bridge private native static float objc_getBackgroundVerticalPositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
+    @Bridge private native static float objc_getBackgroundVerticalPositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backgroundVerticalPositionAdjustmentForBarMetrics:">- (CGFloat)backgroundVerticalPositionAdjustmentForBarMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/backgroundVerticalPositionAdjustmentForBarMetrics:">- (CGFloat)backgroundVerticalPositionAdjustmentForBarMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public float getBackgroundVerticalPositionAdjustment(UIBarMetrics barMetrics) {
@@ -336,23 +333,21 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector titlePositionAdjustmentForBarMetrics$ = Selector.register("titlePositionAdjustmentForBarMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static @ByVal UIOffset objc_getTitlePositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getTitlePositionAdjustment_stret(@StructRet UIOffset __ret__, UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static @ByVal UIOffset objc_getTitlePositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getTitlePositionAdjustmentSuper_stret(@StructRet UIOffset __ret__, ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
+    @Bridge private native static @ByVal UIOffset objc_getTitlePositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, UIBarMetrics barMetrics);
+    @Bridge private native static @ByVal UIOffset objc_getTitlePositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/titlePositionAdjustmentForBarMetrics:">- (UIOffset)titlePositionAdjustmentForBarMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/titlePositionAdjustmentForBarMetrics:">- (UIOffset)titlePositionAdjustmentForBarMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIOffset getTitlePositionAdjustment(UIBarMetrics barMetrics) {
-        if (X86) { if (customClass) { return objc_getTitlePositionAdjustmentSuper(getSuper(), titlePositionAdjustmentForBarMetrics$, barMetrics); } else { return objc_getTitlePositionAdjustment(this, titlePositionAdjustmentForBarMetrics$, barMetrics); } } else { UIOffset __ret__ = new UIOffset(); if (customClass) { objc_getTitlePositionAdjustmentSuper_stret(__ret__, getSuper(), titlePositionAdjustmentForBarMetrics$, barMetrics); } else { objc_getTitlePositionAdjustment_stret(__ret__, this, titlePositionAdjustmentForBarMetrics$, barMetrics); } return __ret__; }
+        if (customClass) { return objc_getTitlePositionAdjustmentSuper(getSuper(), titlePositionAdjustmentForBarMetrics$, barMetrics); } else { return objc_getTitlePositionAdjustment(this, titlePositionAdjustmentForBarMetrics$, barMetrics); }
     }
     
     private static final Selector setBackButtonBackgroundImage$forState$barMetrics$ = Selector.register("setBackButtonBackgroundImage:forState:barMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setBackButtonBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setBackButtonBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackButtonBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackButtonBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackButtonBackgroundImage:forState:barMetrics:">- (void)setBackButtonBackgroundImage:(UIImage *)backgroundImage forState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackButtonBackgroundImage:forState:barMetrics:">- (void)setBackButtonBackgroundImage:(UIImage *)backgroundImage forState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setBackButtonBackgroundImage(UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics) {
@@ -360,10 +355,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setBackButtonBackgroundVerticalPositionAdjustment$forBarMetrics$ = Selector.register("setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setBackButtonBackgroundVerticalPositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, float adjustment, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setBackButtonBackgroundVerticalPositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, float adjustment, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackButtonBackgroundVerticalPositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, float adjustment, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackButtonBackgroundVerticalPositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, float adjustment, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:">- (void)setBackButtonBackgroundVerticalPositionAdjustment:(CGFloat)adjustment forBarMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:">- (void)setBackButtonBackgroundVerticalPositionAdjustment:(CGFloat)adjustment forBarMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setBackButtonBackgroundVerticalPositionAdjustment(float adjustment, UIBarMetrics barMetrics) {
@@ -371,10 +366,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setBackButtonTitlePositionAdjustment$forBarMetrics$ = Selector.register("setBackButtonTitlePositionAdjustment:forBarMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setBackButtonTitlePositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, @ByVal UIOffset adjustment, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setBackButtonTitlePositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIOffset adjustment, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackButtonTitlePositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, @ByVal UIOffset adjustment, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackButtonTitlePositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIOffset adjustment, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackButtonTitlePositionAdjustment:forBarMetrics:">- (void)setBackButtonTitlePositionAdjustment:(UIOffset)adjustment forBarMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackButtonTitlePositionAdjustment:forBarMetrics:">- (void)setBackButtonTitlePositionAdjustment:(UIOffset)adjustment forBarMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setBackButtonTitlePositionAdjustment(UIOffset adjustment, UIBarMetrics barMetrics) {
@@ -382,10 +377,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setBackgroundImage$forState$barMetrics$ = Selector.register("setBackgroundImage:forState:barMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackgroundImage:forState:barMetrics:">- (void)setBackgroundImage:(UIImage *)backgroundImage forState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackgroundImage:forState:barMetrics:">- (void)setBackgroundImage:(UIImage *)backgroundImage forState:(UIControlState)state barMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setBackgroundImage(UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics) {
@@ -393,10 +388,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setBackgroundImage$forState$style$barMetrics$ = Selector.register("setBackgroundImage:forState:style:barMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackgroundImage(UIBarButtonItem __self__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackgroundImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage backgroundImage, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackgroundImage:forState:style:barMetrics:">- (void)setBackgroundImage:(UIImage *)backgroundImage forState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackgroundImage:forState:style:barMetrics:">- (void)setBackgroundImage:(UIImage *)backgroundImage forState:(UIControlState)state style:(UIBarButtonItemStyle)style barMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setBackgroundImage(UIImage backgroundImage, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics) {
@@ -404,10 +399,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setBackgroundVerticalPositionAdjustment$forBarMetrics$ = Selector.register("setBackgroundVerticalPositionAdjustment:forBarMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setBackgroundVerticalPositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, float adjustment, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setBackgroundVerticalPositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, float adjustment, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackgroundVerticalPositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, float adjustment, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setBackgroundVerticalPositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, float adjustment, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackgroundVerticalPositionAdjustment:forBarMetrics:">- (void)setBackgroundVerticalPositionAdjustment:(CGFloat)adjustment forBarMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setBackgroundVerticalPositionAdjustment:forBarMetrics:">- (void)setBackgroundVerticalPositionAdjustment:(CGFloat)adjustment forBarMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setBackgroundVerticalPositionAdjustment(float adjustment, UIBarMetrics barMetrics) {
@@ -415,10 +410,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTitlePositionAdjustment$forBarMetrics$ = Selector.register("setTitlePositionAdjustment:forBarMetrics:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTitlePositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, @ByVal UIOffset adjustment, UIBarMetrics barMetrics);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTitlePositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIOffset adjustment, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setTitlePositionAdjustment(UIBarButtonItem __self__, Selector __cmd__, @ByVal UIOffset adjustment, UIBarMetrics barMetrics);
+    @Bridge private native static void objc_setTitlePositionAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIOffset adjustment, UIBarMetrics barMetrics);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setTitlePositionAdjustment:forBarMetrics:">- (void)setTitlePositionAdjustment:(UIOffset)adjustment forBarMetrics:(UIBarMetrics)barMetrics</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarButtonItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarButtonItem/setTitlePositionAdjustment:forBarMetrics:">- (void)setTitlePositionAdjustment:(UIOffset)adjustment forBarMetrics:(UIBarMetrics)barMetrics</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setTitlePositionAdjustment(UIOffset adjustment, UIBarMetrics barMetrics) {

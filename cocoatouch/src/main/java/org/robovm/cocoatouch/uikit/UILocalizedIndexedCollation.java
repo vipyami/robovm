@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html">UILocalizedIndexedCollation Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html">UILocalizedIndexedCollation Class Reference</a>
  *   @since Available in iOS 3.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UILocalizedIndexedCollation /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UILocalizedIndexedCollation /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector sectionIndexTitles = Selector.register("sectionIndexTitles");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getSectionIndexTitles(UILocalizedIndexedCollation __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_getSectionIndexTitlesSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getSectionIndexTitles(UILocalizedIndexedCollation __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getSectionIndexTitlesSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instp/UILocalizedIndexedCollation/sectionIndexTitles">@property(nonatomic, readonly) NSArray *sectionIndexTitles</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instp/UILocalizedIndexedCollation/sectionIndexTitles">@property(nonatomic, readonly) NSArray *sectionIndexTitles</a>
      * @since Available in iOS 3.0 and later.
      */
     public NSArray getSectionIndexTitles() {
@@ -69,10 +68,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector sectionTitles = Selector.register("sectionTitles");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getSectionTitles(UILocalizedIndexedCollation __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_getSectionTitlesSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getSectionTitles(UILocalizedIndexedCollation __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getSectionTitlesSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instp/UILocalizedIndexedCollation/sectionTitles">@property(nonatomic, readonly) NSArray *sectionTitles</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instp/UILocalizedIndexedCollation/sectionTitles">@property(nonatomic, readonly) NSArray *sectionTitles</a>
      * @since Available in iOS 3.0 and later.
      */
     public NSArray getSectionTitles() {
@@ -82,9 +81,9 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector currentCollation = Selector.register("currentCollation");
-    @Bridge(symbol = "objc_msgSend") private native static NSObject objc_getCurrentCollation(ObjCClass __self__, Selector __cmd__);
+    @Bridge private native static NSObject objc_getCurrentCollation(ObjCClass __self__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/clm/UILocalizedIndexedCollation/currentCollation">+ (id)currentCollation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/clm/UILocalizedIndexedCollation/currentCollation">+ (id)currentCollation</a>
      * @since Available in iOS 3.0 and later.
      */
     public static NSObject getCurrentCollation() {
@@ -92,10 +91,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector sectionForObject$collationStringSelector$ = Selector.register("sectionForObject:collationStringSelector:");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getSectionForObject(UILocalizedIndexedCollation __self__, Selector __cmd__, NSObject object, Selector selector);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getSectionForObjectSuper(ObjCSuper __super__, Selector __cmd__, NSObject object, Selector selector);
+    @Bridge private native static int objc_getSectionForObject(UILocalizedIndexedCollation __self__, Selector __cmd__, NSObject object, Selector selector);
+    @Bridge private native static int objc_getSectionForObjectSuper(ObjCSuper __super__, Selector __cmd__, NSObject object, Selector selector);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instm/UILocalizedIndexedCollation/sectionForObject:collationStringSelector:">- (NSInteger)sectionForObject:(id)object collationStringSelector:(SEL)selector</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instm/UILocalizedIndexedCollation/sectionForObject:collationStringSelector:">- (NSInteger)sectionForObject:(id)object collationStringSelector:(SEL)selector</a>
      * @since Available in iOS 3.0 and later.
      */
     public int getSectionForObject(NSObject object, Selector selector) {
@@ -103,10 +102,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector sectionForSectionIndexTitleAtIndex$ = Selector.register("sectionForSectionIndexTitleAtIndex:");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getSectionForSectionIndexTitle(UILocalizedIndexedCollation __self__, Selector __cmd__, int indexTitleIndex);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getSectionForSectionIndexTitleSuper(ObjCSuper __super__, Selector __cmd__, int indexTitleIndex);
+    @Bridge private native static int objc_getSectionForSectionIndexTitle(UILocalizedIndexedCollation __self__, Selector __cmd__, int indexTitleIndex);
+    @Bridge private native static int objc_getSectionForSectionIndexTitleSuper(ObjCSuper __super__, Selector __cmd__, int indexTitleIndex);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instm/UILocalizedIndexedCollation/sectionForSectionIndexTitleAtIndex:">- (NSInteger)sectionForSectionIndexTitleAtIndex:(NSInteger)indexTitleIndex</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instm/UILocalizedIndexedCollation/sectionForSectionIndexTitleAtIndex:">- (NSInteger)sectionForSectionIndexTitleAtIndex:(NSInteger)indexTitleIndex</a>
      * @since Available in iOS 3.0 and later.
      */
     public int getSectionForSectionIndexTitle(int indexTitleIndex) {
@@ -114,10 +113,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector sortedArrayFromArray$collationStringSelector$ = Selector.register("sortedArrayFromArray:collationStringSelector:");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_sortArray(UILocalizedIndexedCollation __self__, Selector __cmd__, NSArray array, Selector selector);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_sortArraySuper(ObjCSuper __super__, Selector __cmd__, NSArray array, Selector selector);
+    @Bridge private native static NSArray objc_sortArray(UILocalizedIndexedCollation __self__, Selector __cmd__, NSArray array, Selector selector);
+    @Bridge private native static NSArray objc_sortArraySuper(ObjCSuper __super__, Selector __cmd__, NSArray array, Selector selector);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instm/UILocalizedIndexedCollation/sortedArrayFromArray:collationStringSelector:">- (NSArray *)sortedArrayFromArray:(NSArray *)array collationStringSelector:(SEL)selector</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalizedIndexedCollation_Class/UILocalizedIndexedCollation.html#//apple_ref/occ/instm/UILocalizedIndexedCollation/sortedArrayFromArray:collationStringSelector:">- (NSArray *)sortedArrayFromArray:(NSArray *)array collationStringSelector:(SEL)selector</a>
      * @since Available in iOS 3.0 and later.
      */
     public NSArray sortArray(NSArray array, Selector selector) {

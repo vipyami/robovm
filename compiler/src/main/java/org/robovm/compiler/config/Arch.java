@@ -16,9 +16,8 @@
  */
 package org.robovm.compiler.config;
 
-import java.io.File;
-
 import org.robovm.compiler.CompilerException;
+import org.robovm.llvm.Target;
 
 /**
  * @author niklas
@@ -26,9 +25,6 @@ import org.robovm.compiler.CompilerException;
  */
 public enum Arch {
     x86("i386", "i386"), 
-    armv6("armv6", "armv6"),
-    armv7("armv7", "armv7"),
-    thumbv6("thumbv6", "armv6"),
     thumbv7("thumbv7", "armv7");
     
     private final String llvmName;
@@ -49,9 +45,6 @@ public enum Arch {
     
     public boolean isArm() {
         switch (this) {
-        case armv6:
-        case armv7:
-        case thumbv6:
         case thumbv7:
             return true;
         default:
@@ -59,17 +52,11 @@ public enum Arch {
         }
     }
     
-    public static Arch getDefaultArch(File llvmHomeDir) {
-        String host = OS.getHost(llvmHomeDir);
-        if (host.matches("^(x86|i\\d86).*")) {
+    public static Arch getDefaultArch() {
+        String hostTriple = Target.getHostTriple();
+        if (hostTriple.matches("^(x86|i\\d86).*")) {
             return Arch.x86;
         }
-        if (host.matches("^armv7.*")) {
-            return Arch.armv7;
-        }
-        if (host.matches("^arm.*")) {
-            return Arch.armv6;
-        }
-        throw new CompilerException("Unrecognized arch in Host string: " + host);
+        throw new CompilerException("Unrecognized arch in host triple: " + hostTriple);
     }    
 }

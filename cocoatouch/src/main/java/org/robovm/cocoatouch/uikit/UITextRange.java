@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITextRange_Class/Reference/Reference.html">UITextRange Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITextRange_Class/Reference/Reference.html">UITextRange Class Reference</a>
  *   @since Available in iOS 3.2 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UITextRange /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UITextRange /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector isEmpty = Selector.register("isEmpty");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isEmpty(UITextRange __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isEmptySuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isEmpty(UITextRange __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isEmptySuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITextRange_Class/Reference/Reference.html#//apple_ref/occ/instp/UITextRange/empty">@property(nonatomic, readonly, getter=isEmpty) BOOL empty</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITextRange_Class/Reference/Reference.html#//apple_ref/occ/instp/UITextRange/empty">@property(nonatomic, readonly, getter=isEmpty) BOOL empty</a>
      * @since Available in iOS 3.2 and later.
      */
     public boolean isEmpty() {
@@ -69,10 +68,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector end = Selector.register("end");
-    @Bridge(symbol = "objc_msgSend") private native static UITextPosition objc_getEnd(UITextRange __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UITextPosition objc_getEndSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UITextPosition objc_getEnd(UITextRange __self__, Selector __cmd__);
+    @Bridge private native static UITextPosition objc_getEndSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITextRange_Class/Reference/Reference.html#//apple_ref/occ/instp/UITextRange/end">@property(nonatomic, readonly) UITextPosition *end</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITextRange_Class/Reference/Reference.html#//apple_ref/occ/instp/UITextRange/end">@property(nonatomic, readonly) UITextPosition *end</a>
      * @since Available in iOS 3.2 and later.
      */
     public UITextPosition getEnd() {
@@ -80,10 +79,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector start = Selector.register("start");
-    @Bridge(symbol = "objc_msgSend") private native static UITextPosition objc_getStart(UITextRange __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UITextPosition objc_getStartSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UITextPosition objc_getStart(UITextRange __self__, Selector __cmd__);
+    @Bridge private native static UITextPosition objc_getStartSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITextRange_Class/Reference/Reference.html#//apple_ref/occ/instp/UITextRange/start">@property(nonatomic, readonly) UITextPosition *start</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITextRange_Class/Reference/Reference.html#//apple_ref/occ/instp/UITextRange/start">@property(nonatomic, readonly) UITextPosition *start</a>
      * @since Available in iOS 3.2 and later.
      */
     public UITextPosition getStart() {

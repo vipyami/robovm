@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html">UIPageViewController Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html">UIPageViewController Class Reference</a>
  *   @since Available in iOS 5.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIPageViewController /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIPageViewController /*</name>*/.class);
 
     /*<constructors>*/
@@ -55,23 +54,23 @@ import org.robovm.rt.bro.ptr.*;
     public UIPageViewController() {}
     
     private static final Selector initWithTransitionStyle$navigationOrientation$options$ = Selector.register("initWithTransitionStyle:navigationOrientation:options:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithTransitionStyle(UIPageViewController __self__, Selector __cmd__, UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options);
+    @Bridge private native static @Pointer long objc_initWithTransitionStyle(UIPageViewController __self__, Selector __cmd__, UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instm/UIPageViewController/initWithTransitionStyle:navigationOrientation:options:">- (id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary *)options</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instm/UIPageViewController/initWithTransitionStyle:navigationOrientation:options:">- (id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary *)options</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, NSDictionary options) {
         super((SkipInit) null);
-        setHandle(objc_initWithTransitionStyle(this, initWithTransitionStyle$navigationOrientation$options$, style, navigationOrientation, options));
+        initObject(objc_initWithTransitionStyle(this, initWithTransitionStyle$navigationOrientation$options$, style, navigationOrientation, options));
     }
     /*</constructors>*/
     /*<properties>*/
     
     private static final Selector dataSource = Selector.register("dataSource");
-    @Bridge(symbol = "objc_msgSend") private native static UIPageViewControllerDataSource objc_getDataSource(UIPageViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIPageViewControllerDataSource objc_getDataSourceSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerDataSource objc_getDataSource(UIPageViewController __self__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerDataSource objc_getDataSourceSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/dataSource">@property(nonatomic, assign) id&amp;lt;UIPageViewControllerDataSource&amp;gt; dataSource</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/dataSource">@property(nonatomic, assign) id&amp;lt;UIPageViewControllerDataSource&amp;gt; dataSource</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIPageViewControllerDataSource getDataSource() {
@@ -79,10 +78,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setDataSource$ = Selector.register("setDataSource:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setDataSource(UIPageViewController __self__, Selector __cmd__, UIPageViewControllerDataSource dataSource);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setDataSourceSuper(ObjCSuper __super__, Selector __cmd__, UIPageViewControllerDataSource dataSource);
+    @Bridge private native static void objc_setDataSource(UIPageViewController __self__, Selector __cmd__, UIPageViewControllerDataSource dataSource);
+    @Bridge private native static void objc_setDataSourceSuper(ObjCSuper __super__, Selector __cmd__, UIPageViewControllerDataSource dataSource);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/dataSource">@property(nonatomic, assign) id&amp;lt;UIPageViewControllerDataSource&amp;gt; dataSource</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/dataSource">@property(nonatomic, assign) id&amp;lt;UIPageViewControllerDataSource&amp;gt; dataSource</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setDataSource(UIPageViewControllerDataSource dataSource) {
@@ -90,10 +89,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector delegate = Selector.register("delegate");
-    @Bridge(symbol = "objc_msgSend") private native static UIPageViewControllerDelegate objc_getDelegate(UIPageViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIPageViewControllerDelegate objc_getDelegateSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerDelegate objc_getDelegate(UIPageViewController __self__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerDelegate objc_getDelegateSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/delegate">@property(nonatomic, assign) id&amp;lt;UIPageViewControllerDelegate&amp;gt; delegate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/delegate">@property(nonatomic, assign) id&amp;lt;UIPageViewControllerDelegate&amp;gt; delegate</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIPageViewControllerDelegate getDelegate() {
@@ -101,10 +100,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setDelegate$ = Selector.register("setDelegate:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setDelegate(UIPageViewController __self__, Selector __cmd__, UIPageViewControllerDelegate delegate);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setDelegateSuper(ObjCSuper __super__, Selector __cmd__, UIPageViewControllerDelegate delegate);
+    @Bridge private native static void objc_setDelegate(UIPageViewController __self__, Selector __cmd__, UIPageViewControllerDelegate delegate);
+    @Bridge private native static void objc_setDelegateSuper(ObjCSuper __super__, Selector __cmd__, UIPageViewControllerDelegate delegate);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/delegate">@property(nonatomic, assign) id&amp;lt;UIPageViewControllerDelegate&amp;gt; delegate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/delegate">@property(nonatomic, assign) id&amp;lt;UIPageViewControllerDelegate&amp;gt; delegate</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setDelegate(UIPageViewControllerDelegate delegate) {
@@ -112,10 +111,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector isDoubleSided = Selector.register("isDoubleSided");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isDoubleSided(UIPageViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isDoubleSidedSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isDoubleSided(UIPageViewController __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isDoubleSidedSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/doubleSided">@property(nonatomic, getter=isDoubleSided) BOOL doubleSided</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/doubleSided">@property(nonatomic, getter=isDoubleSided) BOOL doubleSided</a>
      * @since Available in iOS 5.0 and later.
      */
     public boolean isDoubleSided() {
@@ -123,10 +122,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setDoubleSided$ = Selector.register("setDoubleSided:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setDoubleSided(UIPageViewController __self__, Selector __cmd__, boolean doubleSided);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setDoubleSidedSuper(ObjCSuper __super__, Selector __cmd__, boolean doubleSided);
+    @Bridge private native static void objc_setDoubleSided(UIPageViewController __self__, Selector __cmd__, boolean doubleSided);
+    @Bridge private native static void objc_setDoubleSidedSuper(ObjCSuper __super__, Selector __cmd__, boolean doubleSided);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/doubleSided">@property(nonatomic, getter=isDoubleSided) BOOL doubleSided</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/doubleSided">@property(nonatomic, getter=isDoubleSided) BOOL doubleSided</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setDoubleSided(boolean doubleSided) {
@@ -134,10 +133,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector gestureRecognizers = Selector.register("gestureRecognizers");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getGestureRecognizers(UIPageViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_getGestureRecognizersSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getGestureRecognizers(UIPageViewController __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getGestureRecognizersSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/gestureRecognizers">@property(nonatomic, readonly) NSArray *gestureRecognizers</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/gestureRecognizers">@property(nonatomic, readonly) NSArray *gestureRecognizers</a>
      * @since Available in iOS 5.0 and later.
      */
     public NSArray getGestureRecognizers() {
@@ -145,10 +144,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector navigationOrientation = Selector.register("navigationOrientation");
-    @Bridge(symbol = "objc_msgSend") private native static UIPageViewControllerNavigationOrientation objc_getNavigationOrientation(UIPageViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIPageViewControllerNavigationOrientation objc_getNavigationOrientationSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerNavigationOrientation objc_getNavigationOrientation(UIPageViewController __self__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerNavigationOrientation objc_getNavigationOrientationSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/navigationOrientation">@property(nonatomic, readonly) UIPageViewControllerNavigationOrientation navigationOrientation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/navigationOrientation">@property(nonatomic, readonly) UIPageViewControllerNavigationOrientation navigationOrientation</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIPageViewControllerNavigationOrientation getNavigationOrientation() {
@@ -156,10 +155,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector spineLocation = Selector.register("spineLocation");
-    @Bridge(symbol = "objc_msgSend") private native static UIPageViewControllerSpineLocation objc_getSpineLocation(UIPageViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIPageViewControllerSpineLocation objc_getSpineLocationSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerSpineLocation objc_getSpineLocation(UIPageViewController __self__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerSpineLocation objc_getSpineLocationSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/spineLocation">@property(nonatomic, readonly) UIPageViewControllerSpineLocation spineLocation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/spineLocation">@property(nonatomic, readonly) UIPageViewControllerSpineLocation spineLocation</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIPageViewControllerSpineLocation getSpineLocation() {
@@ -167,10 +166,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector transitionStyle = Selector.register("transitionStyle");
-    @Bridge(symbol = "objc_msgSend") private native static UIPageViewControllerTransitionStyle objc_getTransitionStyle(UIPageViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIPageViewControllerTransitionStyle objc_getTransitionStyleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerTransitionStyle objc_getTransitionStyle(UIPageViewController __self__, Selector __cmd__);
+    @Bridge private native static UIPageViewControllerTransitionStyle objc_getTransitionStyleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/transitionStyle">@property(nonatomic, readonly) UIPageViewControllerTransitionStyle transitionStyle</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/transitionStyle">@property(nonatomic, readonly) UIPageViewControllerTransitionStyle transitionStyle</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIPageViewControllerTransitionStyle getTransitionStyle() {
@@ -178,10 +177,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector viewControllers = Selector.register("viewControllers");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getViewControllers(UIPageViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_getViewControllersSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getViewControllers(UIPageViewController __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getViewControllersSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/viewControllers">@property(nonatomic, readonly) NSArray *viewControllers</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instp/UIPageViewController/viewControllers">@property(nonatomic, readonly) NSArray *viewControllers</a>
      * @since Available in iOS 5.0 and later.
      */
     public NSArray getViewControllers() {
@@ -191,10 +190,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector setViewControllers$direction$animated$completion$ = Selector.register("setViewControllers:direction:animated:completion:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setViewControllers(UIPageViewController __self__, Selector __cmd__, NSArray viewControllers, UIPageViewControllerNavigationDirection direction, boolean animated, VoidBooleanBlock completion);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setViewControllersSuper(ObjCSuper __super__, Selector __cmd__, NSArray viewControllers, UIPageViewControllerNavigationDirection direction, boolean animated, VoidBooleanBlock completion);
+    @Bridge private native static void objc_setViewControllers(UIPageViewController __self__, Selector __cmd__, NSArray viewControllers, UIPageViewControllerNavigationDirection direction, boolean animated, VoidBooleanBlock completion);
+    @Bridge private native static void objc_setViewControllersSuper(ObjCSuper __super__, Selector __cmd__, NSArray viewControllers, UIPageViewControllerNavigationDirection direction, boolean animated, VoidBooleanBlock completion);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instm/UIPageViewController/setViewControllers:direction:animated:completion:">- (void)setViewControllers:(NSArray *)viewControllers direction:(UIPageViewControllerNavigationDirection)direction animated:(BOOL)animated completion:(void (^)(BOOL finished))completion</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPageViewControllerClassReferenceClassRef/UIPageViewControllerClassReference.html#//apple_ref/occ/instm/UIPageViewController/setViewControllers:direction:animated:completion:">- (void)setViewControllers:(NSArray *)viewControllers direction:(UIPageViewControllerNavigationDirection)direction animated:(BOOL)animated completion:(void (^)(BOOL finished))completion</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setViewControllers(NSArray viewControllers, UIPageViewControllerNavigationDirection direction, boolean animated, VoidBooleanBlock completion) {

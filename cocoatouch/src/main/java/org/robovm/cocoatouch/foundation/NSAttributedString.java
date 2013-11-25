@@ -29,7 +29,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSAttributedString_Class/Reference/Reference.html">NSAttributedString Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSAttributedString_Class/Reference/Reference.html">NSAttributedString Class Reference</a>
  *   @since Available in iOS 3.2 and later.
  * </div>
  */
@@ -42,7 +42,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ NSAttributedString /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ NSAttributedString /*</name>*/.class);
 
     /*<constructors>*/

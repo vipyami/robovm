@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html">UITableViewController Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html">UITableViewController Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UITableViewController /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UITableViewController /*</name>*/.class);
 
     /*<constructors>*/
@@ -55,23 +54,23 @@ import org.robovm.rt.bro.ptr.*;
     public UITableViewController() {}
     
     private static final Selector initWithStyle$ = Selector.register("initWithStyle:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithStyle(UITableViewController __self__, Selector __cmd__, UITableViewStyle style);
+    @Bridge private native static @Pointer long objc_initWithStyle(UITableViewController __self__, Selector __cmd__, UITableViewStyle style);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instm/UITableViewController/initWithStyle:">- (id)initWithStyle:(UITableViewStyle)style</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instm/UITableViewController/initWithStyle:">- (id)initWithStyle:(UITableViewStyle)style</a>
      * @since Available in iOS 2.0 and later.
      */
     public UITableViewController(UITableViewStyle style) {
         super((SkipInit) null);
-        setHandle(objc_initWithStyle(this, initWithStyle$, style));
+        initObject(objc_initWithStyle(this, initWithStyle$, style));
     }
     /*</constructors>*/
     /*<properties>*/
     
     private static final Selector clearsSelectionOnViewWillAppear = Selector.register("clearsSelectionOnViewWillAppear");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isClearsSelectionOnViewWillAppear(UITableViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isClearsSelectionOnViewWillAppearSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isClearsSelectionOnViewWillAppear(UITableViewController __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isClearsSelectionOnViewWillAppearSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/clearsSelectionOnViewWillAppear">@property(nonatomic) BOOL clearsSelectionOnViewWillAppear</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/clearsSelectionOnViewWillAppear">@property(nonatomic) BOOL clearsSelectionOnViewWillAppear</a>
      * @since Available in iOS 3.2 and later.
      */
     public boolean isClearsSelectionOnViewWillAppear() {
@@ -79,10 +78,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setClearsSelectionOnViewWillAppear$ = Selector.register("setClearsSelectionOnViewWillAppear:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setClearsSelectionOnViewWillAppear(UITableViewController __self__, Selector __cmd__, boolean clearsSelectionOnViewWillAppear);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setClearsSelectionOnViewWillAppearSuper(ObjCSuper __super__, Selector __cmd__, boolean clearsSelectionOnViewWillAppear);
+    @Bridge private native static void objc_setClearsSelectionOnViewWillAppear(UITableViewController __self__, Selector __cmd__, boolean clearsSelectionOnViewWillAppear);
+    @Bridge private native static void objc_setClearsSelectionOnViewWillAppearSuper(ObjCSuper __super__, Selector __cmd__, boolean clearsSelectionOnViewWillAppear);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/clearsSelectionOnViewWillAppear">@property(nonatomic) BOOL clearsSelectionOnViewWillAppear</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/clearsSelectionOnViewWillAppear">@property(nonatomic) BOOL clearsSelectionOnViewWillAppear</a>
      * @since Available in iOS 3.2 and later.
      */
     public void setClearsSelectionOnViewWillAppear(boolean clearsSelectionOnViewWillAppear) {
@@ -90,10 +89,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector refreshControl = Selector.register("refreshControl");
-    @Bridge(symbol = "objc_msgSend") private native static UIRefreshControl objc_getRefreshControl(UITableViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIRefreshControl objc_getRefreshControlSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIRefreshControl objc_getRefreshControl(UITableViewController __self__, Selector __cmd__);
+    @Bridge private native static UIRefreshControl objc_getRefreshControlSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/refreshControl">@property (nonatomic,retain) UIRefreshControl *refreshControl</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/refreshControl">@property (nonatomic,retain) UIRefreshControl *refreshControl</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIRefreshControl getRefreshControl() {
@@ -101,10 +100,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setRefreshControl$ = Selector.register("setRefreshControl:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setRefreshControl(UITableViewController __self__, Selector __cmd__, UIRefreshControl refreshControl);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setRefreshControlSuper(ObjCSuper __super__, Selector __cmd__, UIRefreshControl refreshControl);
+    @Bridge private native static void objc_setRefreshControl(UITableViewController __self__, Selector __cmd__, UIRefreshControl refreshControl);
+    @Bridge private native static void objc_setRefreshControlSuper(ObjCSuper __super__, Selector __cmd__, UIRefreshControl refreshControl);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/refreshControl">@property (nonatomic,retain) UIRefreshControl *refreshControl</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/refreshControl">@property (nonatomic,retain) UIRefreshControl *refreshControl</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setRefreshControl(UIRefreshControl refreshControl) {
@@ -112,10 +111,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector tableView = Selector.register("tableView");
-    @Bridge(symbol = "objc_msgSend") private native static UITableView objc_getTableView(UITableViewController __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UITableView objc_getTableViewSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UITableView objc_getTableView(UITableViewController __self__, Selector __cmd__);
+    @Bridge private native static UITableView objc_getTableViewSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/tableView">@property(nonatomic, retain) UITableView *tableView</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/tableView">@property(nonatomic, retain) UITableView *tableView</a>
      * @since Available in iOS 2.0 and later.
      */
     public UITableView getTableView() {
@@ -123,10 +122,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTableView$ = Selector.register("setTableView:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTableView(UITableViewController __self__, Selector __cmd__, UITableView tableView);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTableViewSuper(ObjCSuper __super__, Selector __cmd__, UITableView tableView);
+    @Bridge private native static void objc_setTableView(UITableViewController __self__, Selector __cmd__, UITableView tableView);
+    @Bridge private native static void objc_setTableViewSuper(ObjCSuper __super__, Selector __cmd__, UITableView tableView);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/tableView">@property(nonatomic, retain) UITableView *tableView</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UITableViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UITableViewController/tableView">@property(nonatomic, retain) UITableView *tableView</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setTableView(UITableView tableView) {

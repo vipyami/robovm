@@ -20,6 +20,7 @@ import static org.robovm.compiler.Access.*;
 import static org.robovm.compiler.Bro.*;
 import static org.robovm.compiler.Functions.*;
 import static org.robovm.compiler.Mangler.*;
+import static org.robovm.compiler.Strings.*;
 import static org.robovm.compiler.Types.*;
 import static org.robovm.compiler.llvm.FunctionAttribute.*;
 import static org.robovm.compiler.llvm.Linkage.*;
@@ -27,6 +28,7 @@ import static org.robovm.compiler.llvm.Type.*;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.robovm.compiler.clazz.Clazz;
@@ -41,16 +43,15 @@ import org.robovm.compiler.llvm.FunctionDeclaration;
 import org.robovm.compiler.llvm.FunctionRef;
 import org.robovm.compiler.llvm.FunctionType;
 import org.robovm.compiler.llvm.Global;
-import org.robovm.compiler.llvm.GlobalRef;
 import org.robovm.compiler.llvm.Icmp;
 import org.robovm.compiler.llvm.Icmp.Condition;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.IntegerType;
 import org.robovm.compiler.llvm.Label;
-import org.robovm.compiler.llvm.Load;
 import org.robovm.compiler.llvm.NullConstant;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Ret;
+import org.robovm.compiler.llvm.StructureType;
 import org.robovm.compiler.llvm.Unreachable;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
@@ -105,16 +106,21 @@ public class TrampolineCompiler {
     public Set<String> getDependencies() {
         return dependencies;
     }
-    
+
     public void compile(ModuleBuilder mb, Trampoline t) {
         this.mb = mb;
         this.dependencies = new HashSet<String>();
         
         if (t instanceof LdcString) {
+            byte[] modUtf8 = stringToModifiedUtf8Z(t.getTarget());
+            Global g = new Global(getStringVarName(modUtf8) + "_ptr", weak, new NullConstant(OBJECT_PTR));
+            if (!mb.hasSymbol(g.getName())) {
+                mb.addGlobal(g);
+            }
             Function f = new FunctionBuilder(t).linkage(weak).build();
             mb.addFunction(f);
-            Value result = call(f, BC_LDC_STRING, f.getParameterRef(0), 
-                    mb.getString(t.getTarget()));
+            Value result = call(f, BC_LDC_STRING, f.getParameterRef(0), g.ref(),
+                    mb.getString(t.getTarget()), new IntegerConstant(t.getTarget().length()));
             f.add(new Ret(result));
             return;
         }
@@ -228,7 +234,7 @@ public class TrampolineCompiler {
 //                    mb.addFunctionDeclaration(new FunctionDeclaration(fnShort.ref()));
                     targetFn = fnShort.ref();
                 }
-                Function fn = new FunctionBuilder(nc).linkage(external).build();
+                Function fn = new FunctionBuilder(nc).linkage(_private).attribs(alwaysinline, optsize).build();
                 Value result = call(fn, targetFn, fn.getParameterRefs());
                 fn.add(new Ret(result));
                 mb.addFunction(fn);
@@ -237,7 +243,7 @@ public class TrampolineCompiler {
                         nc.getMethodName(), nc.getMethodDesc()) + "_ptr", 
                         new NullConstant(I8_PTR));
                 mb.addGlobal(g);
-                Function fn = new FunctionBuilder(nc).linkage(external).build();
+                Function fn = new FunctionBuilder(nc).linkage(_private).attribs(alwaysinline, optsize).build();
                 FunctionRef ldcFn = FunctionBuilder.ldcInternal(nc.getTarget()).ref();
                 Value theClass = call(fn, ldcFn, fn.getParameterRef(0));
                 Value implI8Ptr = call(fn, BC_RESOLVE_NATIVE, fn.getParameterRef(0), 
@@ -289,7 +295,11 @@ public class TrampolineCompiler {
                 mb.addFunction(f);
                 return;
             }
-            createTrampolineAliasForField((FieldAccessor) t, field);
+            if (!field.isStatic()) {
+                createInlinedAccessorForInstanceField((FieldAccessor) t, field);   
+            } else {
+                createTrampolineAliasForField((FieldAccessor) t, field);
+            }
         } else if (t instanceof Invokeinterface) {
             SootMethod rm = resolveInterfaceMethod(f, (Invokeinterface) t);
             if (rm != null) {
@@ -341,6 +351,22 @@ public class TrampolineCompiler {
         }
         alias(t, fnName);
     }
+
+    private void createInlinedAccessorForInstanceField(FieldAccessor t, SootField field) {
+        Function fn = new FunctionBuilder(t).linkage(_private).attribs(alwaysinline, optsize).build();
+
+        List<SootField> classFields = Collections.emptyList();
+        StructureType classType = new StructureType();
+        List<SootField> instanceFields = getInstanceFields(config.getOs(), config.getArch(), field.getDeclaringClass());
+        StructureType instanceType = getInstanceType(config.getOs(), config.getArch(), field.getDeclaringClass());
+        if (t.isGetter()) {
+            ClassCompiler.createFieldGetter(fn, field, classFields, classType, instanceFields, instanceType);
+        } else {
+            ClassCompiler.createFieldSetter(fn, field, classFields, classType, instanceFields, instanceType);
+        }
+        
+        mb.addFunction(fn);
+    }
     
     private void createTrampolineAliasForMethod(Invoke t, SootMethod rm) {
         String fnName = mangleMethod(rm);
@@ -380,30 +406,25 @@ public class TrampolineCompiler {
     }
     
     private FunctionRef createLdcArray(String targetClass) {
+        if (isPrimitiveComponentType(targetClass)) {
+            throw new IllegalArgumentException();
+        }
         String fnName = "array_" + mangleClass(targetClass) + "_ldc";
         FunctionRef fnRef = new FunctionRef(fnName, new FunctionType(OBJECT_PTR, ENV_PTR));
         if (!mb.hasSymbol(fnName)) {
             Function fn = new FunctionBuilder(fnRef).name(fnName).linkage(weak).build();
-            Value arrayClass = null;
-            if (isPrimitiveComponentType(targetClass)) {
-                String primitiveDesc = targetClass.substring(1);
-                Variable result = fn.newVariable(OBJECT_PTR);
-                fn.add(new Load(result, new GlobalRef("array_" + primitiveDesc, OBJECT_PTR)));
-                arrayClass = result.ref();
-            } else {
-                Global g = new Global("array_" + mangleClass(targetClass) + "_ptr", weak, new NullConstant(OBJECT_PTR));
-                if (!mb.hasSymbol(g.getName())) {
-                    mb.addGlobal(g);
-                }
-                FunctionRef ldcArrayClassFn = BC_LDC_ARRAY_BOOT_CLASS;
-                if (!isPrimitiveBaseType(targetClass)) {
-                    Clazz baseType = config.getClazzes().load(getBaseType(targetClass));
-                    if (!baseType.isInBootClasspath()) {
-                        ldcArrayClassFn = BC_LDC_ARRAY_CLASS;
-                    }
-                }
-                arrayClass = call(fn, ldcArrayClassFn, fn.getParameterRef(0), g.ref(), mb.getString(targetClass));
+            Global g = new Global("array_" + mangleClass(targetClass) + "_ptr", weak, new NullConstant(OBJECT_PTR));
+            if (!mb.hasSymbol(g.getName())) {
+                mb.addGlobal(g);
             }
+            FunctionRef ldcArrayClassFn = BC_LDC_ARRAY_BOOT_CLASS;
+            if (!isPrimitiveBaseType(targetClass)) {
+                Clazz baseType = config.getClazzes().load(getBaseType(targetClass));
+                if (!baseType.isInBootClasspath()) {
+                    ldcArrayClassFn = BC_LDC_ARRAY_CLASS;
+                }
+            }
+            Value arrayClass = call(fn, ldcArrayClassFn, fn.getParameterRef(0), g.ref(), mb.getString(targetClass));
             fn.add(new Ret(arrayClass));
             mb.addFunction(fn);
         }
@@ -470,7 +491,13 @@ public class TrampolineCompiler {
                 
         SootClass runtimeClass = null;
         if (runtimeClassName != null && !isArray(runtimeClassName)) {
-            runtimeClass = config.getClazzes().load(runtimeClassName).getSootClass();
+            Clazz c = config.getClazzes().load(runtimeClassName);
+            if (c == null) {
+                // The runtime class type is not available. Classloading will fail earlier so let's
+                // just return true here.
+                return true;
+            }
+            runtimeClass = c.getSootClass();
         }
         
         if (Access.checkMemberAccessible(member, caller, runtimeClass)) {

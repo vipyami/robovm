@@ -28,7 +28,7 @@ import org.robovm.rt.bro.ptr.*;
 /**
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../../../../Foundation/Reference/NSUUID_Class/Reference/Reference.html">NSUUID Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../../../../Foundation/Reference/NSUUID_Class/Reference/Reference.html">NSUUID Class Reference</a>
  *   @since Available in iOS 6.0 and later.
  * </div>
  */
@@ -41,7 +41,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ NSUUID /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ NSUUID /*</name>*/.class);
 
     /*<constructors>*/
@@ -54,8 +53,21 @@ import org.robovm.rt.bro.ptr.*;
     /*</properties>*/
     /*<methods>*/
     
+    private static final Selector UUIDString = Selector.register("UUIDString");
+    @Bridge private native static String objc_asString(NSUUID __self__, Selector __cmd__);
+    @Bridge private native static String objc_asStringSuper(ObjCSuper __super__, Selector __cmd__);
+    /**
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../../../../Foundation/Reference/NSUUID_Class/Reference/Reference.html#//apple_ref/occ/instm/NSUUID/UUIDString">- (NSString *)UUIDString</a>
+     * @since Available in iOS 6.0 and later.
+     */
+    public String asString() {
+        if (customClass) { return objc_asStringSuper(getSuper(), UUIDString); } else { return objc_asString(this, UUIDString); }
+    }
     /*</methods>*/
     /*<callbacks>*/
+    static class Callbacks {
+        @Callback @BindSelector("UUIDString") public static String asString(NSUUID __self__, Selector __cmd__) { return __self__.asString(); }
+    }
     /*</callbacks>*/
 
 }

@@ -33,7 +33,7 @@ import org.robovm.rt.bro.ptr.*;
 /**
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html">NSStringDrawingContext Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html">NSStringDrawingContext Class Reference</a>
  *   @since Available in iOS 6.0 and later.
  * </div>
  */
@@ -46,7 +46,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ NSStringDrawingContext /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ NSStringDrawingContext /*</name>*/.class);
 
     /*<constructors>*/
@@ -57,10 +56,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector actualScaleFactor = Selector.register("actualScaleFactor");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getActualScaleFactor(NSStringDrawingContext __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getActualScaleFactorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getActualScaleFactor(NSStringDrawingContext __self__, Selector __cmd__);
+    @Bridge private native static float objc_getActualScaleFactorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/actualScaleFactor">@property(nonatomic, readonly) CGFloat actualScaleFactor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/actualScaleFactor">@property(nonatomic, readonly) CGFloat actualScaleFactor</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getActualScaleFactor() {
@@ -68,10 +67,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector actualTrackingAdjustment = Selector.register("actualTrackingAdjustment");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getActualTrackingAdjustment(NSStringDrawingContext __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getActualTrackingAdjustmentSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getActualTrackingAdjustment(NSStringDrawingContext __self__, Selector __cmd__);
+    @Bridge private native static float objc_getActualTrackingAdjustmentSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/actualTrackingAdjustment">@property(nonatomic, readonly) CGFloat actualTrackingAdjustment</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/actualTrackingAdjustment">@property(nonatomic, readonly) CGFloat actualTrackingAdjustment</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getActualTrackingAdjustment() {
@@ -79,10 +78,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector minimumScaleFactor = Selector.register("minimumScaleFactor");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getMinimumScaleFactor(NSStringDrawingContext __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getMinimumScaleFactorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getMinimumScaleFactor(NSStringDrawingContext __self__, Selector __cmd__);
+    @Bridge private native static float objc_getMinimumScaleFactorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/minimumScaleFactor">@property(nonatomic) CGFloat minimumScaleFactor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/minimumScaleFactor">@property(nonatomic) CGFloat minimumScaleFactor</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getMinimumScaleFactor() {
@@ -90,10 +89,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMinimumScaleFactor$ = Selector.register("setMinimumScaleFactor:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMinimumScaleFactor(NSStringDrawingContext __self__, Selector __cmd__, float minimumScaleFactor);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMinimumScaleFactorSuper(ObjCSuper __super__, Selector __cmd__, float minimumScaleFactor);
+    @Bridge private native static void objc_setMinimumScaleFactor(NSStringDrawingContext __self__, Selector __cmd__, float minimumScaleFactor);
+    @Bridge private native static void objc_setMinimumScaleFactorSuper(ObjCSuper __super__, Selector __cmd__, float minimumScaleFactor);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/minimumScaleFactor">@property(nonatomic) CGFloat minimumScaleFactor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/minimumScaleFactor">@property(nonatomic) CGFloat minimumScaleFactor</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setMinimumScaleFactor(float minimumScaleFactor) {
@@ -101,10 +100,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector minimumTrackingAdjustment = Selector.register("minimumTrackingAdjustment");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getMinimumTrackingAdjustment(NSStringDrawingContext __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getMinimumTrackingAdjustmentSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getMinimumTrackingAdjustment(NSStringDrawingContext __self__, Selector __cmd__);
+    @Bridge private native static float objc_getMinimumTrackingAdjustmentSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/minimumTrackingAdjustment">@property(nonatomic) CGFloat minimumTrackingAdjustment</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/minimumTrackingAdjustment">@property(nonatomic) CGFloat minimumTrackingAdjustment</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getMinimumTrackingAdjustment() {
@@ -112,10 +111,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMinimumTrackingAdjustment$ = Selector.register("setMinimumTrackingAdjustment:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMinimumTrackingAdjustment(NSStringDrawingContext __self__, Selector __cmd__, float minimumTrackingAdjustment);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMinimumTrackingAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, float minimumTrackingAdjustment);
+    @Bridge private native static void objc_setMinimumTrackingAdjustment(NSStringDrawingContext __self__, Selector __cmd__, float minimumTrackingAdjustment);
+    @Bridge private native static void objc_setMinimumTrackingAdjustmentSuper(ObjCSuper __super__, Selector __cmd__, float minimumTrackingAdjustment);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/minimumTrackingAdjustment">@property(nonatomic) CGFloat minimumTrackingAdjustment</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/minimumTrackingAdjustment">@property(nonatomic) CGFloat minimumTrackingAdjustment</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setMinimumTrackingAdjustment(float minimumTrackingAdjustment) {
@@ -123,14 +122,14 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector totalBounds = Selector.register("totalBounds");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getTotalBounds_stret(@StructRet CGRect __ret__, NSStringDrawingContext __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getTotalBoundsSuper_stret(@StructRet CGRect __ret__, ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static @ByVal CGRect objc_getTotalBounds(NSStringDrawingContext __self__, Selector __cmd__);
+    @Bridge private native static @ByVal CGRect objc_getTotalBoundsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/totalBounds">@property(nonatomic, readonly) CGRect totalBounds</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../NSStringDrawingContext_class/Reference/Reference.html#//apple_ref/occ/instp/NSStringDrawingContext/totalBounds">@property(nonatomic, readonly) CGRect totalBounds</a>
      * @since Available in iOS 6.0 and later.
      */
     public CGRect getTotalBounds() {
-        CGRect __ret__ = new CGRect(); if (customClass) { objc_getTotalBoundsSuper_stret(__ret__, getSuper(), totalBounds); } else { objc_getTotalBounds_stret(__ret__, this, totalBounds); } return __ret__;
+        if (customClass) { return objc_getTotalBoundsSuper(getSuper(), totalBounds); } else { return objc_getTotalBounds(this, totalBounds); }
     }
     /*</properties>*/
     /*<methods>*/

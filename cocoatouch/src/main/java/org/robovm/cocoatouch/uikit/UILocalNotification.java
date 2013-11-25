@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html">UILocalNotification Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html">UILocalNotification Class Reference</a>
  *   @since Available in iOS 4.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UILocalNotification /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UILocalNotification /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector alertAction = Selector.register("alertAction");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getAlertAction(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getAlertActionSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getAlertAction(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static String objc_getAlertActionSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertAction">@property(nonatomic, copy) NSString *alertAction</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertAction">@property(nonatomic, copy) NSString *alertAction</a>
      * @since Available in iOS 4.0 and later.
      */
     public String getAlertAction() {
@@ -69,10 +68,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setAlertAction$ = Selector.register("setAlertAction:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setAlertAction(UILocalNotification __self__, Selector __cmd__, String alertAction);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setAlertActionSuper(ObjCSuper __super__, Selector __cmd__, String alertAction);
+    @Bridge private native static void objc_setAlertAction(UILocalNotification __self__, Selector __cmd__, String alertAction);
+    @Bridge private native static void objc_setAlertActionSuper(ObjCSuper __super__, Selector __cmd__, String alertAction);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertAction">@property(nonatomic, copy) NSString *alertAction</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertAction">@property(nonatomic, copy) NSString *alertAction</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setAlertAction(String alertAction) {
@@ -80,10 +79,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector alertBody = Selector.register("alertBody");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getAlertBody(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getAlertBodySuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getAlertBody(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static String objc_getAlertBodySuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertBody">@property(nonatomic, copy) NSString *alertBody</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertBody">@property(nonatomic, copy) NSString *alertBody</a>
      * @since Available in iOS 4.0 and later.
      */
     public String getAlertBody() {
@@ -91,10 +90,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setAlertBody$ = Selector.register("setAlertBody:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setAlertBody(UILocalNotification __self__, Selector __cmd__, String alertBody);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setAlertBodySuper(ObjCSuper __super__, Selector __cmd__, String alertBody);
+    @Bridge private native static void objc_setAlertBody(UILocalNotification __self__, Selector __cmd__, String alertBody);
+    @Bridge private native static void objc_setAlertBodySuper(ObjCSuper __super__, Selector __cmd__, String alertBody);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertBody">@property(nonatomic, copy) NSString *alertBody</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertBody">@property(nonatomic, copy) NSString *alertBody</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setAlertBody(String alertBody) {
@@ -102,10 +101,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector alertLaunchImage = Selector.register("alertLaunchImage");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getAlertLaunchImage(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getAlertLaunchImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getAlertLaunchImage(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static String objc_getAlertLaunchImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertLaunchImage">@property(nonatomic,copy) NSString *alertLaunchImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertLaunchImage">@property(nonatomic,copy) NSString *alertLaunchImage</a>
      * @since Available in iOS 4.0 and later.
      */
     public String getAlertLaunchImage() {
@@ -113,10 +112,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setAlertLaunchImage$ = Selector.register("setAlertLaunchImage:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setAlertLaunchImage(UILocalNotification __self__, Selector __cmd__, String alertLaunchImage);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setAlertLaunchImageSuper(ObjCSuper __super__, Selector __cmd__, String alertLaunchImage);
+    @Bridge private native static void objc_setAlertLaunchImage(UILocalNotification __self__, Selector __cmd__, String alertLaunchImage);
+    @Bridge private native static void objc_setAlertLaunchImageSuper(ObjCSuper __super__, Selector __cmd__, String alertLaunchImage);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertLaunchImage">@property(nonatomic,copy) NSString *alertLaunchImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/alertLaunchImage">@property(nonatomic,copy) NSString *alertLaunchImage</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setAlertLaunchImage(String alertLaunchImage) {
@@ -124,10 +123,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector applicationIconBadgeNumber = Selector.register("applicationIconBadgeNumber");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getApplicationIconBadgeNumber(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getApplicationIconBadgeNumberSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static int objc_getApplicationIconBadgeNumber(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static int objc_getApplicationIconBadgeNumberSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/applicationIconBadgeNumber">@property(nonatomic) NSInteger applicationIconBadgeNumber</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/applicationIconBadgeNumber">@property(nonatomic) NSInteger applicationIconBadgeNumber</a>
      * @since Available in iOS 4.0 and later.
      */
     public int getApplicationIconBadgeNumber() {
@@ -135,10 +134,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setApplicationIconBadgeNumber$ = Selector.register("setApplicationIconBadgeNumber:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setApplicationIconBadgeNumber(UILocalNotification __self__, Selector __cmd__, int applicationIconBadgeNumber);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setApplicationIconBadgeNumberSuper(ObjCSuper __super__, Selector __cmd__, int applicationIconBadgeNumber);
+    @Bridge private native static void objc_setApplicationIconBadgeNumber(UILocalNotification __self__, Selector __cmd__, int applicationIconBadgeNumber);
+    @Bridge private native static void objc_setApplicationIconBadgeNumberSuper(ObjCSuper __super__, Selector __cmd__, int applicationIconBadgeNumber);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/applicationIconBadgeNumber">@property(nonatomic) NSInteger applicationIconBadgeNumber</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/applicationIconBadgeNumber">@property(nonatomic) NSInteger applicationIconBadgeNumber</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setApplicationIconBadgeNumber(int applicationIconBadgeNumber) {
@@ -146,10 +145,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector fireDate = Selector.register("fireDate");
-    @Bridge(symbol = "objc_msgSend") private native static NSDate objc_getFireDate(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSDate objc_getFireDateSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSDate objc_getFireDate(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static NSDate objc_getFireDateSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/fireDate">@property(nonatomic, copy) NSDate *fireDate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/fireDate">@property(nonatomic, copy) NSDate *fireDate</a>
      * @since Available in iOS 4.0 and later.
      */
     public NSDate getFireDate() {
@@ -157,10 +156,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setFireDate$ = Selector.register("setFireDate:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setFireDate(UILocalNotification __self__, Selector __cmd__, NSDate fireDate);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setFireDateSuper(ObjCSuper __super__, Selector __cmd__, NSDate fireDate);
+    @Bridge private native static void objc_setFireDate(UILocalNotification __self__, Selector __cmd__, NSDate fireDate);
+    @Bridge private native static void objc_setFireDateSuper(ObjCSuper __super__, Selector __cmd__, NSDate fireDate);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/fireDate">@property(nonatomic, copy) NSDate *fireDate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/fireDate">@property(nonatomic, copy) NSDate *fireDate</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setFireDate(NSDate fireDate) {
@@ -168,10 +167,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector hasAction = Selector.register("hasAction");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isHasAction(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isHasActionSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isHasAction(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isHasActionSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/hasAction">@property(nonatomic) BOOL hasAction</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/hasAction">@property(nonatomic) BOOL hasAction</a>
      * @since Available in iOS 4.0 and later.
      */
     public boolean isHasAction() {
@@ -179,10 +178,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setHasAction$ = Selector.register("setHasAction:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setHasAction(UILocalNotification __self__, Selector __cmd__, boolean hasAction);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setHasActionSuper(ObjCSuper __super__, Selector __cmd__, boolean hasAction);
+    @Bridge private native static void objc_setHasAction(UILocalNotification __self__, Selector __cmd__, boolean hasAction);
+    @Bridge private native static void objc_setHasActionSuper(ObjCSuper __super__, Selector __cmd__, boolean hasAction);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/hasAction">@property(nonatomic) BOOL hasAction</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/hasAction">@property(nonatomic) BOOL hasAction</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setHasAction(boolean hasAction) {
@@ -190,10 +189,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector repeatCalendar = Selector.register("repeatCalendar");
-    @Bridge(symbol = "objc_msgSend") private native static NSCalendar objc_getRepeatCalendar(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSCalendar objc_getRepeatCalendarSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSCalendar objc_getRepeatCalendar(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static NSCalendar objc_getRepeatCalendarSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/repeatCalendar">@property(nonatomic, copy) NSCalendar *repeatCalendar</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/repeatCalendar">@property(nonatomic, copy) NSCalendar *repeatCalendar</a>
      * @since Available in iOS 4.0 and later.
      */
     public NSCalendar getRepeatCalendar() {
@@ -201,10 +200,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setRepeatCalendar$ = Selector.register("setRepeatCalendar:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setRepeatCalendar(UILocalNotification __self__, Selector __cmd__, NSCalendar repeatCalendar);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setRepeatCalendarSuper(ObjCSuper __super__, Selector __cmd__, NSCalendar repeatCalendar);
+    @Bridge private native static void objc_setRepeatCalendar(UILocalNotification __self__, Selector __cmd__, NSCalendar repeatCalendar);
+    @Bridge private native static void objc_setRepeatCalendarSuper(ObjCSuper __super__, Selector __cmd__, NSCalendar repeatCalendar);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/repeatCalendar">@property(nonatomic, copy) NSCalendar *repeatCalendar</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/repeatCalendar">@property(nonatomic, copy) NSCalendar *repeatCalendar</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setRepeatCalendar(NSCalendar repeatCalendar) {
@@ -212,10 +211,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector repeatInterval = Selector.register("repeatInterval");
-    @Bridge(symbol = "objc_msgSend") private native static NSCalendarUnit objc_getRepeatInterval(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSCalendarUnit objc_getRepeatIntervalSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSCalendarUnit objc_getRepeatInterval(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static NSCalendarUnit objc_getRepeatIntervalSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/repeatInterval">@property(nonatomic) NSCalendarUnit repeatInterval</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/repeatInterval">@property(nonatomic) NSCalendarUnit repeatInterval</a>
      * @since Available in iOS 4.0 and later.
      */
     public NSCalendarUnit getRepeatInterval() {
@@ -223,10 +222,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setRepeatInterval$ = Selector.register("setRepeatInterval:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setRepeatInterval(UILocalNotification __self__, Selector __cmd__, NSCalendarUnit repeatInterval);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setRepeatIntervalSuper(ObjCSuper __super__, Selector __cmd__, NSCalendarUnit repeatInterval);
+    @Bridge private native static void objc_setRepeatInterval(UILocalNotification __self__, Selector __cmd__, NSCalendarUnit repeatInterval);
+    @Bridge private native static void objc_setRepeatIntervalSuper(ObjCSuper __super__, Selector __cmd__, NSCalendarUnit repeatInterval);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/repeatInterval">@property(nonatomic) NSCalendarUnit repeatInterval</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/repeatInterval">@property(nonatomic) NSCalendarUnit repeatInterval</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setRepeatInterval(NSCalendarUnit repeatInterval) {
@@ -234,10 +233,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector soundName = Selector.register("soundName");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getSoundName(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getSoundNameSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getSoundName(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static String objc_getSoundNameSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/soundName">@property(nonatomic, copy) NSString *soundName</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/soundName">@property(nonatomic, copy) NSString *soundName</a>
      * @since Available in iOS 4.0 and later.
      */
     public String getSoundName() {
@@ -245,10 +244,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setSoundName$ = Selector.register("setSoundName:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setSoundName(UILocalNotification __self__, Selector __cmd__, String soundName);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setSoundNameSuper(ObjCSuper __super__, Selector __cmd__, String soundName);
+    @Bridge private native static void objc_setSoundName(UILocalNotification __self__, Selector __cmd__, String soundName);
+    @Bridge private native static void objc_setSoundNameSuper(ObjCSuper __super__, Selector __cmd__, String soundName);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/soundName">@property(nonatomic, copy) NSString *soundName</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/soundName">@property(nonatomic, copy) NSString *soundName</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setSoundName(String soundName) {
@@ -256,10 +255,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector timeZone = Selector.register("timeZone");
-    @Bridge(symbol = "objc_msgSend") private native static NSTimeZone objc_getTimeZone(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSTimeZone objc_getTimeZoneSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSTimeZone objc_getTimeZone(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static NSTimeZone objc_getTimeZoneSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/timeZone">@property(nonatomic, copy) NSTimeZone *timeZone</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/timeZone">@property(nonatomic, copy) NSTimeZone *timeZone</a>
      * @since Available in iOS 4.0 and later.
      */
     public NSTimeZone getTimeZone() {
@@ -267,10 +266,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTimeZone$ = Selector.register("setTimeZone:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTimeZone(UILocalNotification __self__, Selector __cmd__, NSTimeZone timeZone);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTimeZoneSuper(ObjCSuper __super__, Selector __cmd__, NSTimeZone timeZone);
+    @Bridge private native static void objc_setTimeZone(UILocalNotification __self__, Selector __cmd__, NSTimeZone timeZone);
+    @Bridge private native static void objc_setTimeZoneSuper(ObjCSuper __super__, Selector __cmd__, NSTimeZone timeZone);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/timeZone">@property(nonatomic, copy) NSTimeZone *timeZone</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/timeZone">@property(nonatomic, copy) NSTimeZone *timeZone</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setTimeZone(NSTimeZone timeZone) {
@@ -278,10 +277,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector userInfo = Selector.register("userInfo");
-    @Bridge(symbol = "objc_msgSend") private native static NSDictionary objc_getUserInfo(UILocalNotification __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSDictionary objc_getUserInfoSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSDictionary objc_getUserInfo(UILocalNotification __self__, Selector __cmd__);
+    @Bridge private native static NSDictionary objc_getUserInfoSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/userInfo">@property(nonatomic, copy) NSDictionary *userInfo</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/userInfo">@property(nonatomic, copy) NSDictionary *userInfo</a>
      * @since Available in iOS 4.0 and later.
      */
     public NSDictionary getUserInfo() {
@@ -289,10 +288,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setUserInfo$ = Selector.register("setUserInfo:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setUserInfo(UILocalNotification __self__, Selector __cmd__, NSDictionary userInfo);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setUserInfoSuper(ObjCSuper __super__, Selector __cmd__, NSDictionary userInfo);
+    @Bridge private native static void objc_setUserInfo(UILocalNotification __self__, Selector __cmd__, NSDictionary userInfo);
+    @Bridge private native static void objc_setUserInfoSuper(ObjCSuper __super__, Selector __cmd__, NSDictionary userInfo);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/userInfo">@property(nonatomic, copy) NSDictionary *userInfo</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UILocalNotification_Class/Reference/Reference.html#//apple_ref/occ/instp/UILocalNotification/userInfo">@property(nonatomic, copy) NSDictionary *userInfo</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setUserInfo(NSDictionary userInfo) {

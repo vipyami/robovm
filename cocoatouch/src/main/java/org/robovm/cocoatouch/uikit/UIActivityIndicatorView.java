@@ -33,7 +33,7 @@ import org.robovm.rt.bro.ptr.*;
 /**
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html">UIActivityIndicatorView Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html">UIActivityIndicatorView Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -46,7 +46,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIActivityIndicatorView /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIActivityIndicatorView /*</name>*/.class);
 
     public UIActivityIndicatorView(CGRect aRect) {
@@ -57,23 +56,23 @@ import org.robovm.rt.bro.ptr.*;
     public UIActivityIndicatorView() {}
     
     private static final Selector initWithActivityIndicatorStyle$ = Selector.register("initWithActivityIndicatorStyle:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithActivityIndicatorStyle(UIActivityIndicatorView __self__, Selector __cmd__, UIActivityIndicatorViewStyle style);
+    @Bridge private native static @Pointer long objc_initWithActivityIndicatorStyle(UIActivityIndicatorView __self__, Selector __cmd__, UIActivityIndicatorViewStyle style);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instm/UIActivityIndicatorView/initWithActivityIndicatorStyle:">- (id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instm/UIActivityIndicatorView/initWithActivityIndicatorStyle:">- (id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIActivityIndicatorView(UIActivityIndicatorViewStyle style) {
         super((SkipInit) null);
-        setHandle(objc_initWithActivityIndicatorStyle(this, initWithActivityIndicatorStyle$, style));
+        initObject(objc_initWithActivityIndicatorStyle(this, initWithActivityIndicatorStyle$, style));
     }
     /*</constructors>*/
     /*<properties>*/
     
     private static final Selector activityIndicatorViewStyle = Selector.register("activityIndicatorViewStyle");
-    @Bridge(symbol = "objc_msgSend") private native static UIActivityIndicatorViewStyle objc_getActivityIndicatorViewStyle(UIActivityIndicatorView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIActivityIndicatorViewStyle objc_getActivityIndicatorViewStyleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIActivityIndicatorViewStyle objc_getActivityIndicatorViewStyle(UIActivityIndicatorView __self__, Selector __cmd__);
+    @Bridge private native static UIActivityIndicatorViewStyle objc_getActivityIndicatorViewStyleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/activityIndicatorViewStyle">@property UIActivityIndicatorViewStyle activityIndicatorViewStyle</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/activityIndicatorViewStyle">@property UIActivityIndicatorViewStyle activityIndicatorViewStyle</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIActivityIndicatorViewStyle getActivityIndicatorViewStyle() {
@@ -81,10 +80,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setActivityIndicatorViewStyle$ = Selector.register("setActivityIndicatorViewStyle:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setActivityIndicatorViewStyle(UIActivityIndicatorView __self__, Selector __cmd__, UIActivityIndicatorViewStyle activityIndicatorViewStyle);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setActivityIndicatorViewStyleSuper(ObjCSuper __super__, Selector __cmd__, UIActivityIndicatorViewStyle activityIndicatorViewStyle);
+    @Bridge private native static void objc_setActivityIndicatorViewStyle(UIActivityIndicatorView __self__, Selector __cmd__, UIActivityIndicatorViewStyle activityIndicatorViewStyle);
+    @Bridge private native static void objc_setActivityIndicatorViewStyleSuper(ObjCSuper __super__, Selector __cmd__, UIActivityIndicatorViewStyle activityIndicatorViewStyle);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/activityIndicatorViewStyle">@property UIActivityIndicatorViewStyle activityIndicatorViewStyle</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/activityIndicatorViewStyle">@property UIActivityIndicatorViewStyle activityIndicatorViewStyle</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setActivityIndicatorViewStyle(UIActivityIndicatorViewStyle activityIndicatorViewStyle) {
@@ -92,10 +91,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector color = Selector.register("color");
-    @Bridge(symbol = "objc_msgSend") private native static UIColor objc_getColor(UIActivityIndicatorView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIColor objc_getColorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getColor(UIActivityIndicatorView __self__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getColorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/color">@property (readwrite, nonatomic, retain) UIColor *color</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/color">@property (readwrite, nonatomic, retain) UIColor *color</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIColor getColor() {
@@ -103,10 +102,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setColor$ = Selector.register("setColor:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setColor(UIActivityIndicatorView __self__, Selector __cmd__, UIColor color);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor color);
+    @Bridge private native static void objc_setColor(UIActivityIndicatorView __self__, Selector __cmd__, UIColor color);
+    @Bridge private native static void objc_setColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor color);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/color">@property (readwrite, nonatomic, retain) UIColor *color</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/color">@property (readwrite, nonatomic, retain) UIColor *color</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setColor(UIColor color) {
@@ -114,10 +113,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector hidesWhenStopped = Selector.register("hidesWhenStopped");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isHidesWhenStopped(UIActivityIndicatorView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isHidesWhenStoppedSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isHidesWhenStopped(UIActivityIndicatorView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isHidesWhenStoppedSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/hidesWhenStopped">@property BOOL hidesWhenStopped</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/hidesWhenStopped">@property BOOL hidesWhenStopped</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isHidesWhenStopped() {
@@ -125,10 +124,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setHidesWhenStopped$ = Selector.register("setHidesWhenStopped:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setHidesWhenStopped(UIActivityIndicatorView __self__, Selector __cmd__, boolean hidesWhenStopped);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setHidesWhenStoppedSuper(ObjCSuper __super__, Selector __cmd__, boolean hidesWhenStopped);
+    @Bridge private native static void objc_setHidesWhenStopped(UIActivityIndicatorView __self__, Selector __cmd__, boolean hidesWhenStopped);
+    @Bridge private native static void objc_setHidesWhenStoppedSuper(ObjCSuper __super__, Selector __cmd__, boolean hidesWhenStopped);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/hidesWhenStopped">@property BOOL hidesWhenStopped</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instp/UIActivityIndicatorView/hidesWhenStopped">@property BOOL hidesWhenStopped</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setHidesWhenStopped(boolean hidesWhenStopped) {
@@ -138,10 +137,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector isAnimating = Selector.register("isAnimating");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isAnimating(UIActivityIndicatorView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isAnimatingSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isAnimating(UIActivityIndicatorView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isAnimatingSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instm/UIActivityIndicatorView/isAnimating">- (BOOL)isAnimating</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instm/UIActivityIndicatorView/isAnimating">- (BOOL)isAnimating</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isAnimating() {
@@ -149,10 +148,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector startAnimating = Selector.register("startAnimating");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_startAnimating(UIActivityIndicatorView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_startAnimatingSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_startAnimating(UIActivityIndicatorView __self__, Selector __cmd__);
+    @Bridge private native static void objc_startAnimatingSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instm/UIActivityIndicatorView/startAnimating">- (void)startAnimating</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instm/UIActivityIndicatorView/startAnimating">- (void)startAnimating</a>
      * @since Available in iOS 2.0 and later.
      */
     public void startAnimating() {
@@ -160,10 +159,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector stopAnimating = Selector.register("stopAnimating");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_stopAnimating(UIActivityIndicatorView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_stopAnimatingSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_stopAnimating(UIActivityIndicatorView __self__, Selector __cmd__);
+    @Bridge private native static void objc_stopAnimatingSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instm/UIActivityIndicatorView/stopAnimating">- (void)stopAnimating</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityIndicatorView_Class/Reference/UIActivityIndicatorView.html#//apple_ref/occ/instm/UIActivityIndicatorView/stopAnimating">- (void)stopAnimating</a>
      * @since Available in iOS 2.0 and later.
      */
     public void stopAnimating() {

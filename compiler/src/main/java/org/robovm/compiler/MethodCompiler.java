@@ -547,7 +547,8 @@ public class MethodCompiler extends AbstractMethodCompiler {
             if (isArray(targetClassName) && isPrimitiveComponentType(targetClassName)) {
                 String primitiveDesc = targetClassName.substring(1);
                 Variable result = function.newVariable(OBJECT_PTR);
-                function.add(new Load(result, new GlobalRef("array_" + primitiveDesc, OBJECT_PTR)));
+                function.add(new Load(result, new ConstantBitcast(
+                        new GlobalRef("array_" + primitiveDesc, CLASS_PTR), new PointerType(OBJECT_PTR))));
                 return result.ref();
             } else {
                 FunctionRef fn = null;
@@ -698,36 +699,38 @@ public class MethodCompiler extends AbstractMethodCompiler {
             args.add(narrowFromI32Value(getType(methodRef.parameterType(i)), arg));
             i++;
         }
-        FunctionRef functionRef = null;
         Value result = null;
-        if (canCallDirectly(expr)) {
-            SootMethod method = this.sootMethod.getDeclaringClass().getMethod(methodRef.name(), 
-                    methodRef.parameterTypes(), methodRef.returnType());
-            if (method.isSynchronized()) {
-                functionRef = FunctionBuilder.synchronizedWrapper(method).ref();
+        FunctionRef functionRef = Intrinsics.getIntrinsic(sootMethod, stmt, expr);
+        if (functionRef == null) {
+            if (canCallDirectly(expr)) {
+                SootMethod method = this.sootMethod.getDeclaringClass().getMethod(methodRef.name(), 
+                        methodRef.parameterTypes(), methodRef.returnType());
+                if (method.isSynchronized()) {
+                    functionRef = FunctionBuilder.synchronizedWrapper(method).ref();
+                } else {
+                    functionRef = FunctionBuilder.method(method).ref();
+                }
             } else {
-                functionRef = FunctionBuilder.method(method).ref();
+                Trampoline trampoline = null;
+                String targetClassName = getInternalName(methodRef.declaringClass());
+                String methodName = methodRef.name();
+                String methodDesc = getDescriptor(methodRef);
+                if (expr instanceof SpecialInvokeExpr) {
+                    soot.Type runtimeType = ((SpecialInvokeExpr) expr).getBase().getType();
+                    String runtimeClassName = runtimeType == NullType.v() ? targetClassName : getInternalName(runtimeType);
+                    trampoline = new Invokespecial(this.className, targetClassName, methodName, methodDesc, runtimeClassName);
+                } else if (expr instanceof StaticInvokeExpr) {
+                    trampoline = new Invokestatic(this.className, targetClassName, methodName, methodDesc);
+                } else if (expr instanceof VirtualInvokeExpr) {
+                    soot.Type runtimeType = ((VirtualInvokeExpr) expr).getBase().getType();
+                    String runtimeClassName = runtimeType == NullType.v() ? targetClassName : getInternalName(runtimeType);
+                    trampoline = new Invokevirtual(this.className, targetClassName, methodName, methodDesc, runtimeClassName);
+                } else if (expr instanceof InterfaceInvokeExpr) {
+                    trampoline = new Invokeinterface(this.className, targetClassName, methodName, methodDesc);
+                }
+                trampolines.add(trampoline);
+                functionRef = trampoline.getFunctionRef();
             }
-        } else {
-            Trampoline trampoline = null;
-            String targetClassName = getInternalName(methodRef.declaringClass());
-            String methodName = methodRef.name();
-            String methodDesc = getDescriptor(methodRef);
-            if (expr instanceof SpecialInvokeExpr) {
-                soot.Type runtimeType = ((SpecialInvokeExpr) expr).getBase().getType();
-                String runtimeClassName = runtimeType == NullType.v() ? targetClassName : getInternalName(runtimeType);
-                trampoline = new Invokespecial(this.className, targetClassName, methodName, methodDesc, runtimeClassName);
-            } else if (expr instanceof StaticInvokeExpr) {
-                trampoline = new Invokestatic(this.className, targetClassName, methodName, methodDesc);
-            } else if (expr instanceof VirtualInvokeExpr) {
-                soot.Type runtimeType = ((VirtualInvokeExpr) expr).getBase().getType();
-                String runtimeClassName = runtimeType == NullType.v() ? targetClassName : getInternalName(runtimeType);
-                trampoline = new Invokevirtual(this.className, targetClassName, methodName, methodDesc, runtimeClassName);
-            } else if (expr instanceof InterfaceInvokeExpr) {
-                trampoline = new Invokeinterface(this.className, targetClassName, methodName, methodDesc);
-            }
-            trampolines.add(trampoline);
-            functionRef = trampoline.getFunctionRef();
         }
         result = call(functionRef, args.toArray(new Value[0]));
         if (result != null) {
@@ -829,16 +832,18 @@ public class MethodCompiler extends AbstractMethodCompiler {
             result = widenToI32Value(result, isUnsigned(ref.getType()));
         } else if (rightOp instanceof StaticFieldRef) {
             StaticFieldRef ref = (StaticFieldRef) rightOp;
-            FunctionRef fn = null;
-            if (canAccessDirectly(ref)) {
-                fn = new FunctionRef(mangleField(ref.getFieldRef()) + "_getter", 
-                        new FunctionType(getType(ref.getType()), ENV_PTR));
-            } else {
-                String targetClassName = getInternalName(ref.getFieldRef().declaringClass());
-                Trampoline trampoline = new GetStatic(this.className, targetClassName, 
-                        ref.getFieldRef().name(), getDescriptor(ref.getFieldRef().type()));
-                trampolines.add(trampoline);
-                fn = trampoline.getFunctionRef();
+            FunctionRef fn = Intrinsics.getIntrinsic(sootMethod, stmt);
+            if (fn == null) {
+                if (canAccessDirectly(ref)) {
+                    fn = new FunctionRef(mangleField(ref.getFieldRef()) + "_getter", 
+                            new FunctionType(getType(ref.getType()), ENV_PTR));
+                } else {
+                    String targetClassName = getInternalName(ref.getFieldRef().declaringClass());
+                    Trampoline trampoline = new GetStatic(this.className, targetClassName, 
+                            ref.getFieldRef().name(), getDescriptor(ref.getFieldRef().type()));
+                    trampolines.add(trampoline);
+                    fn = trampoline.getFunctionRef();
+                }
             }
             result = call(fn, env);
             result = widenToI32Value(result, isUnsigned(ref.getType()));
@@ -988,36 +993,37 @@ public class MethodCompiler extends AbstractMethodCompiler {
                         function.add(new Call(v, f, op));
                         result = v.ref();
                     }
-//                } else if (sootTargetType instanceof soot.ArrayType) {
-//                    soot.Type elementType = ((soot.ArrayType) sootTargetType).getElementType();
-//                    if (elementType instanceof PrimType) {
-//                        
-//                    }
                 } else {
-                    String targetClassName = getInternalName(sootTargetType);
-                    FunctionRef fn = null;
-                    if (targetClassName.equals(this.className)) {
-                        fn = FunctionBuilder.checkcast(sootMethod.getDeclaringClass()).ref();
+                    if (sootTargetType instanceof soot.ArrayType 
+                            && ((soot.ArrayType) sootTargetType).getElementType() instanceof PrimType) {
+                        soot.Type primType = ((soot.ArrayType) sootTargetType).getElementType();
+                        GlobalRef arrayClassPtr = new GlobalRef("array_" + getDescriptor(primType), CLASS_PTR);
+                        Variable arrayClass = function.newVariable(CLASS_PTR);
+                        function.add(new Load(arrayClass, arrayClassPtr));
+                        result = call(CHECKCAST_PRIM_ARRAY, env, arrayClass.ref(), op);
                     } else {
+                        String targetClassName = getInternalName(sootTargetType);
                         Trampoline trampoline = new Checkcast(this.className, targetClassName);
                         trampolines.add(trampoline);
-                        fn = trampoline.getFunctionRef();                        
+                        result = call(trampoline.getFunctionRef(), env, op);
                     }
-                    result = call(fn, env, op);
                 }
             } else if (rightOp instanceof InstanceOfExpr) {
                 Value op = immediate(stmt, (Immediate) ((InstanceOfExpr) rightOp).getOp());
                 soot.Type checkType = ((InstanceOfExpr) rightOp).getCheckType();
-                String targetClassName = getInternalName(checkType);
-                FunctionRef fn = null;
-                if (targetClassName.equals(this.className)) {
-                    fn = FunctionBuilder.instanceOf(sootMethod.getDeclaringClass()).ref();
+                if (checkType instanceof soot.ArrayType 
+                        && ((soot.ArrayType) checkType).getElementType() instanceof PrimType) {
+                    soot.Type primType = ((soot.ArrayType) checkType).getElementType();
+                    GlobalRef arrayClassPtr = new GlobalRef("array_" + getDescriptor(primType), CLASS_PTR);
+                    Variable arrayClass = function.newVariable(CLASS_PTR);
+                    function.add(new Load(arrayClass, arrayClassPtr));
+                    result = call(INSTANCEOF_PRIM_ARRAY, env, arrayClass.ref(), op);
                 } else {
+                    String targetClassName = getInternalName(checkType);
                     Trampoline trampoline = new Instanceof(this.className, targetClassName);
                     trampolines.add(trampoline);
-                    fn = trampoline.getFunctionRef();
+                    result = call(trampoline.getFunctionRef(), env, op);
                 }
-                result = call(fn, env, op);
             } else if (rightOp instanceof NewExpr) {
                 String targetClassName = getInternalName(((NewExpr) rightOp).getBaseType());
                 FunctionRef fn = null;
@@ -1042,18 +1048,23 @@ public class MethodCompiler extends AbstractMethodCompiler {
                 }
             } else if (rightOp instanceof NewMultiArrayExpr) {
                 NewMultiArrayExpr expr = (NewMultiArrayExpr) rightOp;
-                for (int i = 0; i < expr.getSizeCount(); i++) {
-                    Value size = immediate(stmt, (Immediate) expr.getSize(i));
-                    Variable ptr = function.newVariable(new PointerType(I32));
-                    function.add(new Getelementptr(ptr, dims.ref(), 0, i));
-                    function.add(new Store(size, ptr.ref()));
+                if (expr.getBaseType().numDimensions == 1 && expr.getBaseType().getElementType() instanceof PrimType) {
+                    Value size = immediate(stmt, (Immediate) expr.getSize(0));
+                    result = call(getNewArray(expr.getBaseType().getElementType()), env, size);
+                } else {
+                    for (int i = 0; i < expr.getSizeCount(); i++) {
+                        Value size = immediate(stmt, (Immediate) expr.getSize(i));
+                        Variable ptr = function.newVariable(new PointerType(I32));
+                        function.add(new Getelementptr(ptr, dims.ref(), 0, i));
+                        function.add(new Store(size, ptr.ref()));
+                    }
+                    Variable dimsI32 = function.newVariable(new PointerType(I32));
+                    function.add(new Bitcast(dimsI32, dims.ref(), dimsI32.getType()));
+                    String targetClassName = getInternalName(expr.getType());
+                    Trampoline trampoline = new Multianewarray(this.className, targetClassName);
+                    trampolines.add(trampoline);
+                    result = call(trampoline.getFunctionRef(), env, new IntegerConstant(expr.getSizeCount()), dimsI32.ref());
                 }
-                Variable dimsI32 = function.newVariable(new PointerType(I32));
-                function.add(new Bitcast(dimsI32, dims.ref(), dimsI32.getType()));
-                String targetClassName = getInternalName(expr.getType());
-                Trampoline trampoline = new Multianewarray(this.className, targetClassName);
-                trampolines.add(trampoline);
-                result = call(trampoline.getFunctionRef(), env, new IntegerConstant(expr.getSizeCount()), dimsI32.ref());
             } else if (rightOp instanceof InvokeExpr) {
                 result = invokeExpr(stmt, (InvokeExpr) rightOp);
             } else if (rightOp instanceof LengthExpr) {
@@ -1218,13 +1229,13 @@ public class MethodCompiler extends AbstractMethodCompiler {
     private void enterMonitor(EnterMonitorStmt stmt) {
         Value op = immediate(stmt, (Immediate) stmt.getOp());
         checkNull(stmt, op);
-        call(BC_MONITOR_ENTER, env, op);
+        call(MONITORENTER, env, op);
     }
     
     private void exitMonitor(ExitMonitorStmt stmt) {
         Value op = immediate(stmt, (Immediate) stmt.getOp());
         checkNull(stmt, op);
-        call(BC_MONITOR_EXIT, env, op);
+        call(MONITOREXIT, env, op);
     }
     
 }

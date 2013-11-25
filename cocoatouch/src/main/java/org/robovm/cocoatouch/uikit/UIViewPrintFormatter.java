@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIViewPrintFormatter_Class/Reference/Reference.html">UIViewPrintFormatter Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIViewPrintFormatter_Class/Reference/Reference.html">UIViewPrintFormatter Class Reference</a>
  *   @since Available in iOS 4.2 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIViewPrintFormatter /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIViewPrintFormatter /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector view = Selector.register("view");
-    @Bridge(symbol = "objc_msgSend") private native static UIView objc_getView(UIViewPrintFormatter __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIView objc_getViewSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIView objc_getView(UIViewPrintFormatter __self__, Selector __cmd__);
+    @Bridge private native static UIView objc_getViewSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIViewPrintFormatter_Class/Reference/Reference.html#//apple_ref/occ/instp/UIViewPrintFormatter/view">@property(nonatomic, readonly) UIView *view</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIViewPrintFormatter_Class/Reference/Reference.html#//apple_ref/occ/instp/UIViewPrintFormatter/view">@property(nonatomic, readonly) UIView *view</a>
      * @since Available in iOS 4.2 and later.
      */
     public UIView getView() {

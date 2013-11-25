@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html">UIAlertView Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html">UIAlertView Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIAlertView /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIAlertView /*</name>*/.class);
 
     public UIAlertView(CGRect aRect) {
@@ -61,10 +60,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector alertViewStyle = Selector.register("alertViewStyle");
-    @Bridge(symbol = "objc_msgSend") private native static UIAlertViewStyle objc_getAlertViewStyle(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIAlertViewStyle objc_getAlertViewStyleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIAlertViewStyle objc_getAlertViewStyle(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static UIAlertViewStyle objc_getAlertViewStyleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/alertViewStyle">@property(nonatomic, assign) UIAlertViewStyle alertViewStyle</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/alertViewStyle">@property(nonatomic, assign) UIAlertViewStyle alertViewStyle</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIAlertViewStyle getAlertViewStyle() {
@@ -72,10 +71,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setAlertViewStyle$ = Selector.register("setAlertViewStyle:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setAlertViewStyle(UIAlertView __self__, Selector __cmd__, UIAlertViewStyle alertViewStyle);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setAlertViewStyleSuper(ObjCSuper __super__, Selector __cmd__, UIAlertViewStyle alertViewStyle);
+    @Bridge private native static void objc_setAlertViewStyle(UIAlertView __self__, Selector __cmd__, UIAlertViewStyle alertViewStyle);
+    @Bridge private native static void objc_setAlertViewStyleSuper(ObjCSuper __super__, Selector __cmd__, UIAlertViewStyle alertViewStyle);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/alertViewStyle">@property(nonatomic, assign) UIAlertViewStyle alertViewStyle</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/alertViewStyle">@property(nonatomic, assign) UIAlertViewStyle alertViewStyle</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setAlertViewStyle(UIAlertViewStyle alertViewStyle) {
@@ -83,10 +82,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector cancelButtonIndex = Selector.register("cancelButtonIndex");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getCancelButtonIndex(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getCancelButtonIndexSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static int objc_getCancelButtonIndex(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static int objc_getCancelButtonIndexSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/cancelButtonIndex">@property(nonatomic) NSInteger cancelButtonIndex</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/cancelButtonIndex">@property(nonatomic) NSInteger cancelButtonIndex</a>
      * @since Available in iOS 2.0 and later.
      */
     public int getCancelButtonIndex() {
@@ -94,10 +93,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setCancelButtonIndex$ = Selector.register("setCancelButtonIndex:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setCancelButtonIndex(UIAlertView __self__, Selector __cmd__, int cancelButtonIndex);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setCancelButtonIndexSuper(ObjCSuper __super__, Selector __cmd__, int cancelButtonIndex);
+    @Bridge private native static void objc_setCancelButtonIndex(UIAlertView __self__, Selector __cmd__, int cancelButtonIndex);
+    @Bridge private native static void objc_setCancelButtonIndexSuper(ObjCSuper __super__, Selector __cmd__, int cancelButtonIndex);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/cancelButtonIndex">@property(nonatomic) NSInteger cancelButtonIndex</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/cancelButtonIndex">@property(nonatomic) NSInteger cancelButtonIndex</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setCancelButtonIndex(int cancelButtonIndex) {
@@ -105,10 +104,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector delegate = Selector.register("delegate");
-    @Bridge(symbol = "objc_msgSend") private native static UIAlertViewDelegate objc_getDelegate(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIAlertViewDelegate objc_getDelegateSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIAlertViewDelegate objc_getDelegate(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static UIAlertViewDelegate objc_getDelegateSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/delegate">@property(nonatomic, assign) id delegate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/delegate">@property(nonatomic, assign) id delegate</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIAlertViewDelegate getDelegate() {
@@ -116,10 +115,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setDelegate$ = Selector.register("setDelegate:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setDelegate(UIAlertView __self__, Selector __cmd__, UIAlertViewDelegate delegate);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setDelegateSuper(ObjCSuper __super__, Selector __cmd__, UIAlertViewDelegate delegate);
+    @Bridge private native static void objc_setDelegate(UIAlertView __self__, Selector __cmd__, UIAlertViewDelegate delegate);
+    @Bridge private native static void objc_setDelegateSuper(ObjCSuper __super__, Selector __cmd__, UIAlertViewDelegate delegate);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/delegate">@property(nonatomic, assign) id delegate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/delegate">@property(nonatomic, assign) id delegate</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setDelegate(UIAlertViewDelegate delegate) {
@@ -127,10 +126,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector firstOtherButtonIndex = Selector.register("firstOtherButtonIndex");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getFirstOtherButtonIndex(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getFirstOtherButtonIndexSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static int objc_getFirstOtherButtonIndex(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static int objc_getFirstOtherButtonIndexSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/firstOtherButtonIndex">@property(nonatomic, readonly) NSInteger firstOtherButtonIndex</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/firstOtherButtonIndex">@property(nonatomic, readonly) NSInteger firstOtherButtonIndex</a>
      * @since Available in iOS 2.0 and later.
      */
     public int getFirstOtherButtonIndex() {
@@ -138,10 +137,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector message = Selector.register("message");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getMessage(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getMessageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getMessage(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static String objc_getMessageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/message">@property(nonatomic, copy) NSString *message</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/message">@property(nonatomic, copy) NSString *message</a>
      * @since Available in iOS 2.0 and later.
      */
     public String getMessage() {
@@ -149,10 +148,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMessage$ = Selector.register("setMessage:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMessage(UIAlertView __self__, Selector __cmd__, String message);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMessageSuper(ObjCSuper __super__, Selector __cmd__, String message);
+    @Bridge private native static void objc_setMessage(UIAlertView __self__, Selector __cmd__, String message);
+    @Bridge private native static void objc_setMessageSuper(ObjCSuper __super__, Selector __cmd__, String message);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/message">@property(nonatomic, copy) NSString *message</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/message">@property(nonatomic, copy) NSString *message</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setMessage(String message) {
@@ -160,10 +159,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector numberOfButtons = Selector.register("numberOfButtons");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getNumberOfButtons(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getNumberOfButtonsSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static int objc_getNumberOfButtons(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static int objc_getNumberOfButtonsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/numberOfButtons">@property(nonatomic, readonly) NSInteger numberOfButtons</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/numberOfButtons">@property(nonatomic, readonly) NSInteger numberOfButtons</a>
      * @since Available in iOS 2.0 and later.
      */
     public int getNumberOfButtons() {
@@ -171,10 +170,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector title = Selector.register("title");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getTitle(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getTitleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getTitle(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static String objc_getTitleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/title">@property(nonatomic, copy) NSString *title</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/title">@property(nonatomic, copy) NSString *title</a>
      * @since Available in iOS 2.0 and later.
      */
     public String getTitle() {
@@ -182,10 +181,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTitle$ = Selector.register("setTitle:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTitle(UIAlertView __self__, Selector __cmd__, String title);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTitleSuper(ObjCSuper __super__, Selector __cmd__, String title);
+    @Bridge private native static void objc_setTitle(UIAlertView __self__, Selector __cmd__, String title);
+    @Bridge private native static void objc_setTitleSuper(ObjCSuper __super__, Selector __cmd__, String title);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/title">@property(nonatomic, copy) NSString *title</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/title">@property(nonatomic, copy) NSString *title</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setTitle(String title) {
@@ -193,10 +192,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector isVisible = Selector.register("isVisible");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isVisible(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isVisibleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isVisible(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isVisibleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/visible">@property(nonatomic, readonly, getter=isVisible) BOOL visible</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instp/UIAlertView/visible">@property(nonatomic, readonly, getter=isVisible) BOOL visible</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isVisible() {
@@ -206,10 +205,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector addButtonWithTitle$ = Selector.register("addButtonWithTitle:");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_addButton(UIAlertView __self__, Selector __cmd__, String title);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_addButtonSuper(ObjCSuper __super__, Selector __cmd__, String title);
+    @Bridge private native static int objc_addButton(UIAlertView __self__, Selector __cmd__, String title);
+    @Bridge private native static int objc_addButtonSuper(ObjCSuper __super__, Selector __cmd__, String title);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/addButtonWithTitle:">- (NSInteger)addButtonWithTitle:(NSString *)title</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/addButtonWithTitle:">- (NSInteger)addButtonWithTitle:(NSString *)title</a>
      * @since Available in iOS 2.0 and later.
      */
     public int addButton(String title) {
@@ -217,10 +216,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector dismissWithClickedButtonIndex$animated$ = Selector.register("dismissWithClickedButtonIndex:animated:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_dismiss(UIAlertView __self__, Selector __cmd__, int buttonIndex, boolean animated);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_dismissSuper(ObjCSuper __super__, Selector __cmd__, int buttonIndex, boolean animated);
+    @Bridge private native static void objc_dismiss(UIAlertView __self__, Selector __cmd__, int buttonIndex, boolean animated);
+    @Bridge private native static void objc_dismissSuper(ObjCSuper __super__, Selector __cmd__, int buttonIndex, boolean animated);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/dismissWithClickedButtonIndex:animated:">- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/dismissWithClickedButtonIndex:animated:">- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated</a>
      * @since Available in iOS 2.0 and later.
      */
     public void dismiss(int buttonIndex, boolean animated) {
@@ -228,10 +227,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector buttonTitleAtIndex$ = Selector.register("buttonTitleAtIndex:");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getButtonTitle(UIAlertView __self__, Selector __cmd__, int buttonIndex);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getButtonTitleSuper(ObjCSuper __super__, Selector __cmd__, int buttonIndex);
+    @Bridge private native static String objc_getButtonTitle(UIAlertView __self__, Selector __cmd__, int buttonIndex);
+    @Bridge private native static String objc_getButtonTitleSuper(ObjCSuper __super__, Selector __cmd__, int buttonIndex);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/buttonTitleAtIndex:">- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/buttonTitleAtIndex:">- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex</a>
      * @since Available in iOS 2.0 and later.
      */
     public String getButtonTitle(int buttonIndex) {
@@ -239,10 +238,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector textFieldAtIndex$ = Selector.register("textFieldAtIndex:");
-    @Bridge(symbol = "objc_msgSend") private native static UITextField objc_getTextField(UIAlertView __self__, Selector __cmd__, int textFieldIndex);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UITextField objc_getTextFieldSuper(ObjCSuper __super__, Selector __cmd__, int textFieldIndex);
+    @Bridge private native static UITextField objc_getTextField(UIAlertView __self__, Selector __cmd__, int textFieldIndex);
+    @Bridge private native static UITextField objc_getTextFieldSuper(ObjCSuper __super__, Selector __cmd__, int textFieldIndex);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/textFieldAtIndex:">- (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/textFieldAtIndex:">- (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex</a>
      * @since Available in iOS 5.0 and later.
      */
     public UITextField getTextField(int textFieldIndex) {
@@ -250,10 +249,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector show = Selector.register("show");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_show(UIAlertView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_showSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_show(UIAlertView __self__, Selector __cmd__);
+    @Bridge private native static void objc_showSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/show">- (void)show</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/occ/instm/UIAlertView/show">- (void)show</a>
      * @since Available in iOS 2.0 and later.
      */
     public void show() {

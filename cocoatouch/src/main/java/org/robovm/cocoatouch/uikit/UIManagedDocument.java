@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html">UIManagedDocument Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html">UIManagedDocument Class Reference</a>
  *   @since Available in iOS 5.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIManagedDocument /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIManagedDocument /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector managedObjectContext = Selector.register("managedObjectContext");
-    @Bridge(symbol = "objc_msgSend") private native static NSManagedObjectContext objc_getManagedObjectContext(UIManagedDocument __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSManagedObjectContext objc_getManagedObjectContextSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSManagedObjectContext objc_getManagedObjectContext(UIManagedDocument __self__, Selector __cmd__);
+    @Bridge private native static NSManagedObjectContext objc_getManagedObjectContextSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/managedObjectContext">@property(nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/managedObjectContext">@property(nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext</a>
      * @since Available in iOS 5.0 and later.
      */
     public NSManagedObjectContext getManagedObjectContext() {
@@ -69,10 +68,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector managedObjectModel = Selector.register("managedObjectModel");
-    @Bridge(symbol = "objc_msgSend") private native static NSManagedObjectModel objc_getManagedObjectModel(UIManagedDocument __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSManagedObjectModel objc_getManagedObjectModelSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSManagedObjectModel objc_getManagedObjectModel(UIManagedDocument __self__, Selector __cmd__);
+    @Bridge private native static NSManagedObjectModel objc_getManagedObjectModelSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/managedObjectModel">@property(nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/managedObjectModel">@property(nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel</a>
      * @since Available in iOS 5.0 and later.
      */
     public NSManagedObjectModel getManagedObjectModel() {
@@ -80,10 +79,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector modelConfiguration = Selector.register("modelConfiguration");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getModelConfiguration(UIManagedDocument __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getModelConfigurationSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getModelConfiguration(UIManagedDocument __self__, Selector __cmd__);
+    @Bridge private native static String objc_getModelConfigurationSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/modelConfiguration">@property(nonatomic, copy) NSString *modelConfiguration</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/modelConfiguration">@property(nonatomic, copy) NSString *modelConfiguration</a>
      * @since Available in iOS 5.0 and later.
      */
     public String getModelConfiguration() {
@@ -91,10 +90,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setModelConfiguration$ = Selector.register("setModelConfiguration:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setModelConfiguration(UIManagedDocument __self__, Selector __cmd__, String modelConfiguration);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setModelConfigurationSuper(ObjCSuper __super__, Selector __cmd__, String modelConfiguration);
+    @Bridge private native static void objc_setModelConfiguration(UIManagedDocument __self__, Selector __cmd__, String modelConfiguration);
+    @Bridge private native static void objc_setModelConfigurationSuper(ObjCSuper __super__, Selector __cmd__, String modelConfiguration);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/modelConfiguration">@property(nonatomic, copy) NSString *modelConfiguration</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/modelConfiguration">@property(nonatomic, copy) NSString *modelConfiguration</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setModelConfiguration(String modelConfiguration) {
@@ -102,10 +101,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector persistentStoreOptions = Selector.register("persistentStoreOptions");
-    @Bridge(symbol = "objc_msgSend") private native static NSDictionary objc_getPersistentStoreOptions(UIManagedDocument __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSDictionary objc_getPersistentStoreOptionsSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSDictionary objc_getPersistentStoreOptions(UIManagedDocument __self__, Selector __cmd__);
+    @Bridge private native static NSDictionary objc_getPersistentStoreOptionsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/persistentStoreOptions">@property(nonatomic, copy) NSDictionary *persistentStoreOptions</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/persistentStoreOptions">@property(nonatomic, copy) NSDictionary *persistentStoreOptions</a>
      * @since Available in iOS 5.0 and later.
      */
     public NSDictionary getPersistentStoreOptions() {
@@ -113,10 +112,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setPersistentStoreOptions$ = Selector.register("setPersistentStoreOptions:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setPersistentStoreOptions(UIManagedDocument __self__, Selector __cmd__, NSDictionary persistentStoreOptions);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setPersistentStoreOptionsSuper(ObjCSuper __super__, Selector __cmd__, NSDictionary persistentStoreOptions);
+    @Bridge private native static void objc_setPersistentStoreOptions(UIManagedDocument __self__, Selector __cmd__, NSDictionary persistentStoreOptions);
+    @Bridge private native static void objc_setPersistentStoreOptionsSuper(ObjCSuper __super__, Selector __cmd__, NSDictionary persistentStoreOptions);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/persistentStoreOptions">@property(nonatomic, copy) NSDictionary *persistentStoreOptions</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instp/UIManagedDocument/persistentStoreOptions">@property(nonatomic, copy) NSDictionary *persistentStoreOptions</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setPersistentStoreOptions(NSDictionary persistentStoreOptions) {
@@ -126,9 +125,9 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector persistentStoreName = Selector.register("persistentStoreName");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getPersistentStoreName(ObjCClass __self__, Selector __cmd__);
+    @Bridge private native static String objc_getPersistentStoreName(ObjCClass __self__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/clm/UIManagedDocument/persistentStoreName">+ (NSString *)persistentStoreName</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/clm/UIManagedDocument/persistentStoreName">+ (NSString *)persistentStoreName</a>
      * @since Available in iOS 5.0 and later.
      */
     public static String getPersistentStoreName() {
@@ -136,10 +135,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector configurePersistentStoreCoordinatorForURL$ofType$modelConfiguration$storeOptions$error$ = Selector.register("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_configurePersistentStoreCoordinator(UIManagedDocument __self__, Selector __cmd__, NSURL storeURL, String fileType, String configuration, NSDictionary storeOptions, Ptr<NSError> error);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_configurePersistentStoreCoordinatorSuper(ObjCSuper __super__, Selector __cmd__, NSURL storeURL, String fileType, String configuration, NSDictionary storeOptions, Ptr<NSError> error);
+    @Bridge private native static boolean objc_configurePersistentStoreCoordinator(UIManagedDocument __self__, Selector __cmd__, NSURL storeURL, String fileType, String configuration, NSDictionary storeOptions, Ptr<NSError> error);
+    @Bridge private native static boolean objc_configurePersistentStoreCoordinatorSuper(ObjCSuper __super__, Selector __cmd__, NSURL storeURL, String fileType, String configuration, NSDictionary storeOptions, Ptr<NSError> error);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:">- (BOOL)configurePersistentStoreCoordinatorForURL:(NSURL *)storeURL ofType:(NSString *)fileType modelConfiguration:(NSString *)configuration storeOptions:(NSDictionary *)storeOptions error:(NSError **)error</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:">- (BOOL)configurePersistentStoreCoordinatorForURL:(NSURL *)storeURL ofType:(NSString *)fileType modelConfiguration:(NSString *)configuration storeOptions:(NSDictionary *)storeOptions error:(NSError **)error</a>
      * @since Available in iOS 5.0 and later.
      */
     public boolean configurePersistentStoreCoordinator(NSURL storeURL, String fileType, String configuration, NSDictionary storeOptions, Ptr<NSError> error) {
@@ -147,10 +146,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector additionalContentForURL$error$ = Selector.register("additionalContentForURL:error:");
-    @Bridge(symbol = "objc_msgSend") private native static NSObject objc_getAdditionalContent(UIManagedDocument __self__, Selector __cmd__, NSURL absoluteURL, Ptr<NSError> error);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSObject objc_getAdditionalContentSuper(ObjCSuper __super__, Selector __cmd__, NSURL absoluteURL, Ptr<NSError> error);
+    @Bridge private native static NSObject objc_getAdditionalContent(UIManagedDocument __self__, Selector __cmd__, NSURL absoluteURL, Ptr<NSError> error);
+    @Bridge private native static NSObject objc_getAdditionalContentSuper(ObjCSuper __super__, Selector __cmd__, NSURL absoluteURL, Ptr<NSError> error);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/additionalContentForURL:error:">- (id)additionalContentForURL:(NSURL *)absoluteURL error:(NSError **)error</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/additionalContentForURL:error:">- (id)additionalContentForURL:(NSURL *)absoluteURL error:(NSError **)error</a>
      * @since Available in iOS 5.0 and later.
      */
     public NSObject getAdditionalContent(NSURL absoluteURL, Ptr<NSError> error) {
@@ -158,10 +157,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector persistentStoreTypeForFileType$ = Selector.register("persistentStoreTypeForFileType:");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getPersistentStoreType(UIManagedDocument __self__, Selector __cmd__, String fileType);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getPersistentStoreTypeSuper(ObjCSuper __super__, Selector __cmd__, String fileType);
+    @Bridge private native static String objc_getPersistentStoreType(UIManagedDocument __self__, Selector __cmd__, String fileType);
+    @Bridge private native static String objc_getPersistentStoreTypeSuper(ObjCSuper __super__, Selector __cmd__, String fileType);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/persistentStoreTypeForFileType:">- (NSString *)persistentStoreTypeForFileType:(NSString *)fileType</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/persistentStoreTypeForFileType:">- (NSString *)persistentStoreTypeForFileType:(NSString *)fileType</a>
      * @since Available in iOS 5.0 and later.
      */
     public String getPersistentStoreType(String fileType) {
@@ -169,10 +168,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector readAdditionalContentFromURL$error$ = Selector.register("readAdditionalContentFromURL:error:");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_readAdditionalContent(UIManagedDocument __self__, Selector __cmd__, NSURL absoluteURL, Ptr<NSError> error);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_readAdditionalContentSuper(ObjCSuper __super__, Selector __cmd__, NSURL absoluteURL, Ptr<NSError> error);
+    @Bridge private native static boolean objc_readAdditionalContent(UIManagedDocument __self__, Selector __cmd__, NSURL absoluteURL, Ptr<NSError> error);
+    @Bridge private native static boolean objc_readAdditionalContentSuper(ObjCSuper __super__, Selector __cmd__, NSURL absoluteURL, Ptr<NSError> error);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/readAdditionalContentFromURL:error:">- (BOOL)readAdditionalContentFromURL:(NSURL *)absoluteURL error:(NSError **)error</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/readAdditionalContentFromURL:error:">- (BOOL)readAdditionalContentFromURL:(NSURL *)absoluteURL error:(NSError **)error</a>
      * @since Available in iOS 5.0 and later.
      */
     public boolean readAdditionalContent(NSURL absoluteURL, Ptr<NSError> error) {
@@ -180,10 +179,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector writeAdditionalContent$toURL$originalContentsURL$error$ = Selector.register("writeAdditionalContent:toURL:originalContentsURL:error:");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_writeAdditionalContent(UIManagedDocument __self__, Selector __cmd__, NSObject content, NSURL absoluteURL, NSURL absoluteOriginalContentsURL, Ptr<NSError> error);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_writeAdditionalContentSuper(ObjCSuper __super__, Selector __cmd__, NSObject content, NSURL absoluteURL, NSURL absoluteOriginalContentsURL, Ptr<NSError> error);
+    @Bridge private native static boolean objc_writeAdditionalContent(UIManagedDocument __self__, Selector __cmd__, NSObject content, NSURL absoluteURL, NSURL absoluteOriginalContentsURL, Ptr<NSError> error);
+    @Bridge private native static boolean objc_writeAdditionalContentSuper(ObjCSuper __super__, Selector __cmd__, NSObject content, NSURL absoluteURL, NSURL absoluteOriginalContentsURL, Ptr<NSError> error);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/writeAdditionalContent:toURL:originalContentsURL:error:">- (BOOL)writeAdditionalContent:(id)content toURL:(NSURL *)absoluteURL originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError **)error</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIManagedDocument_Class/Reference/Reference.html#//apple_ref/occ/instm/UIManagedDocument/writeAdditionalContent:toURL:originalContentsURL:error:">- (BOOL)writeAdditionalContent:(id)content toURL:(NSURL *)absoluteURL originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError **)error</a>
      * @since Available in iOS 5.0 and later.
      */
     public boolean writeAdditionalContent(NSObject content, NSURL absoluteURL, NSURL absoluteOriginalContentsURL, Ptr<NSError> error) {

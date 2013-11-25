@@ -16,44 +16,49 @@
  */
 package org.robovm.compiler;
 
-import static org.robovm.compiler.Access.*;
 import static org.robovm.compiler.Bro.*;
 import static org.robovm.compiler.Functions.*;
 import static org.robovm.compiler.Mangler.*;
 import static org.robovm.compiler.Types.*;
 import static org.robovm.compiler.llvm.Type.*;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.clazz.ClazzInfo;
 import org.robovm.compiler.clazz.Dependency;
+import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.llvm.AliasRef;
 import org.robovm.compiler.llvm.And;
+import org.robovm.compiler.llvm.ArrayConstantBuilder;
 import org.robovm.compiler.llvm.Bitcast;
 import org.robovm.compiler.llvm.Br;
 import org.robovm.compiler.llvm.Constant;
 import org.robovm.compiler.llvm.ConstantBitcast;
 import org.robovm.compiler.llvm.Fence;
 import org.robovm.compiler.llvm.Function;
+import org.robovm.compiler.llvm.FunctionDeclaration;
 import org.robovm.compiler.llvm.FunctionRef;
 import org.robovm.compiler.llvm.Getelementptr;
 import org.robovm.compiler.llvm.Global;
@@ -61,6 +66,7 @@ import org.robovm.compiler.llvm.GlobalRef;
 import org.robovm.compiler.llvm.Icmp;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Label;
+import org.robovm.compiler.llvm.Linkage;
 import org.robovm.compiler.llvm.Load;
 import org.robovm.compiler.llvm.NullConstant;
 import org.robovm.compiler.llvm.Ordering;
@@ -71,7 +77,6 @@ import org.robovm.compiler.llvm.Store;
 import org.robovm.compiler.llvm.StructureConstant;
 import org.robovm.compiler.llvm.StructureConstantBuilder;
 import org.robovm.compiler.llvm.StructureType;
-import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
@@ -79,7 +84,12 @@ import org.robovm.compiler.trampoline.FieldAccessor;
 import org.robovm.compiler.trampoline.Invoke;
 import org.robovm.compiler.trampoline.LdcString;
 import org.robovm.compiler.trampoline.Trampoline;
-import org.robovm.compiler.util.ToolchainUtil;
+import org.robovm.llvm.Context;
+import org.robovm.llvm.Module;
+import org.robovm.llvm.PassManager;
+import org.robovm.llvm.Target;
+import org.robovm.llvm.TargetMachine;
+import org.robovm.llvm.binding.CodeGenFileType;
 
 import soot.BooleanType;
 import soot.ByteType;
@@ -190,6 +200,8 @@ public class ClassCompiler {
     private final AttributesEncoder attributesEncoder;
     private final TrampolineCompiler trampolineResolver;
     
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream(256 * 1024);
+    
     public ClassCompiler(Config config) {
         this.config = config;
         this.methodCompiler = new MethodCompiler(config);
@@ -206,7 +218,12 @@ public class ClassCompiler {
             return true;
         }
         
-        Set<Dependency> dependencies = clazz.getDependencies();
+        ClazzInfo ci = clazz.getClazzInfo();
+        if (ci == null) {
+            return true;
+        }
+        
+        Set<Dependency> dependencies = ci.getDependencies();
         for (Dependency dep : dependencies) {
             Clazz depClazz = config.getClazzes().load(dep.getClassName());
             if (depClazz == null) {
@@ -244,22 +261,24 @@ public class ClassCompiler {
     public void compile(Clazz clazz) throws IOException {
         reset();        
         
-        File llFile = config.getLlFile(clazz);
-        File bcFile = config.getBcFile(clazz);
-        File sFile = config.getSFile(clazz);
+//        File llFile = config.getLlFile(clazz);
+//        File bcFile = config.getBcFile(clazz);
+//        File sFile = config.getSFile(clazz);
         File oFile = config.getOFile(clazz);
-        llFile.getParentFile().mkdirs();
-        bcFile.getParentFile().mkdirs();
-        sFile.getParentFile().mkdirs();
+//        llFile.getParentFile().mkdirs();
+//        bcFile.getParentFile().mkdirs();
+//        sFile.getParentFile().mkdirs();
         oFile.getParentFile().mkdirs();
-        
-        OutputStream out = null;
+
+        Arch arch = config.getArch();
+        OS os = config.getOs();
+
         try {
-            config.getLogger().debug("Compiling %s", clazz);
-            out = new FileOutputStream(llFile);
-            compile(clazz, out);
+            config.getLogger().debug("Compiling %s (%s %s)", clazz, os, arch);
+            output.reset();
+            compile(clazz, output);
         } catch (Throwable t) {
-            FileUtils.deleteQuietly(llFile);
+//            FileUtils.deleteQuietly(llFile);
             if (t instanceof IOException) {
                 throw (IOException) t;
             }
@@ -267,23 +286,110 @@ public class ClassCompiler {
                 throw (RuntimeException) t;
             }
             throw new RuntimeException(t);
-        } finally {
-            IOUtils.closeQuietly(out);
         }
 
-        config.getLogger().debug("Optimizing %s", clazz);
-        ToolchainUtil.opt(config, llFile, bcFile, "-mem2reg", "-always-inline");
+        Context context = new Context();
+        Module module = Module.parseIR(context, output.toByteArray(), clazz.getClassName());
+        PassManager passManager = createPassManager();
+        passManager.run(module);
+        passManager.dispose();
 
-        config.getLogger().debug("Generating %s assembly for %s", config.getArch(), clazz);
-        ToolchainUtil.llc(config, bcFile, sFile);
-
-        patchAsmWithFunctionSizes(clazz, sFile);
+        String triple = config.getTriple();
+        Target target = Target.lookupTarget(triple);
+        TargetMachine targetMachine = target.createTargetMachine(triple);
+        targetMachine.setAsmVerbosityDefault(true);
+        targetMachine.setFunctionSections(true);
+        targetMachine.setDataSections(true);
+        targetMachine.getOptions().setNoFramePointerElim(true);
+        output.reset();
+        targetMachine.emit(module, output, CodeGenFileType.AssemblyFile);
         
-        config.getLogger().debug("Assembling %s", clazz);
-        ToolchainUtil.assemble(config, sFile, oFile);
+        module.dispose();
+        context.dispose();
+        
+        byte[] asm = output.toByteArray();
+        output.reset();
+        patchAsmWithFunctionSizes(clazz, new ByteArrayInputStream(asm), output);
+        asm = output.toByteArray();
+
+        BufferedOutputStream oOut = new BufferedOutputStream(new FileOutputStream(oFile));
+        targetMachine.assemble(asm, clazz.getClassName(), oOut);
+        oOut.close();
+        
+        targetMachine.dispose();
+    }
+
+    private PassManager createPassManager() {
+        // Sets up the passes we would get with PassManagerBuilder (see PassManagerBuilder.cpp) at 
+        // O2 level except the TailCallEliminationPass which promotes all calls to tail calls which
+        // we don't want since it messes up stack traces.
+        
+        PassManager passManager = new PassManager();
+        passManager.addAlwaysInlinerPass();
+        passManager.addPromoteMemoryToRegisterPass();
+
+        passManager.addTypeBasedAliasAnalysisPass();
+        passManager.addBasicAliasAnalysisPass();
+        passManager.addGlobalOptimizerPass();
+        passManager.addIPSCCPPass();
+        passManager.addDeadArgEliminationPass();
+        passManager.addInstructionCombiningPass();
+        passManager.addCFGSimplificationPass();
+        passManager.addPruneEHPass();
+        passManager.addFunctionInliningPass();
+        passManager.addFunctionAttrsPass();
+//        if (optLevel > 2) {
+//            passManager.addArgumentPromotionPass();
+//        }
+        passManager.addScalarReplAggregatesPass();
+        
+        passManager.addEarlyCSEPass();
+        passManager.addSimplifyLibCallsPass();
+        passManager.addJumpThreadingPass();
+        passManager.addCorrelatedValuePropagationPass();
+        passManager.addCFGSimplificationPass();
+        passManager.addInstructionCombiningPass();
+        
+        //passManager.addTailCallEliminationPass();
+        passManager.addCFGSimplificationPass();
+        passManager.addReassociatePass();
+        passManager.addCFGSimplificationPass();
+        passManager.addReassociatePass();
+        passManager.addLoopRotatePass();
+        passManager.addLICMPass();
+        passManager.addLoopUnswitchPass();
+        passManager.addInstructionCombiningPass();
+        passManager.addIndVarSimplifyPass();
+        passManager.addLoopIdiomPass();
+        passManager.addLoopDeletionPass();
+        
+        passManager.addLoopVectorizePass();
+        
+        passManager.addLoopUnrollPass();
+        
+        passManager.addGVNPass();
+        passManager.addMemCpyOptPass();
+        passManager.addSCCPPass();
+        
+        passManager.addInstructionCombiningPass();
+        passManager.addJumpThreadingPass();
+        passManager.addCorrelatedValuePropagationPass();
+        passManager.addDeadStoreEliminationPass();
+
+        passManager.addSLPVectorizePass();
+        
+        passManager.addAggressiveDCEPass();
+        passManager.addCFGSimplificationPass();
+        passManager.addInstructionCombiningPass();
+
+        passManager.addStripDeadPrototypesPass();
+
+        passManager.addGlobalDCEPass();
+        passManager.addConstantMergePass();
+        return passManager;
     }
     
-    private void patchAsmWithFunctionSizes(Clazz clazz, File sFile) throws IOException {
+    private void patchAsmWithFunctionSizes(Clazz clazz, InputStream inStream, OutputStream outStream) throws IOException {
         Set<String> functionNames = new HashSet<String>();
         for (SootMethod method : clazz.getSootClass().getMethods()) {
             if (!method.isAbstract()) {
@@ -304,13 +410,11 @@ public class ClassCompiler {
         String infoStructLabel = prefix + "_info_struct";
         Pattern methodImplPattern = Pattern.compile("\\s*\\.(?:quad|long)\\s+(" + Pattern.quote(prefix) + "[^\\s]+).*");
         
-        File outFile = new File(sFile.getParentFile(), sFile.getName() + ".tmp");
-        
         BufferedReader in = null;
         BufferedWriter out = null;
         try {
-            in = new BufferedReader(new InputStreamReader(new FileInputStream(sFile), "UTF-8"));
-            out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(inStream, "UTF-8"));
+            out = new BufferedWriter(new OutputStreamWriter(outStream, "UTF-8"));
             String line = null;
             String currentFunction = null;
             while ((line = in.readLine()) != null) {
@@ -367,12 +471,10 @@ public class ClassCompiler {
             IOUtils.closeQuietly(in);
             IOUtils.closeQuietly(out);
         }
-        
-        sFile.renameTo(new File(sFile.getParentFile(), sFile.getName() + ".orig"));
-        outFile.renameTo(sFile);
     }
     
     private void reset() {
+        output.reset();
         sootClass = null;
         mb = null;
         trampolines = null;
@@ -388,10 +490,10 @@ public class ClassCompiler {
         mb = new ModuleBuilder();
         trampolines = new HashSet<Trampoline>();
         catches = new HashSet<String>();
-        classFields = getClassFields(sootClass);
-        instanceFields = getInstanceFields(sootClass);
-        classType = getClassType(sootClass);
-        instanceType = getInstanceType(sootClass);
+        classFields = getClassFields(config.getOs(), config.getArch(),sootClass);
+        instanceFields = getInstanceFields(config.getOs(), config.getArch(),sootClass);
+        classType = getClassType(config.getOs(), config.getArch(),sootClass);
+        instanceType = getInstanceType(config.getOs(), config.getArch(),sootClass);
         
         attributesEncoder.encode(mb, sootClass);
         
@@ -420,8 +522,6 @@ public class ClassCompiler {
         mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", config.getOs().getFamily(), config.getArch())));
         mb.addInclude(getClass().getClassLoader().getResource("header.ll"));
 
-        mb.addFunction(createInstanceof());
-        mb.addFunction(createCheckcast());
         mb.addFunction(createLdcClass());
         mb.addFunction(createLdcClassWrapper());
         Function allocator = createAllocator();
@@ -429,8 +529,8 @@ public class ClassCompiler {
         mb.addFunction(createClassInitWrapperFunction(allocator.ref()));
         
         for (SootField f : sootClass.getFields()) {
-            Function getter = createFieldGetter(f);
-            Function setter = createFieldSetter(f);
+            Function getter = createFieldGetter(f, classFields, classType, instanceFields, instanceType);
+            Function setter = createFieldSetter(f, classFields, classType, instanceFields, instanceType);
             mb.addFunction(getter);
             mb.addFunction(setter);
             if (f.isStatic() && !f.isPrivate()) {
@@ -477,13 +577,16 @@ public class ClassCompiler {
         }
 
         Global classInfoStruct = null;
-        StructureConstant classInfoErrorStruct = createClassInfoErrorStruct();
-        if (classInfoErrorStruct != null) {
-            // The class cannot be loaded at runtime. Replace the ClassInfo struct
-            // with a ClassInfoError struct with details of why.
-            classInfoStruct = new Global(mangleClass(sootClass) + "_info_struct", classInfoErrorStruct);
-        } else {
-            classInfoStruct = new Global(mangleClass(sootClass) + "_info_struct", createClassInfoStruct());
+        try {
+            if (!sootClass.isInterface()) {
+                config.getVTableCache().get(sootClass);
+            }
+            classInfoStruct = new Global(mangleClass(sootClass) + "_info_struct", Linkage.weak, createClassInfoStruct());
+        } catch (IllegalArgumentException e) {
+            // VTable throws this if any of the superclasses of the class is actually an interface.
+            // Shouldn't happen frequently but the DRLVM test suite has some tests for this.
+            // The Linker will take care of making sure the class cannot be loaded at runtime.
+            classInfoStruct = new Global(mangleClass(sootClass) + "_info_struct", I8_PTR, true);
         }
         mb.addGlobal(classInfoStruct);
         
@@ -493,13 +596,17 @@ public class ClassCompiler {
         
         out.write(mb.build().toString().getBytes("UTF-8"));
         
-        clazz.clearDependencies();
-        clazz.addDependency("java/lang/Object"); // Make sure no class or interface has zero dependencies
+        ClazzInfo ci = clazz.resetClazzInfo();
+        
+        ci.setCatchNames(catches);
+        ci.setTrampolines(trampolines);
+        
+        ci.addDependency("java/lang/Object"); // Make sure no class or interface has zero dependencies
         if (sootClass.hasSuperclass() && !sootClass.isInterface()) {
-            clazz.addDependency(getInternalName(sootClass.getSuperclass()));
+            ci.addDependency(getInternalName(sootClass.getSuperclass()));
         }
         for (SootClass iface : sootClass.getInterfaces()) {
-            clazz.addDependency(getInternalName(iface));
+            ci.addDependency(getInternalName(iface));
         }
         for (SootField f : sootClass.getFields()) {
             addDependencyIfNeeded(clazz, f.getType());
@@ -512,9 +619,9 @@ public class ClassCompiler {
                 addDependencyIfNeeded(clazz, type);
             }
         }
-        clazz.addDependencies(attributesEncoder.getDependencies());
-        clazz.addDependencies(trampolineDependencies);
-        clazz.addDependencies(catches);
+        ci.addDependencies(attributesEncoder.getDependencies());
+        ci.addDependencies(trampolineDependencies);
+        ci.addDependencies(catches);
         
         for (Trampoline t : trampolines) {
             if (!(t instanceof LdcString)) {
@@ -523,7 +630,7 @@ public class ClassCompiler {
                     // Target is a descriptor
                     addDependencyIfNeeded(clazz, desc);
                 } else {
-                    clazz.addDependency(t.getTarget());
+                    ci.addDependency(t.getTarget());
                 }
             }
             if (t instanceof FieldAccessor) {
@@ -536,7 +643,7 @@ public class ClassCompiler {
                 }
             }
         }
-        clazz.saveDependencies();
+        clazz.saveClazzInfo();
     }
 
     private static void addDependencyIfNeeded(Clazz clazz, soot.Type type) {
@@ -549,14 +656,14 @@ public class ClassCompiler {
         if (!isPrimitive(desc) && (!isArray(desc) || !isPrimitiveBaseType(desc))) {
             String internalName = isArray(desc) ? getBaseType(desc) : getInternalNameFromDescriptor(desc);
             if (!clazz.getInternalName().equals(internalName)) {
-                clazz.addDependency(internalName);
+                clazz.getClazzInfo().addDependency(internalName);
             }
         }
     }
     
     private void createLookupFunction(SootMethod m) {
         // TODO: This should use a virtual method table or interface method table.
-        Function function = FunctionBuilder.lookup(m);
+        Function function = FunctionBuilder.lookup(m, true);
         mb.addFunction(function);
 
         Variable reserved0 = function.newVariable(I8_PTR_PTR);
@@ -566,105 +673,103 @@ public class ClassCompiler {
         function.add(new Store(getString(m.getName()), reserved0.ref()));
         function.add(new Store(getString(getDescriptor(m)), reserved1.ref()));
         
-        Value lookupFn = sootClass.isInterface() 
-                ? BC_LOOKUP_INTERFACE_METHOD : BC_LOOKUP_VIRTUAL_METHOD;
-        List<Value> args = new ArrayList<Value>();
-        args.add(function.getParameterRef(0));
-        if (sootClass.isInterface()) {
-            Value info = getInfoStruct(function);
-            args.add(info);
+        if (!sootClass.isInterface()) {
+            int vtableIndex = 0;
+            try {
+                VTable vtable = config.getVTableCache().get(sootClass);
+                vtableIndex = vtable.getEntry(m).getIndex();
+            } catch (IllegalArgumentException e) {
+                // VTable throws this if any of the superclasses of the class is actually an interface.
+                // Shouldn't happen frequently but the DRLVM test suite has some tests for this.
+                // Use 0 as vtableIndex since this lookup function will never be called anyway.
+            }
+            Value classPtr = call(function, OBJECT_CLASS, function.getParameterRef(1));
+            Value vtablePtr = call(function, CLASS_VITABLE, classPtr);
+            Variable funcPtrPtr = function.newVariable(I8_PTR_PTR);
+            function.add(new Getelementptr(funcPtrPtr, vtablePtr, 0, 1, vtableIndex));
+            Variable funcPtr = function.newVariable(I8_PTR);
+            function.add(new Load(funcPtr, funcPtrPtr.ref()));
+            Variable f = function.newVariable(function.getType());
+            function.add(new Bitcast(f, funcPtr.ref(), f.getType()));
+            Value result = tailcall(function, f.ref(), function.getParameterRefs());
+            function.add(new Ret(result));
+        } else {
+            ITable itable = config.getITableCache().get(sootClass);
+            ITable.Entry entry = itable.getEntry(m);
+            List<Value> args = new ArrayList<Value>();
+            args.add(function.getParameterRef(0));
+            args.add(getInfoStruct(function, sootClass));
+            args.add(function.getParameterRef(1));
+            args.add(new IntegerConstant(entry.getIndex()));
+            Value fptr = call(function, BC_LOOKUP_INTERFACE_METHOD_IMPL, args);
+            Variable f = function.newVariable(function.getType());
+            function.add(new Bitcast(f, fptr, f.getType()));
+            Value result = tailcall(function, f.ref(), function.getParameterRefs());
+            function.add(new Ret(result));
         }
-        args.add(function.getParameterRef(1));
-        args.add(getString(m.getName()));
-        args.add(getString(getDescriptor(m)));
-        Value fptr = call(function, lookupFn, args);
-        Variable f = function.newVariable(function.getType());
-        function.add(new Bitcast(f, fptr, f.getType()));
-        Value result = call(function, f.ref(), function.getParameterRefs());
-        function.add(new Ret(result));
     }
     
-    private StructureConstant createClassInfoErrorStruct() {
-        /*
-         * Check that clazz can be loaded, i.e. that the superclass 
-         * and interfaces of the class exist and are accessible to the
-         * class. Also check that any exception the class uses in catch
-         * clauses exist and is accessible to the class. If the class
-         * cannot be loaded we override the ClassInfoHeader struct
-         * produced by the ClassCompiler for the class with one which
-         * tells the code in bc.c to throw an appropriate exception
-         * whenever clazz is accessed.
-         */
-        
-        int errorType = ClassCompiler.CI_ERROR_TYPE_NONE;
-        String errorMessage = null;
-        if (!sootClass.isInterface() && sootClass.hasSuperclass()) {
-            // Check superclass
-            SootClass superclazz = sootClass.getSuperclass();
-            if (superclazz.isPhantom()) {
-                errorType = ClassCompiler.CI_ERROR_TYPE_NO_CLASS_DEF_FOUND;
-                errorMessage = superclazz.getName();
-            } else if (!checkClassAccessible(superclazz, sootClass)) {
-                errorType = ClassCompiler.CI_ERROR_TYPE_ILLEGAL_ACCESS;
-                errorMessage = String.format(ILLEGAL_ACCESS_ERROR_CLASS, superclazz, sootClass);
-            } else if (superclazz.isInterface()) {
-                errorType = ClassCompiler.CI_ERROR_TYPE_INCOMPATIBLE_CLASS_CHANGE;
-                errorMessage = String.format("class %s has interface %s as super class", sootClass, superclazz);
+    private Constant createVTableStruct() {
+        VTable vtable = config.getVTableCache().get(sootClass);
+        String name = mangleClass(sootClass) + "_vtable";
+        for (VTable.Entry entry : vtable.getEntries()) {
+            FunctionRef fref = entry.getFunctionRef();
+            if (fref != null && !mb.hasSymbol(fref.getName())) {
+                mb.addFunctionDeclaration(new FunctionDeclaration(fref));
             }
-            // No need to check for ClassCircularityError. Soot doesn't handle 
-            // such problems so the compilation will fail earlier.
         }
-        
-        if (errorType == ClassCompiler.CI_ERROR_TYPE_NONE) {
-            // Check interfaces
-            for (SootClass interfaze :  sootClass.getInterfaces()) {
-                if (interfaze.isPhantom()) {
-                    errorType = ClassCompiler.CI_ERROR_TYPE_NO_CLASS_DEF_FOUND;
-                    errorMessage = interfaze.getName();
-                    break;
-                } else if (!checkClassAccessible(interfaze, sootClass)) {
-                    errorType = ClassCompiler.CI_ERROR_TYPE_ILLEGAL_ACCESS;
-                    errorMessage = String.format(ILLEGAL_ACCESS_ERROR_CLASS, interfaze, sootClass);
-                    break;
-                } else if (!interfaze.isInterface()) {
-                    errorType = ClassCompiler.CI_ERROR_TYPE_INCOMPATIBLE_CLASS_CHANGE;
-                    errorMessage = String.format("class %s tries to implement class %s as interface", 
-                            sootClass, interfaze);
-                    break;
+        Global vtableStruct = new Global(name, Linkage._private, vtable.getStruct(), true);
+        mb.addGlobal(vtableStruct);
+        return new ConstantBitcast(vtableStruct.ref(), I8_PTR);
+    }
+    
+    private Constant createITableStruct() {
+        ITable itable = config.getITableCache().get(sootClass);
+        String name = mangleClass(sootClass) + "_itable";
+        Global itableStruct = new Global(name, Linkage._private, itable.getStruct(), true);
+        mb.addGlobal(itableStruct);
+        return new ConstantBitcast(itableStruct.ref(), I8_PTR);
+    }
+    
+    private Constant createITablesStruct() {
+        if (!sootClass.isInterface()) {
+            HashSet<SootClass> interfaces = new HashSet<SootClass>();
+            collectInterfaces(sootClass, interfaces);
+            List<Constant> tables = new ArrayList<Constant>();
+            int i = 0;
+            for (SootClass ifs : interfaces) {
+                ITable itable = config.getITableCache().get(ifs);
+                if (itable.size() > 0) {
+                    String name = mangleClass(sootClass) + "_itable" + (i++);
+                    String typeInfoName = mangleClass(ifs) + "_typeinfo";
+                    if (!mb.hasSymbol(typeInfoName)) {
+                        mb.addGlobal(new Global(typeInfoName, Linkage.external, I8_PTR, true));
+                    }
+                    Global itableStruct = new Global(name, Linkage._private,
+                            new StructureConstantBuilder()
+                                .add(mb.getGlobalRef(typeInfoName))
+                                .add(itable.getStruct(sootClass)).build(), true);
+                    mb.addGlobal(itableStruct);
+                    tables.add(new ConstantBitcast(itableStruct.ref(), I8_PTR));
                 }
             }
-        }
-        
-        if (errorType == ClassCompiler.CI_ERROR_TYPE_NONE) {
-            // Check exceptions used in catch clauses. I cannot find any info in
-            // the VM spec specifying that this has to be done when the class is loaded.
-            // However, this is how it's done in other VMs so we do it too.
-            for (String exName : catches) {
-                Clazz ex = config.getClazzes().load(exName);
-                if (ex == null || ex.getSootClass().isPhantom()) {
-                    errorType = ClassCompiler.CI_ERROR_TYPE_NO_CLASS_DEF_FOUND;
-                    errorMessage = exName;
-                    break;
-                } else if (!checkClassAccessible(ex.getSootClass(), sootClass)) {
-                    errorType = ClassCompiler.CI_ERROR_TYPE_ILLEGAL_ACCESS;
-                    errorMessage = String.format(ILLEGAL_ACCESS_ERROR_CLASS, ex, sootClass);
-                    break;
-                }
+            
+            if (tables.isEmpty()) {
+                return new NullConstant(I8_PTR);
+            } else {
+                Global itablesStruct = new Global(mangleClass(sootClass) + "_itables", Linkage._private,
+                        new StructureConstantBuilder()
+                            .add(new IntegerConstant((short) tables.size()))
+                            .add(tables.get(0)) // cache value must never be null
+                            .add(new ArrayConstantBuilder(I8_PTR).add(tables).build())
+                            .build());
+                mb.addGlobal(itablesStruct);
+                return new ConstantBitcast(itablesStruct.ref(), I8_PTR);
             }
+            
+        } else {
+            return new NullConstant(I8_PTR);
         }
-        
-        if (errorType == ClassCompiler.CI_ERROR_TYPE_NONE) {
-            return null;
-        }
-        
-        // Create a ClassInfoError struct
-        StructureConstantBuilder error = new StructureConstantBuilder();
-        error.add(new NullConstant(I8_PTR)); // Points to the runtime Class struct
-        error.add(new IntegerConstant(ClassCompiler.CI_ERROR));
-        error.add(getString(getInternalName(sootClass)));
-        error.add(new IntegerConstant(errorType));
-        error.add(getString(errorMessage));
-        return error.build();
     }
     
     private StructureConstant createClassInfoStruct() {
@@ -709,6 +814,16 @@ public class ClassCompiler {
         } else {
             header.add(new NullConstant(I8_PTR));
         }
+        mb.addGlobal(new Global(mangleClass(sootClass) + "_typeinfo", Linkage.external, I8_PTR, true));
+        header.add(new GlobalRef(mangleClass(sootClass) + "_typeinfo", I8_PTR)); // TypeInfo* generated by Linker
+
+        if (!sootClass.isInterface()) {
+            header.add(createVTableStruct());
+        } else {
+            header.add(createITableStruct());
+        }
+        header.add(createITablesStruct());
+        
         header.add(sizeof(classType));
         header.add(sizeof(instanceType));
         if (!instanceFields.isEmpty()) {
@@ -804,6 +919,9 @@ public class ClassCompiler {
             }
         }
         
+        VTable vtable = !sootClass.isInterface() ? config.getVTableCache().get(sootClass) : null;
+        ITable itable = sootClass.isInterface() ? config.getITableCache().get(sootClass) : null;;
+
         for (SootMethod m : sootClass.getMethods()) {
             soot.Type t = m.getReturnType();
             flags = 0;
@@ -857,6 +975,20 @@ public class ClassCompiler {
             }
             body.add(new IntegerConstant((short) flags));            
 
+            Constant viTableIndex = new IntegerConstant((short) -1);
+            if (vtable != null) {
+                VTable.Entry entry = vtable.getEntry(m);
+                if (entry != null) {
+                    viTableIndex = new IntegerConstant((short) entry.getIndex());
+                }
+            } else {
+                ITable.Entry entry = itable.getEntry(m);
+                if (entry != null) {
+                    viTableIndex = new IntegerConstant((short) entry.getIndex());
+                }
+            }
+            body.add(viTableIndex);            
+            
             body.add(getString(m.getName()));
             
             if ((flags & MI_COMPACT_DESC) > 0) {
@@ -898,7 +1030,7 @@ public class ClassCompiler {
                 body.add(new GlobalRef(BridgeMethodCompiler.getTargetFnPtrName(m), I8_PTR));
             }
             if (isCallback(m)) {
-                body.add(new ConstantBitcast(new FunctionRef(mangleMethod(m) + "_callback", getCallbackFunctionType(m)), I8_PTR));
+                body.add(new AliasRef(mangleMethod(m) + "_callback_i8p", I8_PTR));
             }
         }
         
@@ -934,31 +1066,15 @@ public class ClassCompiler {
     
     private Function createAllocator() {
         Function fn = FunctionBuilder.allocator(sootClass);
-        Value info = getInfoStruct(fn);        
+        Value info = getInfoStruct(fn, sootClass);        
         Value result = call(fn, BC_ALLOCATE, fn.getParameterRef(0), info);
-        fn.add(new Ret(result));
-        return fn;
-    }
-    
-    private Function createInstanceof() {
-        Function fn = FunctionBuilder.instanceOf(sootClass);
-        Value info = getInfoStruct(fn);        
-        Value result = call(fn, BC_INSTANCEOF, fn.getParameterRef(0), info, fn.getParameterRef(1));
-        fn.add(new Ret(result));
-        return fn;
-    }
-
-    private Function createCheckcast() {
-        Function fn = FunctionBuilder.checkcast(sootClass);
-        Value info = getInfoStruct(fn);        
-        Value result = call(fn, BC_CHECKCAST, fn.getParameterRef(0), info, fn.getParameterRef(1));
         fn.add(new Ret(result));
         return fn;
     }
 
     private Function createLdcClass() {
         Function fn = FunctionBuilder.ldcInternal(sootClass);
-        Value info = getInfoStruct(fn);
+        Value info = getInfoStruct(fn, sootClass);
         Value result = call(fn, BC_LDC_CLASS, fn.getParameterRef(0), info);
         fn.add(new Ret(result));
         return fn;
@@ -966,19 +1082,27 @@ public class ClassCompiler {
     
     private Function createLdcClassWrapper() {
         Function fn = FunctionBuilder.ldcExternal(sootClass);
-        Value info = getInfoStruct(fn);
+        Value info = getInfoStruct(fn, sootClass);
         Value result = call(fn, LDC_CLASS_WRAPPER, fn.getParameterRef(0), info);
         fn.add(new Ret(result));
         return fn;
     }
     
-    private Function createFieldGetter(SootField field) {
+    static Function createFieldGetter(SootField field, List<SootField> classFields, 
+            StructureType classType, List<SootField> instanceFields, StructureType instanceType) {
+        
         Function fn = FunctionBuilder.getter(field);
+        return createFieldGetter(fn, field, classFields, classType, instanceFields, instanceType);
+    }
+    
+    static Function createFieldGetter(Function fn, SootField field, List<SootField> classFields, 
+            StructureType classType, List<SootField> instanceFields, StructureType instanceType) {
+        
         Value fieldPtr = null;
         if (field.isStatic()) {
-            fieldPtr = getClassFieldPtr(fn, field);
+            fieldPtr = getClassFieldPtr(fn, field, classFields, classType);
         } else {
-            fieldPtr = getInstanceFieldPtr(fn, fn.getParameterRef(1), field);
+            fieldPtr = getInstanceFieldPtr(fn, fn.getParameterRef(1), field, instanceFields, instanceType);
         }
         Variable result = fn.newVariable(getType(field.getType()));
         if (Modifier.isVolatile(field.getModifiers())) {
@@ -995,15 +1119,23 @@ public class ClassCompiler {
         return fn;
     }
     
-    private Function createFieldSetter(SootField field) {
+    static Function createFieldSetter(SootField field, List<SootField> classFields, 
+            StructureType classType, List<SootField> instanceFields, StructureType instanceType) {
+        
         Function fn = FunctionBuilder.setter(field);
+        return createFieldSetter(fn, field, classFields, classType, instanceFields, instanceType);
+    }
+    
+    static Function createFieldSetter(Function fn, SootField field, List<SootField> classFields, 
+            StructureType classType, List<SootField> instanceFields, StructureType instanceType) {
+
         Value fieldPtr = null;
         Value value = null;
         if (field.isStatic()) {
-            fieldPtr = getClassFieldPtr(fn, field);
+            fieldPtr = getClassFieldPtr(fn, field, classFields, classType);
             value = fn.getParameterRef(1);
         } else {
-            fieldPtr = getInstanceFieldPtr(fn, fn.getParameterRef(1), field);
+            fieldPtr = getInstanceFieldPtr(fn, fn.getParameterRef(1), field, instanceFields, instanceType);
             value = fn.getParameterRef(2);
         }
         if (Modifier.isVolatile(field.getModifiers()) || !field.isStatic() && Modifier.isFinal(field.getModifiers())) {
@@ -1022,7 +1154,7 @@ public class ClassCompiler {
     
     private Function createClassInitWrapperFunction(FunctionRef targetFn) {
         Function fn = FunctionBuilder.clinitWrapper(targetFn);
-        Value info = getInfoStruct(fn);
+        Value info = getInfoStruct(fn, sootClass);
         Variable infoHeader = fn.newVariable(new PointerType(new StructureType(I8_PTR, I32)));
         fn.add(new Bitcast(infoHeader, info, infoHeader.getType()));
         Variable infoHeaderFlags = fn.newVariable(new PointerType(I32));
@@ -1055,99 +1187,16 @@ public class ClassCompiler {
         return count;
     }
     
-    private static int getFieldAlignment(SootField f) {
-        soot.Type t = f.getType();
-        if (LongType.v().equals(t) && Modifier.isVolatile(f.getModifiers())) {
-            // On ARM volatile longs must be 8 byte aligned
-            return 8;
+    private static void collectInterfaces(SootClass clazz, Set<SootClass> interfaces) {
+        if (clazz.hasSuperclass()) {
+            collectInterfaces(clazz.getSuperclass(), interfaces);
         }
-        if (LongType.v().equals(t) && !f.isStatic() && Modifier.isFinal(f.getModifiers())) {
-            // The Java Memory Model requires final instance fields to be written to using
-            // volatile semantics. Because of ARM's alignment requirements we return 8 here too.
-            return 8;
+        if (clazz.isInterface()) {
+            interfaces.add(clazz);
         }
-        if (LongType.v().equals(t) || DoubleType.v().equals(t)) {
-            return 4;
+        for (SootClass sc : clazz.getInterfaces()) {
+            collectInterfaces(sc, interfaces);
         }
-        return getFieldSize(f);
-    }
-    
-    private static int getFieldSize(SootField f) {
-        soot.Type t = f.getType();
-        if (LongType.v().equals(t) || DoubleType.v().equals(t)) {
-            return 8;
-        }
-        if (IntType.v().equals(t) || FloatType.v().equals(t)) {
-            return 4;
-        }
-        if (t instanceof RefLikeType) {
-            // Assume pointers are 32-bit
-            return 4;
-        }
-        if (ShortType.v().equals(t) || CharType.v().equals(t)) {
-            return 2;
-        }
-        if (ByteType.v().equals(t) || BooleanType.v().equals(t)) {
-            return 1;
-        }
-        throw new IllegalArgumentException("Unknown Type: " + t);
-    }
-    
-    private static List<SootField> getFields(SootClass clazz, boolean ztatic) {
-        List<SootField> l = new ArrayList<SootField>();
-        for (SootField f : clazz.getFields()) {
-            if (ztatic == f.isStatic()) {
-                l.add(f);
-            }
-        }
-        // Sort the fields. references, volatile long, double, long, float, int, char, short, boolean, byte.
-        // Fields of same type are sorted by name.
-        Collections.sort(l, new Comparator<SootField>() {
-            @Override
-            public int compare(SootField o1, SootField o2) {
-                soot.Type t1 = o1.getType();
-                soot.Type t2 = o2.getType();
-                if (t1 instanceof RefLikeType) {
-                    if (!(t2 instanceof RefLikeType)) {
-                        return -1;
-                    }
-                }
-                if (t2 instanceof RefLikeType) {
-                    if (!(t1 instanceof RefLikeType)) {
-                        return 1;
-                    }
-                }
-                
-                // Compare alignment. Higher first.
-                int align1 = getFieldAlignment(o1);
-                int align2 = getFieldAlignment(o2);
-                int c = new Integer(align2).compareTo(align1);
-                if (c == 0) {
-                    // Compare size. Larger first.
-                    int size1 = getFieldSize(o1);
-                    int size2 = getFieldSize(o2);
-                    c = new Integer(size2).compareTo(size1);
-                    if (c == 0) {
-                        // Compare type name.
-                        c = t1.getClass().getSimpleName().compareTo(t2.getClass().getSimpleName());
-                        if (c == 0) {
-                            // Compare name.
-                            c = o1.getName().compareTo(o2.getName());
-                        }
-                    }
-                }
-                return c;
-            }
-        });
-        return l;
-    }
-    
-    private static List<SootField> getClassFields(SootClass clazz) {
-        return getFields(clazz, true);
-    }
-    
-    private static List<SootField> getInstanceFields(SootClass clazz) {
-        return getFields(clazz, false);
     }
     
     private static boolean hasConstantValueTags(List<SootField> classFields) {
@@ -1169,64 +1218,6 @@ public class ClassCompiler {
         return clazz.declaresMethod("finalize", Collections.emptyList(), VoidType.v());
     }
     
-    private static StructureType padType(Type t, int padding) {
-        // t = i64, padding = 3 => {{i8, i8, i8}, i64}
-        // t = i8, padding = 0 => {{}, i8}
-        List<Type> paddingType = new ArrayList<Type>();
-        for (int i = 0; i < padding; i++) {
-            paddingType.add(I8);
-        }
-        return new StructureType(new StructureType(paddingType.toArray(new Type[paddingType.size()])), t);
-    }
-
-    private static StructureType getClassType(SootClass clazz) {
-        List<Type> types = new ArrayList<Type>();
-        int offset = 0;
-        for (SootField field : getClassFields(clazz)) {
-            int falign = getFieldAlignment(field);
-            int padding = (offset & (falign - 1)) != 0 ? (falign - (offset & (falign - 1))) : 0;
-            types.add(padType(getType(field.getType()), padding));
-            offset += padding + getFieldSize(field);
-        }
-        return new StructureType(CLASS, new StructureType(types.toArray(new Type[types.size()])));
-    }
-    
-    private static StructureType getInstanceType0(SootClass clazz, int subClassAlignment, int[] superSize) {
-        List<Type> types = new ArrayList<Type>();
-        List<SootField> fields = getInstanceFields(clazz);
-        int superAlignment = 1;
-        if (!fields.isEmpty()) {
-            // Pad the super type so that the first field is aligned properly
-            SootField field = fields.get(0);
-            superAlignment = getFieldAlignment(field);
-        }
-        if (clazz.hasSuperclass()) {
-            types.add(getInstanceType0(clazz.getSuperclass(), superAlignment, superSize));
-        }
-        int offset = superSize[0];
-        for (SootField field : fields) {
-            int falign = getFieldAlignment(field);
-            int padding = (offset & (falign - 1)) != 0 ? (falign - (offset & (falign - 1))) : 0;
-            types.add(padType(getType(field.getType()), padding));
-            offset += padding + getFieldSize(field);
-        }
-        
-        int padding = (offset & (subClassAlignment - 1)) != 0 
-                ? (subClassAlignment - (offset & (subClassAlignment - 1))) : 0;
-        for (int i = 0; i < padding; i++) {
-            types.add(I8);
-            offset++;
-        }
-        
-        superSize[0] = offset;
-        
-        return new StructureType(types.toArray(new Type[types.size()]));
-    }
-    
-    private static StructureType getInstanceType(SootClass clazz) {
-        return new StructureType(DATA_OBJECT, getInstanceType0(clazz, 1, new int[] {0}));
-    }
-    
     private Constant getString(String string) {
         return mb.getString(string);
     }
@@ -1235,19 +1226,22 @@ public class ClassCompiler {
         return mb.getStringOrNull(string);
     }
     
-    private Value getClassFieldPtr(Function f, SootField field) {
-        Value info = getInfoStruct(f);        
+    static Value getClassFieldPtr(Function f, SootField field, List<SootField> classFields, 
+            StructureType classType) {
+        
+        Value info = getInfoStruct(f, field.getDeclaringClass());        
         Variable base = f.newVariable(I8_PTR);
         f.add(new Load(base, info));
         return getFieldPtr(f, new VariableRef(base), offsetof(classType, 1, 
                 classFields.indexOf(field), 1), getType(field.getType()));
     }
 
-    private Value getInfoStruct(Function f) {
+    static Value getInfoStruct(Function f, SootClass sootClass) {
         return call(f, FunctionBuilder.infoStruct(sootClass).ref());
     }
     
-    private Value getInstanceFieldPtr(Function f, Value base, SootField field) {
+    static Value getInstanceFieldPtr(Function f, Value base, SootField field, 
+            List<SootField> instanceFields, StructureType instanceType) {
         return getFieldPtr(f, base, offsetof(instanceType, 1, 
                 1 + instanceFields.indexOf(field), 1), getType(field.getType()));
     }

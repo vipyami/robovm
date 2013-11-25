@@ -37,12 +37,13 @@ import org.apache.commons.exec.util.StringUtils;
 import org.robovm.compiler.log.DebugOutputStream;
 import org.robovm.compiler.log.ErrorOutputStream;
 import org.robovm.compiler.log.Logger;
+import org.robovm.compiler.target.Launcher;
 
 /**
  * Builder style wrapper around <code>commons-exec</code> which also adds support for asynchronous 
  * execution.
  */
-public class Executor {
+public class Executor implements Launcher {
     private final String cmd;
     private final Logger logger;
     private List<String> args = new ArrayList<String>();
@@ -350,20 +351,23 @@ public class Executor {
     
     public String execCapture() throws IOException {
         ExecuteStreamHandler oldStreamHandler = streamHandler;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        CommandLine commandLine = generateCommandLine();
         try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             streamHandler(new PumpStreamHandler(baos));
-            
-            CommandLine commandLine = generateCommandLine();
             logCommandLine(commandLine);
-            AsyncExecutor executor = initExecutor(new AsyncExecutor());
-            Process process = executor.executeAsync(commandLine, generateEnv());
-            try {
-                process.waitFor();
-            } catch (InterruptedException e) {
-                process.destroy();
-            }
+            DefaultExecutor executor = initExecutor(new DefaultExecutor());
+            executor.execute(commandLine, generateEnv());
             return new String(baos.toByteArray()).trim();
+        } catch (ExecuteException e) {
+            String output = new String(baos.toByteArray()).trim();
+            if (output.length() > 0 && e.getMessage().startsWith("Process exited with an error")) {
+                StackTraceElement[] origStackTrace = e.getStackTrace();
+                e = new ExecuteException("Command '" + commandLine + "' failed with output: " 
+                        + output + " ", e.getExitValue());
+                e.setStackTrace(origStackTrace);
+            }
+            throw e;
         } finally {
             streamHandler = oldStreamHandler;
         }

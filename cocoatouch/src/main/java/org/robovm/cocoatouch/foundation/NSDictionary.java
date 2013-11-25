@@ -17,6 +17,10 @@ package org.robovm.cocoatouch.foundation;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.NoSuchElementException;
 /*<imports>*/
 import java.util.*;
 import org.robovm.objc.*;
@@ -31,7 +35,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html">NSDictionary Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html">NSDictionary Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -44,6 +48,96 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ NSDictionary /*</name>*/.class);
     }
 
+    static class KeySet<K extends NSObject> extends AbstractSet<K> {
+        private final NSDictionary<K, ? extends NSObject> map;
+        
+        KeySet(NSDictionary<K, ? extends NSObject> map) {
+            this.map = map;
+        }
+
+        @Override
+        public Iterator<K> iterator() {
+            final Iterator<K> it = map.allKeys().iterator();
+            return new Iterator<K>() {
+                private K last = null;
+                @Override
+                public boolean hasNext() {
+                    return it.hasNext();
+                }
+                @Override
+                public K next() {
+                    last = it.next();
+                    return last;
+                }
+                @Override
+                public void remove() {
+                    if (last == null) {
+                        throw new IllegalStateException();
+                    }
+                    if (map.get(last) == null) {
+                        throw new ConcurrentModificationException();
+                    }
+                    map.remove(last);
+                    last = null;
+                }
+            };
+        }
+
+        @Override
+        public int size() {
+            return map.count();
+        }
+    }
+    
+    static class Entry<K extends NSObject, V extends NSObject> implements Map.Entry<K, V> {
+        private final NSDictionary<K, V> map;
+        private final K key;
+        private final V value;
+        
+        Entry(NSDictionary<K, V> map, K key, V value) {
+            this.map = map;
+            this.key = key;
+            this.value = value;
+        }
+
+        public V setValue(V v) {
+            if (value != map.get(key)) {
+                throw new ConcurrentModificationException();
+            }
+            return map.put(key, v);
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
+        
+        public boolean equals(Object object) {
+            if (this == object) {
+                return true;
+            }
+            if (object instanceof Map.Entry) {
+                Map.Entry<?, ?> entry = (Map.Entry<?, ?>) object;
+                return (key == null ? entry.getKey() == null : key.equals(entry
+                        .getKey()))
+                        && (value == null ? entry.getValue() == null : value
+                                .equals(entry.getValue()));
+            }
+            return false;
+        }
+        
+        public int hashCode() {
+            return key.hashCode() ^ value.hashCode();
+        }
+
+        public String toString() {
+            return key + "=" + value;
+        }
+    }
+    
     static class EntrySet<K extends NSObject, V extends NSObject> extends AbstractSet<Map.Entry<K, V>> {
         private final NSDictionary<K, V> map;
 
@@ -55,7 +149,7 @@ import org.robovm.rt.bro.ptr.*;
         public Iterator<Map.Entry<K, V>> iterator() {
             final Iterator<K> keysIt = map.keySet().iterator();
             return new Iterator<Map.Entry<K, V>>() {
-                Map.Entry<K, V> entry = null;
+                private Map.Entry<K, V> entry = null;
 
                 @Override
                 public boolean hasNext() {
@@ -65,16 +159,12 @@ import org.robovm.rt.bro.ptr.*;
                 @SuppressWarnings("serial")
                 @Override
                 public Map.Entry<K, V> next() {
-                    K key = keysIt.next();
-                    entry = new SimpleEntry<K, V>(key, map.get(key)) {
-                        public V setValue(V v) {
-                            Object value = map.get(entry.getKey());
-                            if (entry.getValue() != value) {
-                                throw new ConcurrentModificationException();
-                            }
-                            return super.setValue(v);
-                        }
-                    };
+                    final K key = keysIt.next();
+                    final V value = map.get(key);
+                    if (value == null) {
+                        throw new ConcurrentModificationException();
+                    }
+                    entry = new Entry<K, V>(map, key, value);
                     return entry;
                 }
 
@@ -96,45 +186,12 @@ import org.robovm.rt.bro.ptr.*;
 
         @Override
         public int size() {
-            return map.size();
+            return map.count();
         }
         
     }
     
-    static class MapAdapter<K extends NSObject, V extends NSObject> extends AbstractMap<K, V> {
-        private final NSDictionary<K, V> map;
-        EntrySet<K, V> entrySet = null;
-        
-
-        MapAdapter(NSDictionary<K, V> map) {
-            this.map = map;
-        }
-
-        public boolean containsKey(Object key) {
-            return get(key) != null;
-        }
-        
-        @SuppressWarnings("unchecked")
-        public V get(Object key) {
-            if (key instanceof NSObject) {
-                return (V) map.objectForKey((NSObject) key) ;
-            }
-            return null;
-        }
-
-        @Override
-        public Set<Map.Entry<K, V>> entrySet() {
-            if (entrySet == null) {
-                entrySet = new EntrySet<K, V>(map);
-            }
-            return entrySet;
-        }
-    }
-    
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ NSDictionary /*</name>*/.class);
-
-    private AbstractMap<K, V> adapter = createAdapter();
 
     /*<constructors>*/
     protected NSDictionary(SkipInit skipInit) { super(skipInit); }
@@ -145,14 +202,14 @@ import org.robovm.rt.bro.ptr.*;
     public NSDictionary(Map<K, V> m) {
         super((SkipInit) null);
         if (m instanceof NSDictionary) {
-            setHandle(objc_initWithDictionary(this, initWithDictionary$, (NSDictionary<K, V>) m));
+            initObject(objc_initWithDictionary(this, initWithDictionary$, (NSDictionary<K, V>) m));
         } else {
             Set<K> keys = m.keySet();
             List<V> objects = new ArrayList<V>(keys.size());
             for (K key : keys) {
                 objects.add(m.get(key));
             }
-            setHandle(objc_initWithObjects(this, initWithObjects$forKeys$, new NSArray<V>(objects), new NSArray<K>(keys)));
+            initObject(objc_initWithObjects(this, initWithObjects$forKeys$, new NSArray<V>(objects), new NSArray<K>(keys)));
         }
     }
     
@@ -160,61 +217,63 @@ import org.robovm.rt.bro.ptr.*;
     
     /*</properties>*/
 
-    protected AbstractMap<K, V> createAdapter() {
-        return new MapAdapter<K, V>(this);
-    }
-    
-    @Override
-    protected void afterMarshaled() {
-        if (adapter == null) {
-            adapter = createAdapter();
-        }
-        super.afterMarshaled();
-    }
-    
     public void clear() {
-        adapter.clear();
+        throw new UnsupportedOperationException("NSDictionary is immutable");
     }
     public boolean containsKey(Object key) {
-        return adapter.containsKey(key);
+        return get(key) != null;
     }
     public boolean containsValue(Object value) {
-        return adapter.containsValue(value);
+        if (!(value instanceof NSObject)) {
+            return false;
+        }
+        NSArray<V> values = allValues();
+        int count = values.count();
+        for (int i = 0; i < count; i++) {
+            NSObject o = values.objectAtIndex(i);
+            if (o.equals(value)) {
+                return true;
+            }
+        }
+        return false;
     }
-    public Set<java.util.Map.Entry<K, V>> entrySet() {
-        return adapter.entrySet();
+    public Set<Map.Entry<K, V>> entrySet() {
+        return new EntrySet<K, V>(this);
     }
     public V get(Object key) {
-        return adapter.get(key);
+        if (!(key instanceof NSObject)) {
+            return null;
+        }
+        return (V) objectForKey((K) key);
     }
     public boolean isEmpty() {
-        return adapter.isEmpty();
+        return count() == 0;
     }
     public Set<K> keySet() {
-        return adapter.keySet();
+        return new KeySet<K>(this);
     }
     public V put(K key, V value) {
-        return adapter.put(key, value);
+        throw new UnsupportedOperationException("NSDictionary is immutable");
     }
     public void putAll(Map<? extends K, ? extends V> m) {
-        adapter.putAll(m);
+        throw new UnsupportedOperationException("NSDictionary is immutable");
     }
     public V remove(Object key) {
-        return adapter.remove(key);
+        throw new UnsupportedOperationException("NSDictionary is immutable");
     }
     public int size() {
-        return adapter.size();
+        return count();
     }
     public Collection<V> values() {
-        return adapter.values();
+        return allValues();
     }
     
     /*<methods>*/
     
     private static final Selector dictionaryWithContentsOfFile$ = Selector.register("dictionaryWithContentsOfFile:");
-    @Bridge(symbol = "objc_msgSend") private native static NSDictionary objc_fromFile(ObjCClass __self__, Selector __cmd__, String path);
+    @Bridge private native static NSDictionary objc_fromFile(ObjCClass __self__, Selector __cmd__, String path);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/clm/NSDictionary/dictionaryWithContentsOfFile:">+ (id)dictionaryWithContentsOfFile:(NSString *)path</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/clm/NSDictionary/dictionaryWithContentsOfFile:">+ (id)dictionaryWithContentsOfFile:(NSString *)path</a>
      * @since Available in iOS 2.0 and later.
      */
     public static NSDictionary fromFile(String path) {
@@ -222,9 +281,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector dictionaryWithContentsOfURL$ = Selector.register("dictionaryWithContentsOfURL:");
-    @Bridge(symbol = "objc_msgSend") private native static NSDictionary objc_fromUrl(ObjCClass __self__, Selector __cmd__, NSURL aURL);
+    @Bridge private native static NSDictionary objc_fromUrl(ObjCClass __self__, Selector __cmd__, NSURL aURL);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/clm/NSDictionary/dictionaryWithContentsOfURL:">+ (id)dictionaryWithContentsOfURL:(NSURL *)aURL</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/clm/NSDictionary/dictionaryWithContentsOfURL:">+ (id)dictionaryWithContentsOfURL:(NSURL *)aURL</a>
      * @since Available in iOS 2.0 and later.
      */
     public static NSDictionary fromUrl(NSURL aURL) {
@@ -232,10 +291,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector allKeys = Selector.register("allKeys");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_allKeys(NSDictionary __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_allKeysSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSArray objc_allKeys(NSDictionary __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_allKeysSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/allKeys">- (NSArray *)allKeys</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/allKeys">- (NSArray *)allKeys</a>
      * @since Available in iOS 2.0 and later.
      */
     protected NSArray allKeys() {
@@ -243,10 +302,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector allValues = Selector.register("allValues");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_allValues(NSDictionary __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_allValuesSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSArray objc_allValues(NSDictionary __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_allValuesSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/allValues">- (NSArray *)allValues</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/allValues">- (NSArray *)allValues</a>
      * @since Available in iOS 2.0 and later.
      */
     protected NSArray allValues() {
@@ -254,10 +313,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector count = Selector.register("count");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_count(NSDictionary __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_countSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static int objc_count(NSDictionary __self__, Selector __cmd__);
+    @Bridge private native static int objc_countSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/count">- (NSUInteger)count</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/count">- (NSUInteger)count</a>
      * @since Available in iOS 2.0 and later.
      */
     protected int count() {
@@ -265,10 +324,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector initWithDictionary$ = Selector.register("initWithDictionary:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithDictionary(NSDictionary __self__, Selector __cmd__, NSDictionary otherDictionary);
-    @Bridge(symbol = "objc_msgSendSuper") private native static @Pointer long objc_initWithDictionarySuper(ObjCSuper __super__, Selector __cmd__, NSDictionary otherDictionary);
+    @Bridge private native static @Pointer long objc_initWithDictionary(NSDictionary __self__, Selector __cmd__, NSDictionary otherDictionary);
+    @Bridge private native static @Pointer long objc_initWithDictionarySuper(ObjCSuper __super__, Selector __cmd__, NSDictionary otherDictionary);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/initWithDictionary:">- (id)initWithDictionary:(NSDictionary *)otherDictionary</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/initWithDictionary:">- (id)initWithDictionary:(NSDictionary *)otherDictionary</a>
      * @since Available in iOS 2.0 and later.
      */
     protected @Pointer long initWithDictionary(NSDictionary otherDictionary) {
@@ -276,10 +335,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector initWithObjects$forKeys$ = Selector.register("initWithObjects:forKeys:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithObjects(NSDictionary __self__, Selector __cmd__, NSArray objects, NSArray keys);
-    @Bridge(symbol = "objc_msgSendSuper") private native static @Pointer long objc_initWithObjectsSuper(ObjCSuper __super__, Selector __cmd__, NSArray objects, NSArray keys);
+    @Bridge private native static @Pointer long objc_initWithObjects(NSDictionary __self__, Selector __cmd__, NSArray objects, NSArray keys);
+    @Bridge private native static @Pointer long objc_initWithObjectsSuper(ObjCSuper __super__, Selector __cmd__, NSArray objects, NSArray keys);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/initWithObjects:forKeys:">- (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/initWithObjects:forKeys:">- (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys</a>
      * @since Available in iOS 2.0 and later.
      */
     protected @Pointer long initWithObjects(NSArray objects, NSArray keys) {
@@ -287,10 +346,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector objectForKey$ = Selector.register("objectForKey:");
-    @Bridge(symbol = "objc_msgSend") private native static NSObject objc_objectForKey(NSDictionary __self__, Selector __cmd__, NSObject aKey);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSObject objc_objectForKeySuper(ObjCSuper __super__, Selector __cmd__, NSObject aKey);
+    @Bridge private native static NSObject objc_objectForKey(NSDictionary __self__, Selector __cmd__, NSObject aKey);
+    @Bridge private native static NSObject objc_objectForKeySuper(ObjCSuper __super__, Selector __cmd__, NSObject aKey);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/objectForKey:">- (id)objectForKey:(id)aKey</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/objectForKey:">- (id)objectForKey:(id)aKey</a>
      * @since Available in iOS 2.0 and later.
      */
     protected NSObject objectForKey(NSObject aKey) {
@@ -298,10 +357,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector writeToFile$atomically$ = Selector.register("writeToFile:atomically:");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_writeToFile(NSDictionary __self__, Selector __cmd__, String path, boolean flag);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_writeToFileSuper(ObjCSuper __super__, Selector __cmd__, String path, boolean flag);
+    @Bridge private native static boolean objc_writeToFile(NSDictionary __self__, Selector __cmd__, String path, boolean flag);
+    @Bridge private native static boolean objc_writeToFileSuper(ObjCSuper __super__, Selector __cmd__, String path, boolean flag);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/writeToFile:atomically:">- (BOOL)writeToFile:(NSString *)path atomically:(BOOL)flag</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/../Classes/NSDictionary_Class/Reference/Reference.html#//apple_ref/occ/instm/NSDictionary/writeToFile:atomically:">- (BOOL)writeToFile:(NSString *)path atomically:(BOOL)flag</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean writeToFile(String path, boolean flag) {

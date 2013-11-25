@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html">UIPickerView Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html">UIPickerView Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIPickerView /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIPickerView /*</name>*/.class);
 
     public UIPickerView(CGRect aRect) {
@@ -61,10 +60,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector dataSource = Selector.register("dataSource");
-    @Bridge(symbol = "objc_msgSend") private native static UIPickerViewDataSource objc_getDataSource(UIPickerView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIPickerViewDataSource objc_getDataSourceSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIPickerViewDataSource objc_getDataSource(UIPickerView __self__, Selector __cmd__);
+    @Bridge private native static UIPickerViewDataSource objc_getDataSourceSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/dataSource">@property(nonatomic, assign) id&amp;lt;UIPickerViewDataSource&amp;gt; dataSource</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/dataSource">@property(nonatomic, assign) id&amp;lt;UIPickerViewDataSource&amp;gt; dataSource</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIPickerViewDataSource getDataSource() {
@@ -72,10 +71,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setDataSource$ = Selector.register("setDataSource:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setDataSource(UIPickerView __self__, Selector __cmd__, UIPickerViewDataSource dataSource);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setDataSourceSuper(ObjCSuper __super__, Selector __cmd__, UIPickerViewDataSource dataSource);
+    @Bridge private native static void objc_setDataSource(UIPickerView __self__, Selector __cmd__, UIPickerViewDataSource dataSource);
+    @Bridge private native static void objc_setDataSourceSuper(ObjCSuper __super__, Selector __cmd__, UIPickerViewDataSource dataSource);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/dataSource">@property(nonatomic, assign) id&amp;lt;UIPickerViewDataSource&amp;gt; dataSource</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/dataSource">@property(nonatomic, assign) id&amp;lt;UIPickerViewDataSource&amp;gt; dataSource</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setDataSource(UIPickerViewDataSource dataSource) {
@@ -83,10 +82,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector delegate = Selector.register("delegate");
-    @Bridge(symbol = "objc_msgSend") private native static UIPickerViewDelegate objc_getDelegate(UIPickerView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIPickerViewDelegate objc_getDelegateSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIPickerViewDelegate objc_getDelegate(UIPickerView __self__, Selector __cmd__);
+    @Bridge private native static UIPickerViewDelegate objc_getDelegateSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/delegate">@property(nonatomic, assign) id&amp;lt;UIPickerViewDelegate&amp;gt; delegate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/delegate">@property(nonatomic, assign) id&amp;lt;UIPickerViewDelegate&amp;gt; delegate</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIPickerViewDelegate getDelegate() {
@@ -94,10 +93,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setDelegate$ = Selector.register("setDelegate:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setDelegate(UIPickerView __self__, Selector __cmd__, UIPickerViewDelegate delegate);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setDelegateSuper(ObjCSuper __super__, Selector __cmd__, UIPickerViewDelegate delegate);
+    @Bridge private native static void objc_setDelegate(UIPickerView __self__, Selector __cmd__, UIPickerViewDelegate delegate);
+    @Bridge private native static void objc_setDelegateSuper(ObjCSuper __super__, Selector __cmd__, UIPickerViewDelegate delegate);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/delegate">@property(nonatomic, assign) id&amp;lt;UIPickerViewDelegate&amp;gt; delegate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/delegate">@property(nonatomic, assign) id&amp;lt;UIPickerViewDelegate&amp;gt; delegate</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setDelegate(UIPickerViewDelegate delegate) {
@@ -105,10 +104,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector numberOfComponents = Selector.register("numberOfComponents");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getNumberOfComponents(UIPickerView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getNumberOfComponentsSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static int objc_getNumberOfComponents(UIPickerView __self__, Selector __cmd__);
+    @Bridge private native static int objc_getNumberOfComponentsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/numberOfComponents">@property(nonatomic, readonly) NSInteger numberOfComponents</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/numberOfComponents">@property(nonatomic, readonly) NSInteger numberOfComponents</a>
      * @since Available in iOS 2.0 and later.
      */
     public int getNumberOfComponents() {
@@ -116,10 +115,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector showsSelectionIndicator = Selector.register("showsSelectionIndicator");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isShowsSelectionIndicator(UIPickerView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isShowsSelectionIndicatorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isShowsSelectionIndicator(UIPickerView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isShowsSelectionIndicatorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/showsSelectionIndicator">@property(nonatomic) BOOL showsSelectionIndicator</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/showsSelectionIndicator">@property(nonatomic) BOOL showsSelectionIndicator</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isShowsSelectionIndicator() {
@@ -127,10 +126,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setShowsSelectionIndicator$ = Selector.register("setShowsSelectionIndicator:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setShowsSelectionIndicator(UIPickerView __self__, Selector __cmd__, boolean showsSelectionIndicator);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setShowsSelectionIndicatorSuper(ObjCSuper __super__, Selector __cmd__, boolean showsSelectionIndicator);
+    @Bridge private native static void objc_setShowsSelectionIndicator(UIPickerView __self__, Selector __cmd__, boolean showsSelectionIndicator);
+    @Bridge private native static void objc_setShowsSelectionIndicatorSuper(ObjCSuper __super__, Selector __cmd__, boolean showsSelectionIndicator);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/showsSelectionIndicator">@property(nonatomic) BOOL showsSelectionIndicator</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instp/UIPickerView/showsSelectionIndicator">@property(nonatomic) BOOL showsSelectionIndicator</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setShowsSelectionIndicator(boolean showsSelectionIndicator) {
@@ -140,10 +139,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector numberOfRowsInComponent$ = Selector.register("numberOfRowsInComponent:");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getNumberOfRows(UIPickerView __self__, Selector __cmd__, int component);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getNumberOfRowsSuper(ObjCSuper __super__, Selector __cmd__, int component);
+    @Bridge private native static int objc_getNumberOfRows(UIPickerView __self__, Selector __cmd__, int component);
+    @Bridge private native static int objc_getNumberOfRowsSuper(ObjCSuper __super__, Selector __cmd__, int component);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/numberOfRowsInComponent:">- (NSInteger)numberOfRowsInComponent:(NSInteger)component</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/numberOfRowsInComponent:">- (NSInteger)numberOfRowsInComponent:(NSInteger)component</a>
      * @since Available in iOS 2.0 and later.
      */
     public int getNumberOfRows(int component) {
@@ -151,23 +150,21 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector rowSizeForComponent$ = Selector.register("rowSizeForComponent:");
-    @Bridge(symbol = "objc_msgSend") private native static @ByVal CGSize objc_getRowSize(UIPickerView __self__, Selector __cmd__, int component);
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getRowSize_stret(@StructRet CGSize __ret__, UIPickerView __self__, Selector __cmd__, int component);
-    @Bridge(symbol = "objc_msgSendSuper") private native static @ByVal CGSize objc_getRowSizeSuper(ObjCSuper __super__, Selector __cmd__, int component);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getRowSizeSuper_stret(@StructRet CGSize __ret__, ObjCSuper __super__, Selector __cmd__, int component);
+    @Bridge private native static @ByVal CGSize objc_getRowSize(UIPickerView __self__, Selector __cmd__, int component);
+    @Bridge private native static @ByVal CGSize objc_getRowSizeSuper(ObjCSuper __super__, Selector __cmd__, int component);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/rowSizeForComponent:">- (CGSize)rowSizeForComponent:(NSInteger)component</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/rowSizeForComponent:">- (CGSize)rowSizeForComponent:(NSInteger)component</a>
      * @since Available in iOS 2.0 and later.
      */
     public CGSize getRowSize(int component) {
-        if (X86) { if (customClass) { return objc_getRowSizeSuper(getSuper(), rowSizeForComponent$, component); } else { return objc_getRowSize(this, rowSizeForComponent$, component); } } else { CGSize __ret__ = new CGSize(); if (customClass) { objc_getRowSizeSuper_stret(__ret__, getSuper(), rowSizeForComponent$, component); } else { objc_getRowSize_stret(__ret__, this, rowSizeForComponent$, component); } return __ret__; }
+        if (customClass) { return objc_getRowSizeSuper(getSuper(), rowSizeForComponent$, component); } else { return objc_getRowSize(this, rowSizeForComponent$, component); }
     }
     
     private static final Selector viewForRow$forComponent$ = Selector.register("viewForRow:forComponent:");
-    @Bridge(symbol = "objc_msgSend") private native static UIView objc_getRowView(UIPickerView __self__, Selector __cmd__, int row, int component);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIView objc_getRowViewSuper(ObjCSuper __super__, Selector __cmd__, int row, int component);
+    @Bridge private native static UIView objc_getRowView(UIPickerView __self__, Selector __cmd__, int row, int component);
+    @Bridge private native static UIView objc_getRowViewSuper(ObjCSuper __super__, Selector __cmd__, int row, int component);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/viewForRow:forComponent:">- (UIView *)viewForRow:(NSInteger)row forComponent:(NSInteger)component</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/viewForRow:forComponent:">- (UIView *)viewForRow:(NSInteger)row forComponent:(NSInteger)component</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIView getRowView(int row, int component) {
@@ -175,10 +172,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector selectedRowInComponent$ = Selector.register("selectedRowInComponent:");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getSelectedRow(UIPickerView __self__, Selector __cmd__, int component);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getSelectedRowSuper(ObjCSuper __super__, Selector __cmd__, int component);
+    @Bridge private native static int objc_getSelectedRow(UIPickerView __self__, Selector __cmd__, int component);
+    @Bridge private native static int objc_getSelectedRowSuper(ObjCSuper __super__, Selector __cmd__, int component);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/selectedRowInComponent:">- (NSInteger)selectedRowInComponent:(NSInteger)component</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/selectedRowInComponent:">- (NSInteger)selectedRowInComponent:(NSInteger)component</a>
      * @since Available in iOS 2.0 and later.
      */
     public int getSelectedRow(int component) {
@@ -186,10 +183,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector reloadAllComponents = Selector.register("reloadAllComponents");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_reloadAllComponents(UIPickerView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_reloadAllComponentsSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_reloadAllComponents(UIPickerView __self__, Selector __cmd__);
+    @Bridge private native static void objc_reloadAllComponentsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/reloadAllComponents">- (void)reloadAllComponents</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/reloadAllComponents">- (void)reloadAllComponents</a>
      * @since Available in iOS 2.0 and later.
      */
     public void reloadAllComponents() {
@@ -197,10 +194,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector reloadComponent$ = Selector.register("reloadComponent:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_reloadComponent(UIPickerView __self__, Selector __cmd__, int component);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_reloadComponentSuper(ObjCSuper __super__, Selector __cmd__, int component);
+    @Bridge private native static void objc_reloadComponent(UIPickerView __self__, Selector __cmd__, int component);
+    @Bridge private native static void objc_reloadComponentSuper(ObjCSuper __super__, Selector __cmd__, int component);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/reloadComponent:">- (void)reloadComponent:(NSInteger)component</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/reloadComponent:">- (void)reloadComponent:(NSInteger)component</a>
      * @since Available in iOS 2.0 and later.
      */
     public void reloadComponent(int component) {
@@ -208,10 +205,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector selectRow$inComponent$animated$ = Selector.register("selectRow:inComponent:animated:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_selectRow(UIPickerView __self__, Selector __cmd__, int row, int component, boolean animated);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_selectRowSuper(ObjCSuper __super__, Selector __cmd__, int row, int component, boolean animated);
+    @Bridge private native static void objc_selectRow(UIPickerView __self__, Selector __cmd__, int row, int component, boolean animated);
+    @Bridge private native static void objc_selectRowSuper(ObjCSuper __super__, Selector __cmd__, int row, int component, boolean animated);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/selectRow:inComponent:animated:">- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIPickerView_Class/Reference/UIPickerView.html#//apple_ref/occ/instm/UIPickerView/selectRow:inComponent:animated:">- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated</a>
      * @since Available in iOS 2.0 and later.
      */
     public void selectRow(int row, int component, boolean animated) {

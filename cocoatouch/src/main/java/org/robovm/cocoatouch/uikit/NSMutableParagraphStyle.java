@@ -33,7 +33,7 @@ import org.robovm.rt.bro.ptr.*;
 /**
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html">NSMutableParagraphStyle Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html">NSMutableParagraphStyle Class Reference</a>
  *   @since Available in iOS 6.0 and later.
  * </div>
  */
@@ -46,7 +46,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ NSMutableParagraphStyle /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ NSMutableParagraphStyle /*</name>*/.class);
 
     /*<constructors>*/
@@ -57,10 +56,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector alignment = Selector.register("alignment");
-    @Bridge(symbol = "objc_msgSend") private native static NSTextAlignment objc_getAlignment(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSTextAlignment objc_getAlignmentSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSTextAlignment objc_getAlignment(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static NSTextAlignment objc_getAlignmentSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/alignment">@property(readwrite) NSTextAlignment alignment</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/alignment">@property(readwrite) NSTextAlignment alignment</a>
      * @since Available in iOS 6.0 and later.
      */
     public NSTextAlignment getAlignment() {
@@ -68,10 +67,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setAlignment$ = Selector.register("setAlignment:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setAlignment(NSMutableParagraphStyle __self__, Selector __cmd__, NSTextAlignment alignment);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setAlignmentSuper(ObjCSuper __super__, Selector __cmd__, NSTextAlignment alignment);
+    @Bridge private native static void objc_setAlignment(NSMutableParagraphStyle __self__, Selector __cmd__, NSTextAlignment alignment);
+    @Bridge private native static void objc_setAlignmentSuper(ObjCSuper __super__, Selector __cmd__, NSTextAlignment alignment);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/alignment">@property(readwrite) NSTextAlignment alignment</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/alignment">@property(readwrite) NSTextAlignment alignment</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setAlignment(NSTextAlignment alignment) {
@@ -79,10 +78,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector baseWritingDirection = Selector.register("baseWritingDirection");
-    @Bridge(symbol = "objc_msgSend") private native static NSWritingDirection objc_getBaseWritingDirection(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSWritingDirection objc_getBaseWritingDirectionSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSWritingDirection objc_getBaseWritingDirection(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static NSWritingDirection objc_getBaseWritingDirectionSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/baseWritingDirection">@property(readwrite) NSWritingDirection baseWritingDirection</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/baseWritingDirection">@property(readwrite) NSWritingDirection baseWritingDirection</a>
      * @since Available in iOS 6.0 and later.
      */
     public NSWritingDirection getBaseWritingDirection() {
@@ -90,10 +89,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setBaseWritingDirection$ = Selector.register("setBaseWritingDirection:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setBaseWritingDirection(NSMutableParagraphStyle __self__, Selector __cmd__, NSWritingDirection baseWritingDirection);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setBaseWritingDirectionSuper(ObjCSuper __super__, Selector __cmd__, NSWritingDirection baseWritingDirection);
+    @Bridge private native static void objc_setBaseWritingDirection(NSMutableParagraphStyle __self__, Selector __cmd__, NSWritingDirection baseWritingDirection);
+    @Bridge private native static void objc_setBaseWritingDirectionSuper(ObjCSuper __super__, Selector __cmd__, NSWritingDirection baseWritingDirection);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/baseWritingDirection">@property(readwrite) NSWritingDirection baseWritingDirection</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/baseWritingDirection">@property(readwrite) NSWritingDirection baseWritingDirection</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setBaseWritingDirection(NSWritingDirection baseWritingDirection) {
@@ -101,10 +100,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector firstLineHeadIndent = Selector.register("firstLineHeadIndent");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getFirstLineHeadIndent(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getFirstLineHeadIndentSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getFirstLineHeadIndent(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getFirstLineHeadIndentSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/firstLineHeadIndent">@property(readwrite) CGFloat firstLineHeadIndent</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/firstLineHeadIndent">@property(readwrite) CGFloat firstLineHeadIndent</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getFirstLineHeadIndent() {
@@ -112,10 +111,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setFirstLineHeadIndent$ = Selector.register("setFirstLineHeadIndent:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setFirstLineHeadIndent(NSMutableParagraphStyle __self__, Selector __cmd__, float firstLineHeadIndent);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setFirstLineHeadIndentSuper(ObjCSuper __super__, Selector __cmd__, float firstLineHeadIndent);
+    @Bridge private native static void objc_setFirstLineHeadIndent(NSMutableParagraphStyle __self__, Selector __cmd__, float firstLineHeadIndent);
+    @Bridge private native static void objc_setFirstLineHeadIndentSuper(ObjCSuper __super__, Selector __cmd__, float firstLineHeadIndent);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/firstLineHeadIndent">@property(readwrite) CGFloat firstLineHeadIndent</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/firstLineHeadIndent">@property(readwrite) CGFloat firstLineHeadIndent</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setFirstLineHeadIndent(float firstLineHeadIndent) {
@@ -123,10 +122,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector headIndent = Selector.register("headIndent");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getHeadIndent(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getHeadIndentSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getHeadIndent(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getHeadIndentSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/headIndent">@property(readwrite) CGFloat headIndent</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/headIndent">@property(readwrite) CGFloat headIndent</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getHeadIndent() {
@@ -134,10 +133,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setHeadIndent$ = Selector.register("setHeadIndent:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setHeadIndent(NSMutableParagraphStyle __self__, Selector __cmd__, float headIndent);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setHeadIndentSuper(ObjCSuper __super__, Selector __cmd__, float headIndent);
+    @Bridge private native static void objc_setHeadIndent(NSMutableParagraphStyle __self__, Selector __cmd__, float headIndent);
+    @Bridge private native static void objc_setHeadIndentSuper(ObjCSuper __super__, Selector __cmd__, float headIndent);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/headIndent">@property(readwrite) CGFloat headIndent</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/headIndent">@property(readwrite) CGFloat headIndent</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setHeadIndent(float headIndent) {
@@ -145,10 +144,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector hyphenationFactor = Selector.register("hyphenationFactor");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getHyphenationFactor(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getHyphenationFactorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getHyphenationFactor(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getHyphenationFactorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/hyphenationFactor">@property(readwrite) float hyphenationFactor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/hyphenationFactor">@property(readwrite) float hyphenationFactor</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getHyphenationFactor() {
@@ -156,10 +155,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setHyphenationFactor$ = Selector.register("setHyphenationFactor:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setHyphenationFactor(NSMutableParagraphStyle __self__, Selector __cmd__, float hyphenationFactor);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setHyphenationFactorSuper(ObjCSuper __super__, Selector __cmd__, float hyphenationFactor);
+    @Bridge private native static void objc_setHyphenationFactor(NSMutableParagraphStyle __self__, Selector __cmd__, float hyphenationFactor);
+    @Bridge private native static void objc_setHyphenationFactorSuper(ObjCSuper __super__, Selector __cmd__, float hyphenationFactor);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/hyphenationFactor">@property(readwrite) float hyphenationFactor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/hyphenationFactor">@property(readwrite) float hyphenationFactor</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setHyphenationFactor(float hyphenationFactor) {
@@ -167,10 +166,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector lineBreakMode = Selector.register("lineBreakMode");
-    @Bridge(symbol = "objc_msgSend") private native static NSLineBreakMode objc_getLineBreakMode(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSLineBreakMode objc_getLineBreakModeSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSLineBreakMode objc_getLineBreakMode(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static NSLineBreakMode objc_getLineBreakModeSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineBreakMode">@property(readwrite) NSLineBreakMode lineBreakMode</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineBreakMode">@property(readwrite) NSLineBreakMode lineBreakMode</a>
      * @since Available in iOS 6.0 and later.
      */
     public NSLineBreakMode getLineBreakMode() {
@@ -178,10 +177,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setLineBreakMode$ = Selector.register("setLineBreakMode:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setLineBreakMode(NSMutableParagraphStyle __self__, Selector __cmd__, NSLineBreakMode lineBreakMode);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setLineBreakModeSuper(ObjCSuper __super__, Selector __cmd__, NSLineBreakMode lineBreakMode);
+    @Bridge private native static void objc_setLineBreakMode(NSMutableParagraphStyle __self__, Selector __cmd__, NSLineBreakMode lineBreakMode);
+    @Bridge private native static void objc_setLineBreakModeSuper(ObjCSuper __super__, Selector __cmd__, NSLineBreakMode lineBreakMode);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineBreakMode">@property(readwrite) NSLineBreakMode lineBreakMode</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineBreakMode">@property(readwrite) NSLineBreakMode lineBreakMode</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setLineBreakMode(NSLineBreakMode lineBreakMode) {
@@ -189,10 +188,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector lineHeightMultiple = Selector.register("lineHeightMultiple");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getLineHeightMultiple(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getLineHeightMultipleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getLineHeightMultiple(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getLineHeightMultipleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineHeightMultiple">@property(readwrite) CGFloat lineHeightMultiple</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineHeightMultiple">@property(readwrite) CGFloat lineHeightMultiple</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getLineHeightMultiple() {
@@ -200,10 +199,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setLineHeightMultiple$ = Selector.register("setLineHeightMultiple:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setLineHeightMultiple(NSMutableParagraphStyle __self__, Selector __cmd__, float lineHeightMultiple);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setLineHeightMultipleSuper(ObjCSuper __super__, Selector __cmd__, float lineHeightMultiple);
+    @Bridge private native static void objc_setLineHeightMultiple(NSMutableParagraphStyle __self__, Selector __cmd__, float lineHeightMultiple);
+    @Bridge private native static void objc_setLineHeightMultipleSuper(ObjCSuper __super__, Selector __cmd__, float lineHeightMultiple);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineHeightMultiple">@property(readwrite) CGFloat lineHeightMultiple</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineHeightMultiple">@property(readwrite) CGFloat lineHeightMultiple</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setLineHeightMultiple(float lineHeightMultiple) {
@@ -211,10 +210,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector lineSpacing = Selector.register("lineSpacing");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getLineSpacing(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getLineSpacingSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getLineSpacing(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getLineSpacingSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineSpacing">@property(readwrite) CGFloat lineSpacing</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineSpacing">@property(readwrite) CGFloat lineSpacing</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getLineSpacing() {
@@ -222,10 +221,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setLineSpacing$ = Selector.register("setLineSpacing:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setLineSpacing(NSMutableParagraphStyle __self__, Selector __cmd__, float lineSpacing);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setLineSpacingSuper(ObjCSuper __super__, Selector __cmd__, float lineSpacing);
+    @Bridge private native static void objc_setLineSpacing(NSMutableParagraphStyle __self__, Selector __cmd__, float lineSpacing);
+    @Bridge private native static void objc_setLineSpacingSuper(ObjCSuper __super__, Selector __cmd__, float lineSpacing);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineSpacing">@property(readwrite) CGFloat lineSpacing</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/lineSpacing">@property(readwrite) CGFloat lineSpacing</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setLineSpacing(float lineSpacing) {
@@ -233,10 +232,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector maximumLineHeight = Selector.register("maximumLineHeight");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getMaximumLineHeight(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getMaximumLineHeightSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getMaximumLineHeight(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getMaximumLineHeightSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/maximumLineHeight">@property(readwrite) CGFloat maximumLineHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/maximumLineHeight">@property(readwrite) CGFloat maximumLineHeight</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getMaximumLineHeight() {
@@ -244,10 +243,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMaximumLineHeight$ = Selector.register("setMaximumLineHeight:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMaximumLineHeight(NSMutableParagraphStyle __self__, Selector __cmd__, float maximumLineHeight);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMaximumLineHeightSuper(ObjCSuper __super__, Selector __cmd__, float maximumLineHeight);
+    @Bridge private native static void objc_setMaximumLineHeight(NSMutableParagraphStyle __self__, Selector __cmd__, float maximumLineHeight);
+    @Bridge private native static void objc_setMaximumLineHeightSuper(ObjCSuper __super__, Selector __cmd__, float maximumLineHeight);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/maximumLineHeight">@property(readwrite) CGFloat maximumLineHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/maximumLineHeight">@property(readwrite) CGFloat maximumLineHeight</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setMaximumLineHeight(float maximumLineHeight) {
@@ -255,10 +254,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector minimumLineHeight = Selector.register("minimumLineHeight");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getMinimumLineHeight(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getMinimumLineHeightSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getMinimumLineHeight(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getMinimumLineHeightSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/minimumLineHeight">@property(readwrite) CGFloat minimumLineHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/minimumLineHeight">@property(readwrite) CGFloat minimumLineHeight</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getMinimumLineHeight() {
@@ -266,10 +265,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMinimumLineHeight$ = Selector.register("setMinimumLineHeight:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMinimumLineHeight(NSMutableParagraphStyle __self__, Selector __cmd__, float minimumLineHeight);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMinimumLineHeightSuper(ObjCSuper __super__, Selector __cmd__, float minimumLineHeight);
+    @Bridge private native static void objc_setMinimumLineHeight(NSMutableParagraphStyle __self__, Selector __cmd__, float minimumLineHeight);
+    @Bridge private native static void objc_setMinimumLineHeightSuper(ObjCSuper __super__, Selector __cmd__, float minimumLineHeight);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/minimumLineHeight">@property(readwrite) CGFloat minimumLineHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/minimumLineHeight">@property(readwrite) CGFloat minimumLineHeight</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setMinimumLineHeight(float minimumLineHeight) {
@@ -277,10 +276,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector paragraphSpacing = Selector.register("paragraphSpacing");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getParagraphSpacing(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getParagraphSpacingSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getParagraphSpacing(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getParagraphSpacingSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/paragraphSpacing">@property(readwrite) CGFloat paragraphSpacing</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/paragraphSpacing">@property(readwrite) CGFloat paragraphSpacing</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getParagraphSpacing() {
@@ -288,10 +287,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setParagraphSpacing$ = Selector.register("setParagraphSpacing:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setParagraphSpacing(NSMutableParagraphStyle __self__, Selector __cmd__, float paragraphSpacing);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setParagraphSpacingSuper(ObjCSuper __super__, Selector __cmd__, float paragraphSpacing);
+    @Bridge private native static void objc_setParagraphSpacing(NSMutableParagraphStyle __self__, Selector __cmd__, float paragraphSpacing);
+    @Bridge private native static void objc_setParagraphSpacingSuper(ObjCSuper __super__, Selector __cmd__, float paragraphSpacing);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/paragraphSpacing">@property(readwrite) CGFloat paragraphSpacing</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/paragraphSpacing">@property(readwrite) CGFloat paragraphSpacing</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setParagraphSpacing(float paragraphSpacing) {
@@ -299,10 +298,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector paragraphSpacingBefore = Selector.register("paragraphSpacingBefore");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getParagraphSpacingBefore(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getParagraphSpacingBeforeSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getParagraphSpacingBefore(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getParagraphSpacingBeforeSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/paragraphSpacingBefore">@property(readwrite) CGFloat paragraphSpacingBefore</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/paragraphSpacingBefore">@property(readwrite) CGFloat paragraphSpacingBefore</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getParagraphSpacingBefore() {
@@ -310,10 +309,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setParagraphSpacingBefore$ = Selector.register("setParagraphSpacingBefore:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setParagraphSpacingBefore(NSMutableParagraphStyle __self__, Selector __cmd__, float paragraphSpacingBefore);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setParagraphSpacingBeforeSuper(ObjCSuper __super__, Selector __cmd__, float paragraphSpacingBefore);
+    @Bridge private native static void objc_setParagraphSpacingBefore(NSMutableParagraphStyle __self__, Selector __cmd__, float paragraphSpacingBefore);
+    @Bridge private native static void objc_setParagraphSpacingBeforeSuper(ObjCSuper __super__, Selector __cmd__, float paragraphSpacingBefore);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/paragraphSpacingBefore">@property(readwrite) CGFloat paragraphSpacingBefore</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/paragraphSpacingBefore">@property(readwrite) CGFloat paragraphSpacingBefore</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setParagraphSpacingBefore(float paragraphSpacingBefore) {
@@ -321,10 +320,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector tailIndent = Selector.register("tailIndent");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getTailIndent(NSMutableParagraphStyle __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getTailIndentSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getTailIndent(NSMutableParagraphStyle __self__, Selector __cmd__);
+    @Bridge private native static float objc_getTailIndentSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/tailIndent">@property(readwrite) CGFloat tailIndent</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/tailIndent">@property(readwrite) CGFloat tailIndent</a>
      * @since Available in iOS 6.0 and later.
      */
     public float getTailIndent() {
@@ -332,10 +331,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTailIndent$ = Selector.register("setTailIndent:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTailIndent(NSMutableParagraphStyle __self__, Selector __cmd__, float tailIndent);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTailIndentSuper(ObjCSuper __super__, Selector __cmd__, float tailIndent);
+    @Bridge private native static void objc_setTailIndent(NSMutableParagraphStyle __self__, Selector __cmd__, float tailIndent);
+    @Bridge private native static void objc_setTailIndentSuper(ObjCSuper __super__, Selector __cmd__, float tailIndent);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/tailIndent">@property(readwrite) CGFloat tailIndent</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../Cocoa/Reference/ApplicationKit/Classes/NSMutableParagraphStyle_Class/Reference/Reference.html#//apple_ref/occ/instp/NSMutableParagraphStyle/tailIndent">@property(readwrite) CGFloat tailIndent</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setTailIndent(float tailIndent) {

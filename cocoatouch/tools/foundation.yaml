@@ -1,6 +1,6 @@
 package: org.robovm.cocoatouch.foundation
 library: Foundation
-base_url: http://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/
+base_url: https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/
 enums:
 #    NSStringEncoding:
 #        first: NSASCIIStringEncoding
@@ -19,7 +19,7 @@ enums:
     NSTextAlignment:
     NSWritingDirection:
 classes:
-    NSArray:
+    NSArray:    
         url: ../Classes/NSArray_Class/NSArray.html
         protocols: []
         methods:
@@ -75,7 +75,9 @@ classes:
                 name: getBundlePath
             "-resourcePath":
                 name: getResourcePath
-            "+*":
+            "-infoDictionary":
+                name: getInfoDictionary
+            "+*":   
                 exclude: true
             "-*":
                 exclude: true
@@ -157,12 +159,18 @@ classes:
     NSMutableDictionary:
         url: ../Classes/NSMutableDictionary_Class/Reference/Reference.html
         protocols: []
+        skip_def_constructor: true
         methods:
             "-setObject:forKey:":
                 visibility: protected
                 parameters:
                     aKey:
                         type: NSObject
+            "-removeAllObjects":
+                visibility: protected
+            "-removeObjectForKey:":
+                visibility: protected
+            "-initWithCapacity:":
             "+*":
                 exclude: true
             "-*":
@@ -179,6 +187,15 @@ classes:
         url: ../Classes/NSIndexPath_Class/Reference/Reference.html
         protocols: []
         methods:
+            "-initWithIndex:":
+            "-length":
+                name: getLength
+            "-indexAtPosition:":
+                name: getIndexAt
+            "-indexPathByAddingIndex:":
+                name: addIndex
+            "-indexPathByRemovingLastIndex":
+                name: removeLastIndex
             "+*":
                 exclude: true
             "-*":
@@ -252,6 +269,7 @@ classes:
             "-init":
                 visibility: private
                 constructor: false
+                return_type: '@Pointer long'
             "-description":
             "-isEqual:":
                 visibility: protected
@@ -389,6 +407,8 @@ classes:
         url: ../../../../Foundation/Reference/NSUUID_Class/Reference/Reference.html
         protocols: []
         methods:
+            "-UUIDString":
+                name: asString
             "+*":
                 exclude: true
             "-*":

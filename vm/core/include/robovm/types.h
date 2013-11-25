@@ -44,6 +44,10 @@ typedef struct Interface Interface;
 typedef struct Exception Exception;
 typedef struct Class Class;
 typedef struct Object Object;
+typedef struct VITable VITable;
+typedef struct ITables ITables;
+typedef struct ITable ITable;
+typedef struct TypeInfo TypeInfo;
 typedef struct ClassLoader ClassLoader;
 typedef struct DataObject DataObject;
 typedef struct Thread Thread;
@@ -78,6 +82,7 @@ struct Method {
   Class* clazz;
   const char* name;
   const char* desc;
+  jint vitableIndex;
   jint access;
   jint size;
   void* attributes;
@@ -121,6 +126,31 @@ struct Object {
   uint32_t lock;
 };
 
+struct VITable {
+  uint16_t size;
+  void* table[0];
+};
+
+struct ITable {
+  TypeInfo* typeInfo;
+  VITable table;
+};
+
+struct ITables {
+  uint16_t count;
+  ITable* cache;
+  ITable* table[0];
+};
+
+struct TypeInfo {
+  uint32_t id;
+  uint32_t offset;
+  uint32_t cache;
+  uint32_t classCount;
+  uint32_t interfaceCount;
+  uint32_t types[0];
+};
+
 /* 
  * Represents a java.lang.Class instance
  */
@@ -129,6 +159,9 @@ struct Class {
   void* _data;             // Reserve the memory needed to store the instance fields for java.lang.Class. 
                            // java.lang.Class has a single field, (SoftReference<ClassCache<T>> cacheRef).
                            // void* gives enough space to store that reference.
+  TypeInfo* typeInfo;      // Info on all types this class implements.
+  VITable* vitable;
+  ITables* itables;
   const char* name;        // The name in modified UTF-8.
   ClassLoader* classLoader;
   Class* superclass;       // Superclass pointer. Only java.lang.Object, primitive classes and interfaces have NULL here.
@@ -186,8 +219,8 @@ struct Monitor {
   Mutex lock;
 };
 
-// NOTE: The compiler sorts fields by type (ref, volatile long, double, long, float, int, char, short, boolean, byte) and then by name
-// so the order of the fields here don't match the order in Thread.java
+// NOTE: The compiler sorts fields. References first, then by alignment and then by name.
+// So the order of the fields here don't match the order in Thread.java
 struct JavaThread {
   Object object;
   ClassLoader* contextClassLoader;
@@ -200,9 +233,16 @@ struct JavaThread {
   Object* parkBlocker;
   Object* target;
   Object* uncaughtHandler;
+#if defined(RVM_THUMBV7)
+  // volatile long is 8-byte aligned on ARM
   /*volatile*/ jlong threadPtr __attribute__ ((aligned (8))); // Points to the Thread
   jlong id;
   jlong stackSize;
+#else
+  jlong id;
+  jlong stackSize;
+  /*volatile*/ jlong threadPtr; // Points to the Thread
+#endif
   jint parkState;
   jint priority;
   jboolean daemon;
@@ -210,13 +250,13 @@ struct JavaThread {
 };
 
 struct Thread {
+  jint threadId;
   JavaThread* threadObj;
   struct Thread* waitNext;
   struct Thread* prev;
   struct Thread* next;
   Monitor* waitMonitor;
   pthread_t pThread;
-  jint threadId;
   void* stackAddr;
   jboolean interrupted;
   Mutex waitMutex;

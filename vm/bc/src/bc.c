@@ -212,9 +212,9 @@ static Class* createClass(Env* env, ClassInfoHeader* header, ClassLoader* classL
         if (!superclass) return NULL;
     }
 
-    Class* clazz = rvmAllocateClass(env, header->className, superclass, classLoader, ci.access, header->classDataSize, 
-            header->instanceDataSize, header->instanceDataOffset, header->classRefCount, header->instanceRefCount,
-            ci.attributes, header->initializer);
+    Class* clazz = rvmAllocateClass(env, header->className, superclass, classLoader, ci.access, header->typeInfo, header->vitable, header->itables,
+            header->classDataSize, header->instanceDataSize, header->instanceDataOffset, header->classRefCount, 
+            header->instanceRefCount, ci.attributes, header->initializer);
 
     if (clazz) {
         if (!rvmRegisterClass(env, clazz)) return NULL;
@@ -309,11 +309,11 @@ static Method* loadMethods(Env* env, Class* clazz) {
         readMethodInfo(&p, &mi);
         Method* m = NULL;
         if (mi.targetFnPtr) {
-            m = (Method*) rvmAllocateBridgeMethod(env, clazz, mi.name, mi.desc, mi.access, mi.size, mi.impl, mi.synchronizedImpl, mi.targetFnPtr, mi.attributes);
+            m = (Method*) rvmAllocateBridgeMethod(env, clazz, mi.name, mi.desc, mi.vtableIndex, mi.access, mi.size, mi.impl, mi.synchronizedImpl, mi.targetFnPtr, mi.attributes);
         } else if (mi.callbackImpl) {
-            m = (Method*) rvmAllocateCallbackMethod(env, clazz, mi.name, mi.desc, mi.access, mi.size, mi.impl, mi.synchronizedImpl, mi.callbackImpl, mi.attributes);
+            m = (Method*) rvmAllocateCallbackMethod(env, clazz, mi.name, mi.desc, mi.vtableIndex, mi.access, mi.size, mi.impl, mi.synchronizedImpl, mi.callbackImpl, mi.attributes);
         } else {
-            m = rvmAllocateMethod(env, clazz, mi.name, mi.desc, mi.access, mi.size, mi.impl, mi.synchronizedImpl, mi.attributes);
+            m = rvmAllocateMethod(env, clazz, mi.name, mi.desc, mi.vtableIndex, mi.access, mi.size, mi.impl, mi.synchronizedImpl, mi.attributes);
         }
         if (!m) goto error;
         LL_PREPEND(first, m);
@@ -514,6 +514,70 @@ void* _bcLookupInterfaceMethod(Env* env, ClassInfoHeader* header, Object* thiz, 
     LEAVE(result);
 }
 
+void* _bcLookupInterfaceMethodImpl(Env* env, ClassInfoHeader* header, Object* thiz, uint32_t index) {
+    TypeInfo* typeInfo = header->typeInfo;
+    ITables* itables = thiz->clazz->itables;
+    ITable* itable = itables->cache;
+    if (itable->typeInfo == typeInfo) {
+        return itable->table.table[index];
+    }
+    uint32_t i;
+    for (i = 0; i < itables->count; i++) {
+        itable = itables->table[i];
+        if (itable->typeInfo == typeInfo) {
+            itables->cache = itable;
+            return itable->table.table[index];
+        }
+    }
+
+    ENTER;
+    initializeClass(env, header);
+    Class* ownerInterface = header->clazz;
+    char message[256];
+    snprintf(message, 256, "Class %s does not implement the requested interface %s", 
+        rvmToBinaryClassName(env, thiz->clazz->name), rvmToBinaryClassName(env, ownerInterface->name));
+    rvmThrowIncompatibleClassChangeError(env, message);
+    LEAVE(NULL);
+}
+
+void _bcAbstractMethodCalled(Env* env, Object* thiz) {
+    ENTER;
+    char msg[256];
+    char* name = env->reserved0;
+    char* desc = env->reserved1;
+    snprintf(msg, sizeof(msg), "%s.%s%s", thiz->clazz->name, name, desc);
+    char* s = msg;
+    while (*s != '\0') {
+        if (*s == '/') *s = '.';
+        s++;
+    }
+    rvmThrowAbstractMethodError(env, msg);
+    LEAVEV;
+}
+
+void _bcNonPublicMethodCalled(Env* env, Object* thiz) {
+    ENTER;
+    char msg[256];
+    char* name = env->reserved0;
+    char* desc = env->reserved1;
+    snprintf(msg, sizeof(msg), "%s.%s%s not public", thiz->clazz->name, name, desc);
+    char* s = msg;
+    while (*s != '\0') {
+        if (*s == '/') *s = '.';
+        s++;
+    }
+    rvmThrowIllegalAccessError(env, msg);
+    LEAVEV;
+}
+
+void _bcMoveMemory16(void* dest, const void* src, jlong n) {
+    rvmMoveMemory16(dest, src, n);
+}
+
+void _bcMoveMemory32(void* dest, const void* src, jlong n) {
+    rvmMoveMemory32(dest, src, n);
+}
+
 void _bcTrycatchLeave(Env* env) {
     rvmTrycatchLeave(env);
 }
@@ -594,6 +658,19 @@ void _bcThrowAbstractMethodError(Env* env, char* msg) {
 void _bcThrowIncompatibleClassChangeError(Env* env, char* msg) {
     ENTER;
     rvmThrowIncompatibleClassChangeError(env, msg);
+    LEAVEV;
+}
+
+void _bcThrowClassCastException(Env* env, ClassInfoHeader* header, Object* o) {
+    ENTER;
+    Class* clazz = ldcClass(env, header);
+    rvmThrowClassCastException(env, clazz, o->clazz);
+    LEAVEV;
+}
+
+void _bcThrowClassCastExceptionArray(Env* env, Class* arrayClass, Object* o) {
+    ENTER;
+    rvmThrowClassCastException(env, arrayClass, o->clazz);
     LEAVEV;
 }
 
@@ -685,11 +762,15 @@ void _bcSetObjectArrayElement(Env* env, ObjectArray* array, jint index, Object* 
 }
 
 
-Object* _bcLdcString(Env* env, char* s) {
+Object* _bcLdcString(Env* env, Object** ptr, char* s, jint length) {
+    Object* o = *ptr;
+    if (o) return o;
     ENTER;
-    // TODO: The caller knows the length of the string in Java chars
-    // TODO: Use rvmNewStringAscii if string only contains ASCII
-    Object* o = rvmNewInternedStringUTF(env, s, -1);
+    o = rvmNewInternedStringUTF(env, s, length);
+    if (!rvmExceptionCheck(env)) {
+        *ptr = o;
+        rvmRegisterDisappearingLink(env, (void**) ptr, o);
+    }
     LEAVE(o);
 }
 
@@ -718,8 +799,10 @@ Object* _bcLdcArrayClass(Env* env, Class** arrayClassPtr, char* name) {
 }
 
 Object* _bcLdcClass(Env* env, ClassInfoHeader* header) {
+    Class* clazz = header->clazz;
+    if (clazz) return (Object*) clazz;
     ENTER;
-    Class* clazz = ldcClass(env, header);
+    clazz = ldcClass(env, header);
     LEAVE((Object*) clazz);
 }
 
@@ -815,5 +898,5 @@ Env* _bcAttachThreadFromCallback(void) {
 }
 
 void _bcDetachThreadFromCallback(Env* env) {
-    rvmDetachCurrentThread(env->vm, FALSE);
+    rvmDetachCurrentThread(env->vm, FALSE, TRUE);
 }

@@ -33,7 +33,7 @@ import org.robovm.rt.bro.ptr.*;
 /**
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html">UIActivityItemProvider Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html">UIActivityItemProvider Class Reference</a>
  *   @since Available in iOS 6.0 and later.
  * </div>
  */
@@ -46,7 +46,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIActivityItemProvider /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIActivityItemProvider /*</name>*/.class);
 
     /*<constructors>*/
@@ -54,23 +53,23 @@ import org.robovm.rt.bro.ptr.*;
     public UIActivityItemProvider() {}
     
     private static final Selector initWithPlaceholderItem$ = Selector.register("initWithPlaceholderItem:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithPlaceholderItem(UIActivityItemProvider __self__, Selector __cmd__, NSObject placeholderItem);
+    @Bridge private native static @Pointer long objc_initWithPlaceholderItem(UIActivityItemProvider __self__, Selector __cmd__, NSObject placeholderItem);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivityItemProvider/initWithPlaceholderItem:">- (id)initWithPlaceholderItem:(id)placeholderItem</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivityItemProvider/initWithPlaceholderItem:">- (id)initWithPlaceholderItem:(id)placeholderItem</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIActivityItemProvider(NSObject placeholderItem) {
         super((SkipInit) null);
-        setHandle(objc_initWithPlaceholderItem(this, initWithPlaceholderItem$, placeholderItem));
+        initObject(objc_initWithPlaceholderItem(this, initWithPlaceholderItem$, placeholderItem));
     }
     /*</constructors>*/
     /*<properties>*/
     
     private static final Selector activityType = Selector.register("activityType");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getActivityType(UIActivityItemProvider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getActivityTypeSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getActivityType(UIActivityItemProvider __self__, Selector __cmd__);
+    @Bridge private native static String objc_getActivityTypeSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html#//apple_ref/occ/instp/UIActivityItemProvider/activityType">@property(nonatomic,readonly) NSString *activityType</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html#//apple_ref/occ/instp/UIActivityItemProvider/activityType">@property(nonatomic,readonly) NSString *activityType</a>
      * @since Available in iOS 6.0 and later.
      */
     public String getActivityType() {
@@ -78,10 +77,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector placeholderItem = Selector.register("placeholderItem");
-    @Bridge(symbol = "objc_msgSend") private native static NSObject objc_getPlaceholderItem(UIActivityItemProvider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSObject objc_getPlaceholderItemSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSObject objc_getPlaceholderItem(UIActivityItemProvider __self__, Selector __cmd__);
+    @Bridge private native static NSObject objc_getPlaceholderItemSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html#//apple_ref/occ/instp/UIActivityItemProvider/placeholderItem">@property(nonatomic,retain,readonly) id placeholderItem</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html#//apple_ref/occ/instp/UIActivityItemProvider/placeholderItem">@property(nonatomic,retain,readonly) id placeholderItem</a>
      * @since Available in iOS 6.0 and later.
      */
     public NSObject getPlaceholderItem() {
@@ -91,10 +90,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector item = Selector.register("item");
-    @Bridge(symbol = "objc_msgSend") private native static NSObject objc_getItem(UIActivityItemProvider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSObject objc_getItemSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSObject objc_getItem(UIActivityItemProvider __self__, Selector __cmd__);
+    @Bridge private native static NSObject objc_getItemSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivityItemProvider/item">- (id)item</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivityItemProvider_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivityItemProvider/item">- (id)item</a>
      * @since Available in iOS 6.0 and later.
      */
     public NSObject getItem() {

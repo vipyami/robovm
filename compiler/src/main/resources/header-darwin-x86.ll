@@ -6,7 +6,12 @@ define private void @checkso() alwaysinline {
   ret void
 }
 
-define linkonce_odr float @frem(%Env* %env, float %op1, float %op2) alwaysinline {
+define private i8* @getpc() alwaysinline {
+  %1 = tail call i8* asm sideeffect "movl $$., $0", "=r,~{dirflag},~{fpsr},~{flags}"() nounwind
+  ret i8* %1
+}
+
+define private float @frem(%Env* %env, float %op1, float %op2) alwaysinline {
     %result = frem float %op1, %op2
     ret float %result
 }

@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html">UIBarItem Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html">UIBarItem Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIBarItem /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIBarItem /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector isEnabled = Selector.register("isEnabled");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isEnabled(UIBarItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isEnabledSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isEnabled(UIBarItem __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isEnabledSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/enabled">@property(nonatomic, getter=isEnabled) BOOL enabled</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/enabled">@property(nonatomic, getter=isEnabled) BOOL enabled</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isEnabled() {
@@ -69,10 +68,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setEnabled$ = Selector.register("setEnabled:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setEnabled(UIBarItem __self__, Selector __cmd__, boolean enabled);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setEnabledSuper(ObjCSuper __super__, Selector __cmd__, boolean enabled);
+    @Bridge private native static void objc_setEnabled(UIBarItem __self__, Selector __cmd__, boolean enabled);
+    @Bridge private native static void objc_setEnabledSuper(ObjCSuper __super__, Selector __cmd__, boolean enabled);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/enabled">@property(nonatomic, getter=isEnabled) BOOL enabled</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/enabled">@property(nonatomic, getter=isEnabled) BOOL enabled</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setEnabled(boolean enabled) {
@@ -80,10 +79,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector image = Selector.register("image");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getImage(UIBarItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getImage(UIBarItem __self__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/image">@property(nonatomic, retain) UIImage *image</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/image">@property(nonatomic, retain) UIImage *image</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getImage() {
@@ -91,10 +90,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setImage$ = Selector.register("setImage:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setImage(UIBarItem __self__, Selector __cmd__, UIImage image);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage image);
+    @Bridge private native static void objc_setImage(UIBarItem __self__, Selector __cmd__, UIImage image);
+    @Bridge private native static void objc_setImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage image);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/image">@property(nonatomic, retain) UIImage *image</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/image">@property(nonatomic, retain) UIImage *image</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setImage(UIImage image) {
@@ -102,21 +101,21 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageInsets = Selector.register("imageInsets");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getImageInsets_stret(@StructRet UIEdgeInsets __ret__, UIBarItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getImageInsetsSuper_stret(@StructRet UIEdgeInsets __ret__, ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static @ByVal UIEdgeInsets objc_getImageInsets(UIBarItem __self__, Selector __cmd__);
+    @Bridge private native static @ByVal UIEdgeInsets objc_getImageInsetsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/imageInsets">@property(nonatomic) UIEdgeInsets imageInsets</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/imageInsets">@property(nonatomic) UIEdgeInsets imageInsets</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIEdgeInsets getImageInsets() {
-        UIEdgeInsets __ret__ = new UIEdgeInsets(); if (customClass) { objc_getImageInsetsSuper_stret(__ret__, getSuper(), imageInsets); } else { objc_getImageInsets_stret(__ret__, this, imageInsets); } return __ret__;
+        if (customClass) { return objc_getImageInsetsSuper(getSuper(), imageInsets); } else { return objc_getImageInsets(this, imageInsets); }
     }
     
     private static final Selector setImageInsets$ = Selector.register("setImageInsets:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setImageInsets(UIBarItem __self__, Selector __cmd__, @ByVal UIEdgeInsets imageInsets);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setImageInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets imageInsets);
+    @Bridge private native static void objc_setImageInsets(UIBarItem __self__, Selector __cmd__, @ByVal UIEdgeInsets imageInsets);
+    @Bridge private native static void objc_setImageInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets imageInsets);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/imageInsets">@property(nonatomic) UIEdgeInsets imageInsets</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/imageInsets">@property(nonatomic) UIEdgeInsets imageInsets</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setImageInsets(UIEdgeInsets imageInsets) {
@@ -124,10 +123,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector landscapeImagePhone = Selector.register("landscapeImagePhone");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getLandscapeImagePhone(UIBarItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getLandscapeImagePhoneSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getLandscapeImagePhone(UIBarItem __self__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getLandscapeImagePhoneSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/landscapeImagePhone">@property(nonatomic, retain) UIImage *landscapeImagePhone</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/landscapeImagePhone">@property(nonatomic, retain) UIImage *landscapeImagePhone</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIImage getLandscapeImagePhone() {
@@ -135,10 +134,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setLandscapeImagePhone$ = Selector.register("setLandscapeImagePhone:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setLandscapeImagePhone(UIBarItem __self__, Selector __cmd__, UIImage landscapeImagePhone);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setLandscapeImagePhoneSuper(ObjCSuper __super__, Selector __cmd__, UIImage landscapeImagePhone);
+    @Bridge private native static void objc_setLandscapeImagePhone(UIBarItem __self__, Selector __cmd__, UIImage landscapeImagePhone);
+    @Bridge private native static void objc_setLandscapeImagePhoneSuper(ObjCSuper __super__, Selector __cmd__, UIImage landscapeImagePhone);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/landscapeImagePhone">@property(nonatomic, retain) UIImage *landscapeImagePhone</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/landscapeImagePhone">@property(nonatomic, retain) UIImage *landscapeImagePhone</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setLandscapeImagePhone(UIImage landscapeImagePhone) {
@@ -146,21 +145,21 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector landscapeImagePhoneInsets = Selector.register("landscapeImagePhoneInsets");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getLandscapeImagePhoneInsets_stret(@StructRet UIEdgeInsets __ret__, UIBarItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getLandscapeImagePhoneInsetsSuper_stret(@StructRet UIEdgeInsets __ret__, ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static @ByVal UIEdgeInsets objc_getLandscapeImagePhoneInsets(UIBarItem __self__, Selector __cmd__);
+    @Bridge private native static @ByVal UIEdgeInsets objc_getLandscapeImagePhoneInsetsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/landscapeImagePhoneInsets">@property(nonatomic) UIEdgeInsets landscapeImagePhoneInsets</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/landscapeImagePhoneInsets">@property(nonatomic) UIEdgeInsets landscapeImagePhoneInsets</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIEdgeInsets getLandscapeImagePhoneInsets() {
-        UIEdgeInsets __ret__ = new UIEdgeInsets(); if (customClass) { objc_getLandscapeImagePhoneInsetsSuper_stret(__ret__, getSuper(), landscapeImagePhoneInsets); } else { objc_getLandscapeImagePhoneInsets_stret(__ret__, this, landscapeImagePhoneInsets); } return __ret__;
+        if (customClass) { return objc_getLandscapeImagePhoneInsetsSuper(getSuper(), landscapeImagePhoneInsets); } else { return objc_getLandscapeImagePhoneInsets(this, landscapeImagePhoneInsets); }
     }
     
     private static final Selector setLandscapeImagePhoneInsets$ = Selector.register("setLandscapeImagePhoneInsets:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setLandscapeImagePhoneInsets(UIBarItem __self__, Selector __cmd__, @ByVal UIEdgeInsets landscapeImagePhoneInsets);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setLandscapeImagePhoneInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets landscapeImagePhoneInsets);
+    @Bridge private native static void objc_setLandscapeImagePhoneInsets(UIBarItem __self__, Selector __cmd__, @ByVal UIEdgeInsets landscapeImagePhoneInsets);
+    @Bridge private native static void objc_setLandscapeImagePhoneInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets landscapeImagePhoneInsets);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/landscapeImagePhoneInsets">@property(nonatomic) UIEdgeInsets landscapeImagePhoneInsets</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/landscapeImagePhoneInsets">@property(nonatomic) UIEdgeInsets landscapeImagePhoneInsets</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setLandscapeImagePhoneInsets(UIEdgeInsets landscapeImagePhoneInsets) {
@@ -168,10 +167,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector tag = Selector.register("tag");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getTag(UIBarItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getTagSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static int objc_getTag(UIBarItem __self__, Selector __cmd__);
+    @Bridge private native static int objc_getTagSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/tag">@property(nonatomic) NSInteger tag</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/tag">@property(nonatomic) NSInteger tag</a>
      * @since Available in iOS 2.0 and later.
      */
     public int getTag() {
@@ -179,10 +178,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTag$ = Selector.register("setTag:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTag(UIBarItem __self__, Selector __cmd__, int tag);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTagSuper(ObjCSuper __super__, Selector __cmd__, int tag);
+    @Bridge private native static void objc_setTag(UIBarItem __self__, Selector __cmd__, int tag);
+    @Bridge private native static void objc_setTagSuper(ObjCSuper __super__, Selector __cmd__, int tag);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/tag">@property(nonatomic) NSInteger tag</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/tag">@property(nonatomic) NSInteger tag</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setTag(int tag) {
@@ -190,10 +189,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector title = Selector.register("title");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getTitle(UIBarItem __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getTitleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getTitle(UIBarItem __self__, Selector __cmd__);
+    @Bridge private native static String objc_getTitleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/title">@property(nonatomic, copy) NSString *title</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/title">@property(nonatomic, copy) NSString *title</a>
      * @since Available in iOS 2.0 and later.
      */
     public String getTitle() {
@@ -201,10 +200,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTitle$ = Selector.register("setTitle:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTitle(UIBarItem __self__, Selector __cmd__, String title);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTitleSuper(ObjCSuper __super__, Selector __cmd__, String title);
+    @Bridge private native static void objc_setTitle(UIBarItem __self__, Selector __cmd__, String title);
+    @Bridge private native static void objc_setTitleSuper(ObjCSuper __super__, Selector __cmd__, String title);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/title">@property(nonatomic, copy) NSString *title</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instp/UIBarItem/title">@property(nonatomic, copy) NSString *title</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setTitle(String title) {
@@ -214,10 +213,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector titleTextAttributesForState$ = Selector.register("titleTextAttributesForState:");
-    @Bridge(symbol = "objc_msgSend") private native static NSDictionary objc_getTitleTextAttributes(UIBarItem __self__, Selector __cmd__, UIControlState state);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSDictionary objc_getTitleTextAttributesSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state);
+    @Bridge private native static NSDictionary objc_getTitleTextAttributes(UIBarItem __self__, Selector __cmd__, UIControlState state);
+    @Bridge private native static NSDictionary objc_getTitleTextAttributesSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarItem/titleTextAttributesForState:">- (NSDictionary *)titleTextAttributesForState:(UIControlState)state</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarItem/titleTextAttributesForState:">- (NSDictionary *)titleTextAttributesForState:(UIControlState)state</a>
      * @since Available in iOS 5.0 and later.
      */
     public NSDictionary getTitleTextAttributes(UIControlState state) {
@@ -225,10 +224,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setTitleTextAttributes$forState$ = Selector.register("setTitleTextAttributes:forState:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setTitleTextAttributes(UIBarItem __self__, Selector __cmd__, NSDictionary attributes, UIControlState state);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setTitleTextAttributesSuper(ObjCSuper __super__, Selector __cmd__, NSDictionary attributes, UIControlState state);
+    @Bridge private native static void objc_setTitleTextAttributes(UIBarItem __self__, Selector __cmd__, NSDictionary attributes, UIControlState state);
+    @Bridge private native static void objc_setTitleTextAttributesSuper(ObjCSuper __super__, Selector __cmd__, NSDictionary attributes, UIControlState state);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarItem/setTitleTextAttributes:forState:">- (void)setTitleTextAttributes:(NSDictionary *)attributes forState:(UIControlState)state</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIBarItem_Class/Reference/Reference.html#//apple_ref/occ/instm/UIBarItem/setTitleTextAttributes:forState:">- (void)setTitleTextAttributes:(NSDictionary *)attributes forState:(UIControlState)state</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setTitleTextAttributes(NSDictionary attributes, UIControlState state) {

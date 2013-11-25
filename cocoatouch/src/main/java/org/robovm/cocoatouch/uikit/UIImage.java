@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html">UIImage Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html">UIImage Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIImage /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIImage /*</name>*/.class);
 
     /*<constructors>*/
@@ -55,89 +54,89 @@ import org.robovm.rt.bro.ptr.*;
     public UIImage() {}
     
     private static final Selector initWithCGImage$ = Selector.register("initWithCGImage:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithCGImage(UIImage __self__, Selector __cmd__, CGImage CGImage);
+    @Bridge private native static @Pointer long objc_initWithCGImage(UIImage __self__, Selector __cmd__, CGImage CGImage);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithCGImage:">- (id)initWithCGImage:(CGImageRef)CGImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithCGImage:">- (id)initWithCGImage:(CGImageRef)CGImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage(CGImage CGImage) {
         super((SkipInit) null);
-        setHandle(objc_initWithCGImage(this, initWithCGImage$, CGImage));
+        initObject(objc_initWithCGImage(this, initWithCGImage$, CGImage));
     }
     
     private static final Selector initWithCGImage$scale$orientation$ = Selector.register("initWithCGImage:scale:orientation:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithCGImage(UIImage __self__, Selector __cmd__, CGImage imageRef, float scale, UIImageOrientation orientation);
+    @Bridge private native static @Pointer long objc_initWithCGImage(UIImage __self__, Selector __cmd__, CGImage imageRef, float scale, UIImageOrientation orientation);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithCGImage:scale:orientation:">- (id)initWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithCGImage:scale:orientation:">- (id)initWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</a>
      * @since Available in iOS 4.0 and later.
      */
     public UIImage(CGImage imageRef, float scale, UIImageOrientation orientation) {
         super((SkipInit) null);
-        setHandle(objc_initWithCGImage(this, initWithCGImage$scale$orientation$, imageRef, scale, orientation));
+        initObject(objc_initWithCGImage(this, initWithCGImage$scale$orientation$, imageRef, scale, orientation));
     }
     
     private static final Selector initWithCIImage$ = Selector.register("initWithCIImage:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithCIImage(UIImage __self__, Selector __cmd__, CIImage ciImage);
+    @Bridge private native static @Pointer long objc_initWithCIImage(UIImage __self__, Selector __cmd__, CIImage ciImage);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithCIImage:">- (id)initWithCIImage:(CIImage *)ciImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithCIImage:">- (id)initWithCIImage:(CIImage *)ciImage</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIImage(CIImage ciImage) {
         super((SkipInit) null);
-        setHandle(objc_initWithCIImage(this, initWithCIImage$, ciImage));
+        initObject(objc_initWithCIImage(this, initWithCIImage$, ciImage));
     }
     
     private static final Selector initWithCIImage$scale$orientation$ = Selector.register("initWithCIImage:scale:orientation:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithCIImage(UIImage __self__, Selector __cmd__, CIImage ciImage, float scale, UIImageOrientation orientation);
+    @Bridge private native static @Pointer long objc_initWithCIImage(UIImage __self__, Selector __cmd__, CIImage ciImage, float scale, UIImageOrientation orientation);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithCIImage:scale:orientation:">- (id)initWithCIImage:(CIImage *)ciImage scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithCIImage:scale:orientation:">- (id)initWithCIImage:(CIImage *)ciImage scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIImage(CIImage ciImage, float scale, UIImageOrientation orientation) {
         super((SkipInit) null);
-        setHandle(objc_initWithCIImage(this, initWithCIImage$scale$orientation$, ciImage, scale, orientation));
+        initObject(objc_initWithCIImage(this, initWithCIImage$scale$orientation$, ciImage, scale, orientation));
     }
     
     private static final Selector initWithContentsOfFile$ = Selector.register("initWithContentsOfFile:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithContentsOfFile(UIImage __self__, Selector __cmd__, String path);
+    @Bridge private native static @Pointer long objc_initWithContentsOfFile(UIImage __self__, Selector __cmd__, String path);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithContentsOfFile:">- (id)initWithContentsOfFile:(NSString *)path</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithContentsOfFile:">- (id)initWithContentsOfFile:(NSString *)path</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage(String path) {
         super((SkipInit) null);
-        setHandle(objc_initWithContentsOfFile(this, initWithContentsOfFile$, path));
+        initObject(objc_initWithContentsOfFile(this, initWithContentsOfFile$, path));
     }
     
     private static final Selector initWithData$scale$ = Selector.register("initWithData:scale:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithData(UIImage __self__, Selector __cmd__, NSData data, float scale);
+    @Bridge private native static @Pointer long objc_initWithData(UIImage __self__, Selector __cmd__, NSData data, float scale);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithData:scale:">- (id)initWithData:(NSData *)data scale:(CGFloat)scale</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithData:scale:">- (id)initWithData:(NSData *)data scale:(CGFloat)scale</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIImage(NSData data, float scale) {
         super((SkipInit) null);
-        setHandle(objc_initWithData(this, initWithData$scale$, data, scale));
+        initObject(objc_initWithData(this, initWithData$scale$, data, scale));
     }
     
     private static final Selector initWithData$ = Selector.register("initWithData:");
-    @Bridge(symbol = "objc_msgSend") private native static @Pointer long objc_initWithData(UIImage __self__, Selector __cmd__, NSData data);
+    @Bridge private native static @Pointer long objc_initWithData(UIImage __self__, Selector __cmd__, NSData data);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithData:">- (id)initWithData:(NSData *)data</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/initWithData:">- (id)initWithData:(NSData *)data</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage(NSData data) {
         super((SkipInit) null);
-        setHandle(objc_initWithData(this, initWithData$, data));
+        initObject(objc_initWithData(this, initWithData$, data));
     }
     /*</constructors>*/
     /*<properties>*/
     
     private static final Selector CGImage = Selector.register("CGImage");
-    @Bridge(symbol = "objc_msgSend") private native static CGImage objc_getCGImage(UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static CGImage objc_getCGImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static CGImage objc_getCGImage(UIImage __self__, Selector __cmd__);
+    @Bridge private native static CGImage objc_getCGImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/CGImage">@property(nonatomic, readonly) CGImageRef CGImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/CGImage">@property(nonatomic, readonly) CGImageRef CGImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public CGImage getCGImage() {
@@ -145,10 +144,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector CIImage = Selector.register("CIImage");
-    @Bridge(symbol = "objc_msgSend") private native static CIImage objc_getCIImage(UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static CIImage objc_getCIImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static CIImage objc_getCIImage(UIImage __self__, Selector __cmd__);
+    @Bridge private native static CIImage objc_getCIImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/CIImage">@property(nonatomic, readonly) CIImage *CIImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/CIImage">@property(nonatomic, readonly) CIImage *CIImage</a>
      * @since Available in iOS 5.0 and later.
      */
     public CIImage getCIImage() {
@@ -156,32 +155,32 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector alignmentRectInsets = Selector.register("alignmentRectInsets");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getAlignmentRectInsets_stret(@StructRet UIEdgeInsets __ret__, UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getAlignmentRectInsetsSuper_stret(@StructRet UIEdgeInsets __ret__, ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static @ByVal UIEdgeInsets objc_getAlignmentRectInsets(UIImage __self__, Selector __cmd__);
+    @Bridge private native static @ByVal UIEdgeInsets objc_getAlignmentRectInsetsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/alignmentRectInsets">@property(nonatomic, readonly) UIEdgeInsets alignmentRectInsets</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/alignmentRectInsets">@property(nonatomic, readonly) UIEdgeInsets alignmentRectInsets</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIEdgeInsets getAlignmentRectInsets() {
-        UIEdgeInsets __ret__ = new UIEdgeInsets(); if (customClass) { objc_getAlignmentRectInsetsSuper_stret(__ret__, getSuper(), alignmentRectInsets); } else { objc_getAlignmentRectInsets_stret(__ret__, this, alignmentRectInsets); } return __ret__;
+        if (customClass) { return objc_getAlignmentRectInsetsSuper(getSuper(), alignmentRectInsets); } else { return objc_getAlignmentRectInsets(this, alignmentRectInsets); }
     }
     
     private static final Selector capInsets = Selector.register("capInsets");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getCapInsets_stret(@StructRet UIEdgeInsets __ret__, UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getCapInsetsSuper_stret(@StructRet UIEdgeInsets __ret__, ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static @ByVal UIEdgeInsets objc_getCapInsets(UIImage __self__, Selector __cmd__);
+    @Bridge private native static @ByVal UIEdgeInsets objc_getCapInsetsSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/capInsets">@property(nonatomic, readonly) UIEdgeInsets capInsets</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/capInsets">@property(nonatomic, readonly) UIEdgeInsets capInsets</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIEdgeInsets getCapInsets() {
-        UIEdgeInsets __ret__ = new UIEdgeInsets(); if (customClass) { objc_getCapInsetsSuper_stret(__ret__, getSuper(), capInsets); } else { objc_getCapInsets_stret(__ret__, this, capInsets); } return __ret__;
+        if (customClass) { return objc_getCapInsetsSuper(getSuper(), capInsets); } else { return objc_getCapInsets(this, capInsets); }
     }
     
     private static final Selector duration = Selector.register("duration");
-    @Bridge(symbol = "objc_msgSend") private native static double objc_getDuration(UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static double objc_getDurationSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static double objc_getDuration(UIImage __self__, Selector __cmd__);
+    @Bridge private native static double objc_getDurationSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/duration">@property(nonatomic, readonly) NSTimeInterval duration</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/duration">@property(nonatomic, readonly) NSTimeInterval duration</a>
      * @since Available in iOS 5.0 and later.
      */
     public double getDuration() {
@@ -189,10 +188,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector images = Selector.register("images");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getImages(UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_getImagesSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getImages(UIImage __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getImagesSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/images">@property(nonatomic, readonly) NSArray *images</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/images">@property(nonatomic, readonly) NSArray *images</a>
      * @since Available in iOS 5.0 and later.
      */
     public NSArray getImages() {
@@ -200,10 +199,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageOrientation = Selector.register("imageOrientation");
-    @Bridge(symbol = "objc_msgSend") private native static UIImageOrientation objc_getOrientation(UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImageOrientation objc_getOrientationSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImageOrientation objc_getOrientation(UIImage __self__, Selector __cmd__);
+    @Bridge private native static UIImageOrientation objc_getOrientationSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/imageOrientation">@property(nonatomic, readonly) UIImageOrientation imageOrientation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/imageOrientation">@property(nonatomic, readonly) UIImageOrientation imageOrientation</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImageOrientation getOrientation() {
@@ -211,10 +210,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector resizingMode = Selector.register("resizingMode");
-    @Bridge(symbol = "objc_msgSend") private native static UIImageResizingMode objc_getResizingMode(UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImageResizingMode objc_getResizingModeSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImageResizingMode objc_getResizingMode(UIImage __self__, Selector __cmd__);
+    @Bridge private native static UIImageResizingMode objc_getResizingModeSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/resizingMode">@property(nonatomic,readonly) UIImageResizingMode resizingMode</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/resizingMode">@property(nonatomic,readonly) UIImageResizingMode resizingMode</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIImageResizingMode getResizingMode() {
@@ -222,10 +221,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector scale = Selector.register("scale");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getScale(UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getScaleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getScale(UIImage __self__, Selector __cmd__);
+    @Bridge private native static float objc_getScaleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/scale">@property(nonatomic, readonly) CGFloat scale</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/scale">@property(nonatomic, readonly) CGFloat scale</a>
      * @since Available in iOS 4.0 and later.
      */
     public float getScale() {
@@ -233,24 +232,22 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector size = Selector.register("size");
-    @Bridge(symbol = "objc_msgSend") private native static @ByVal CGSize objc_getSize(UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getSize_stret(@StructRet CGSize __ret__, UIImage __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static @ByVal CGSize objc_getSizeSuper(ObjCSuper __super__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getSizeSuper_stret(@StructRet CGSize __ret__, ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static @ByVal CGSize objc_getSize(UIImage __self__, Selector __cmd__);
+    @Bridge private native static @ByVal CGSize objc_getSizeSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/size">@property(nonatomic, readonly) CGSize size</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instp/UIImage/size">@property(nonatomic, readonly) CGSize size</a>
      * @since Available in iOS 2.0 and later.
      */
     public CGSize getSize() {
-        if (X86) { if (customClass) { return objc_getSizeSuper(getSuper(), size); } else { return objc_getSize(this, size); } } else { CGSize __ret__ = new CGSize(); if (customClass) { objc_getSizeSuper_stret(__ret__, getSuper(), size); } else { objc_getSize_stret(__ret__, this, size); } return __ret__; }
+        if (customClass) { return objc_getSizeSuper(getSuper(), size); } else { return objc_getSize(this, size); }
     }
     /*</properties>*/
     /*<methods>*/
     
     private static final Selector animatedImageNamed$duration$ = Selector.register("animatedImageNamed:duration:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_createAnimated(ObjCClass __self__, Selector __cmd__, String name, double duration);
+    @Bridge private native static UIImage objc_createAnimated(ObjCClass __self__, Selector __cmd__, String name, double duration);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/animatedImageNamed:duration:">+ (UIImage *)animatedImageNamed:(NSString *)name duration:(NSTimeInterval)duration</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/animatedImageNamed:duration:">+ (UIImage *)animatedImageNamed:(NSString *)name duration:(NSTimeInterval)duration</a>
      * @since Available in iOS 5.0 and later.
      */
     public static UIImage createAnimated(String name, double duration) {
@@ -258,9 +255,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector animatedImageWithImages$duration$ = Selector.register("animatedImageWithImages:duration:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_createAnimated(ObjCClass __self__, Selector __cmd__, NSArray images, double duration);
+    @Bridge private native static UIImage objc_createAnimated(ObjCClass __self__, Selector __cmd__, NSArray images, double duration);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/animatedImageWithImages:duration:">+ (UIImage *)animatedImageWithImages:(NSArray *)images duration:(NSTimeInterval)duration</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/animatedImageWithImages:duration:">+ (UIImage *)animatedImageWithImages:(NSArray *)images duration:(NSTimeInterval)duration</a>
      * @since Available in iOS 5.0 and later.
      */
     public static UIImage createAnimated(NSArray images, double duration) {
@@ -268,9 +265,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector animatedResizableImageNamed$capInsets$duration$ = Selector.register("animatedResizableImageNamed:capInsets:duration:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_createAnimatedResizable(ObjCClass __self__, Selector __cmd__, String name, @ByVal UIEdgeInsets capInsets, double duration);
+    @Bridge private native static UIImage objc_createAnimatedResizable(ObjCClass __self__, Selector __cmd__, String name, @ByVal UIEdgeInsets capInsets, double duration);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/animatedResizableImageNamed:capInsets:duration:">+ (UIImage *)animatedResizableImageNamed:(NSString *)name capInsets:(UIEdgeInsets)capInsets duration:(NSTimeInterval)duration</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/animatedResizableImageNamed:capInsets:duration:">+ (UIImage *)animatedResizableImageNamed:(NSString *)name capInsets:(UIEdgeInsets)capInsets duration:(NSTimeInterval)duration</a>
      * @since Available in iOS 5.0 and later.
      */
     public static UIImage createAnimatedResizable(String name, UIEdgeInsets capInsets, double duration) {
@@ -278,9 +275,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector animatedResizableImageNamed$capInsets$resizingMode$duration$ = Selector.register("animatedResizableImageNamed:capInsets:resizingMode:duration:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_createAnimatedResizable(ObjCClass __self__, Selector __cmd__, String name, @ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode, double duration);
+    @Bridge private native static UIImage objc_createAnimatedResizable(ObjCClass __self__, Selector __cmd__, String name, @ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode, double duration);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/animatedResizableImageNamed:capInsets:resizingMode:duration:">+ (UIImage *)animatedResizableImageNamed:(NSString *)name capInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode duration:(NSTimeInterval)duration</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/animatedResizableImageNamed:capInsets:resizingMode:duration:">+ (UIImage *)animatedResizableImageNamed:(NSString *)name capInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode duration:(NSTimeInterval)duration</a>
      * @since Available in iOS 6.0 and later.
      */
     public static UIImage createAnimatedResizable(String name, UIEdgeInsets capInsets, UIImageResizingMode resizingMode, double duration) {
@@ -288,9 +285,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageNamed$ = Selector.register("imageNamed:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_fromBundle(ObjCClass __self__, Selector __cmd__, String name);
+    @Bridge private native static UIImage objc_fromBundle(ObjCClass __self__, Selector __cmd__, String name);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageNamed:">+ (UIImage *)imageNamed:(NSString *)name</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageNamed:">+ (UIImage *)imageNamed:(NSString *)name</a>
      * @since Available in iOS 2.0 and later.
      */
     public static UIImage fromBundle(String name) {
@@ -298,9 +295,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageWithData$scale$ = Selector.register("imageWithData:scale:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_fromData(ObjCClass __self__, Selector __cmd__, NSData data, float scale);
+    @Bridge private native static UIImage objc_fromData(ObjCClass __self__, Selector __cmd__, NSData data, float scale);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithData:scale:">+ (UIImage *)imageWithData:(NSData *)data scale:(CGFloat)scale</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithData:scale:">+ (UIImage *)imageWithData:(NSData *)data scale:(CGFloat)scale</a>
      * @since Available in iOS 6.0 and later.
      */
     public static UIImage fromData(NSData data, float scale) {
@@ -308,9 +305,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageWithData$ = Selector.register("imageWithData:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_fromData(ObjCClass __self__, Selector __cmd__, NSData data);
+    @Bridge private native static UIImage objc_fromData(ObjCClass __self__, Selector __cmd__, NSData data);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithData:">+ (UIImage *)imageWithData:(NSData *)data</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithData:">+ (UIImage *)imageWithData:(NSData *)data</a>
      * @since Available in iOS 2.0 and later.
      */
     public static UIImage fromData(NSData data) {
@@ -318,9 +315,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageWithContentsOfFile$ = Selector.register("imageWithContentsOfFile:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_fromFile(ObjCClass __self__, Selector __cmd__, String path);
+    @Bridge private native static UIImage objc_fromFile(ObjCClass __self__, Selector __cmd__, String path);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithContentsOfFile:">+ (UIImage *)imageWithContentsOfFile:(NSString *)path</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithContentsOfFile:">+ (UIImage *)imageWithContentsOfFile:(NSString *)path</a>
      * @since Available in iOS 2.0 and later.
      */
     public static UIImage fromFile(String path) {
@@ -328,9 +325,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageWithCGImage$scale$orientation$ = Selector.register("imageWithCGImage:scale:orientation:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_fromImage(ObjCClass __self__, Selector __cmd__, CGImage imageRef, float scale, UIImageOrientation orientation);
+    @Bridge private native static UIImage objc_fromImage(ObjCClass __self__, Selector __cmd__, CGImage imageRef, float scale, UIImageOrientation orientation);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithCGImage:scale:orientation:">+ (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithCGImage:scale:orientation:">+ (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</a>
      * @since Available in iOS 4.0 and later.
      */
     public static UIImage fromImage(CGImage imageRef, float scale, UIImageOrientation orientation) {
@@ -338,9 +335,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageWithCIImage$scale$orientation$ = Selector.register("imageWithCIImage:scale:orientation:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_fromImage(ObjCClass __self__, Selector __cmd__, CIImage ciImage, float scale, UIImageOrientation orientation);
+    @Bridge private native static UIImage objc_fromImage(ObjCClass __self__, Selector __cmd__, CIImage ciImage, float scale, UIImageOrientation orientation);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithCIImage:scale:orientation:">+ (UIImage *)imageWithCIImage:(CIImage *)ciImage scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithCIImage:scale:orientation:">+ (UIImage *)imageWithCIImage:(CIImage *)ciImage scale:(CGFloat)scale orientation:(UIImageOrientation)orientation</a>
      * @since Available in iOS 6.0 and later.
      */
     public static UIImage fromImage(CIImage ciImage, float scale, UIImageOrientation orientation) {
@@ -348,9 +345,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageWithCGImage$ = Selector.register("imageWithCGImage:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_fromImage(ObjCClass __self__, Selector __cmd__, CGImage cgImage);
+    @Bridge private native static UIImage objc_fromImage(ObjCClass __self__, Selector __cmd__, CGImage cgImage);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithCGImage:">+ (UIImage *)imageWithCGImage:(CGImageRef)cgImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithCGImage:">+ (UIImage *)imageWithCGImage:(CGImageRef)cgImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public static UIImage fromImage(CGImage cgImage) {
@@ -358,9 +355,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageWithCIImage$ = Selector.register("imageWithCIImage:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_fromImage(ObjCClass __self__, Selector __cmd__, CIImage ciImage);
+    @Bridge private native static UIImage objc_fromImage(ObjCClass __self__, Selector __cmd__, CIImage ciImage);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithCIImage:">+ (UIImage *)imageWithCIImage:(CIImage *)ciImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/clm/UIImage/imageWithCIImage:">+ (UIImage *)imageWithCIImage:(CIImage *)ciImage</a>
      * @since Available in iOS 5.0 and later.
      */
     public static UIImage fromImage(CIImage ciImage) {
@@ -368,10 +365,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector imageWithAlignmentRectInsets$ = Selector.register("imageWithAlignmentRectInsets:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_copyWithAlignmentRectInsets(UIImage __self__, Selector __cmd__, @ByVal UIEdgeInsets alignmentInsets);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_copyWithAlignmentRectInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets alignmentInsets);
+    @Bridge private native static UIImage objc_copyWithAlignmentRectInsets(UIImage __self__, Selector __cmd__, @ByVal UIEdgeInsets alignmentInsets);
+    @Bridge private native static UIImage objc_copyWithAlignmentRectInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets alignmentInsets);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/imageWithAlignmentRectInsets:">- (UIImage *)imageWithAlignmentRectInsets:(UIEdgeInsets)alignmentInsets</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/imageWithAlignmentRectInsets:">- (UIImage *)imageWithAlignmentRectInsets:(UIEdgeInsets)alignmentInsets</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIImage copyWithAlignmentRectInsets(UIEdgeInsets alignmentInsets) {
@@ -379,10 +376,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector resizableImageWithCapInsets$ = Selector.register("resizableImageWithCapInsets:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_copyWithCapInsets(UIImage __self__, Selector __cmd__, @ByVal UIEdgeInsets capInsets);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_copyWithCapInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets capInsets);
+    @Bridge private native static UIImage objc_copyWithCapInsets(UIImage __self__, Selector __cmd__, @ByVal UIEdgeInsets capInsets);
+    @Bridge private native static UIImage objc_copyWithCapInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets capInsets);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/resizableImageWithCapInsets:">- (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/resizableImageWithCapInsets:">- (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIImage copyWithCapInsets(UIEdgeInsets capInsets) {
@@ -390,10 +387,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector resizableImageWithCapInsets$resizingMode$ = Selector.register("resizableImageWithCapInsets:resizingMode:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_copyWithCapInsets(UIImage __self__, Selector __cmd__, @ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_copyWithCapInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode);
+    @Bridge private native static UIImage objc_copyWithCapInsets(UIImage __self__, Selector __cmd__, @ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode);
+    @Bridge private native static UIImage objc_copyWithCapInsetsSuper(ObjCSuper __super__, Selector __cmd__, @ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/resizableImageWithCapInsets:resizingMode:">- (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/resizableImageWithCapInsets:resizingMode:">- (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIImage copyWithCapInsets(UIEdgeInsets capInsets, UIImageResizingMode resizingMode) {
@@ -401,10 +398,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawInRect$ = Selector.register("drawInRect:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_draw(UIImage __self__, Selector __cmd__, @ByVal CGRect rect);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect rect);
+    @Bridge private native static void objc_draw(UIImage __self__, Selector __cmd__, @ByVal CGRect rect);
+    @Bridge private native static void objc_drawSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect rect);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawInRect:">- (void)drawInRect:(CGRect)rect</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawInRect:">- (void)drawInRect:(CGRect)rect</a>
      * @since Available in iOS 2.0 and later.
      */
     public void draw(CGRect rect) {
@@ -412,10 +409,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawInRect$blendMode$alpha$ = Selector.register("drawInRect:blendMode:alpha:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_draw(UIImage __self__, Selector __cmd__, @ByVal CGRect rect, CGBlendMode blendMode, float alpha);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect rect, CGBlendMode blendMode, float alpha);
+    @Bridge private native static void objc_draw(UIImage __self__, Selector __cmd__, @ByVal CGRect rect, CGBlendMode blendMode, float alpha);
+    @Bridge private native static void objc_drawSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect rect, CGBlendMode blendMode, float alpha);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawInRect:blendMode:alpha:">- (void)drawInRect:(CGRect)rect blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawInRect:blendMode:alpha:">- (void)drawInRect:(CGRect)rect blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha</a>
      * @since Available in iOS 2.0 and later.
      */
     public void draw(CGRect rect, CGBlendMode blendMode, float alpha) {
@@ -423,10 +420,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawAtPoint$blendMode$alpha$ = Selector.register("drawAtPoint:blendMode:alpha:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_draw(UIImage __self__, Selector __cmd__, @ByVal CGPoint point, CGBlendMode blendMode, float alpha);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGPoint point, CGBlendMode blendMode, float alpha);
+    @Bridge private native static void objc_draw(UIImage __self__, Selector __cmd__, @ByVal CGPoint point, CGBlendMode blendMode, float alpha);
+    @Bridge private native static void objc_drawSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGPoint point, CGBlendMode blendMode, float alpha);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawAtPoint:blendMode:alpha:">- (void)drawAtPoint:(CGPoint)point blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawAtPoint:blendMode:alpha:">- (void)drawAtPoint:(CGPoint)point blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha</a>
      * @since Available in iOS 2.0 and later.
      */
     public void draw(CGPoint point, CGBlendMode blendMode, float alpha) {
@@ -434,10 +431,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawAtPoint$ = Selector.register("drawAtPoint:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_draw(UIImage __self__, Selector __cmd__, @ByVal CGPoint point);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGPoint point);
+    @Bridge private native static void objc_draw(UIImage __self__, Selector __cmd__, @ByVal CGPoint point);
+    @Bridge private native static void objc_drawSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGPoint point);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawAtPoint:">- (void)drawAtPoint:(CGPoint)point</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawAtPoint:">- (void)drawAtPoint:(CGPoint)point</a>
      * @since Available in iOS 2.0 and later.
      */
     public void draw(CGPoint point) {
@@ -445,10 +442,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawAsPatternInRect$ = Selector.register("drawAsPatternInRect:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_drawAsPattern(UIImage __self__, Selector __cmd__, @ByVal CGRect rect);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawAsPatternSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect rect);
+    @Bridge private native static void objc_drawAsPattern(UIImage __self__, Selector __cmd__, @ByVal CGRect rect);
+    @Bridge private native static void objc_drawAsPatternSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect rect);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawAsPatternInRect:">- (void)drawAsPatternInRect:(CGRect)rect</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIImage_Class/Reference/Reference.html#//apple_ref/occ/instm/UIImage/drawAsPatternInRect:">- (void)drawAsPatternInRect:(CGRect)rect</a>
      * @since Available in iOS 2.0 and later.
      */
     public void drawAsPattern(CGRect rect) {

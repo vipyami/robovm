@@ -16,9 +16,14 @@
  */
 package org.robovm.compiler;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -27,10 +32,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.UUID;
 
 import org.apache.commons.exec.ExecuteException;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.json.JSONObject;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.Dependency;
 import org.robovm.compiler.clazz.Path;
@@ -38,10 +45,15 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.TargetType;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
 import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters.Family;
+import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.compiler.target.ios.ProvisioningProfile;
+import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.compiler.util.AntPathMatcher;
 
 /**
  *
@@ -49,11 +61,6 @@ import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters.Family;
  */
 public class AppCompiler {
 
-    /**
-     * {@link Pattern} used to convert an ANT-style pattern into a regular expression.
-     */
-    private static final Pattern ANT_WILDCARDS = Pattern.compile("\\*\\*\\.?|\\*|\\?");
-    
     /**
      * Patterns for root classes. Classes matching these patterns will always be linked in.
      */
@@ -115,41 +122,15 @@ public class AppCompiler {
     }
     
     /**
-     * Converts an ANT-style pattern into a regular expression.
-     */
-    private Pattern antPatternToRegexp(String pattern) {
-        StringBuilder sb = new StringBuilder();
-        int start = 0;
-        Matcher matcher = ANT_WILDCARDS.matcher(pattern);
-        while (matcher.find()) {
-            if (matcher.start() - start > 0) {
-                sb.append(Pattern.quote(pattern.substring(start, matcher.start())));
-            }
-            if ("**".equals(matcher.group()) || "**.".equals(matcher.group())) {
-                sb.append(".*");
-            } else if ("*".equals(matcher.group())) {
-                sb.append("[^.]+");
-            } else if ("?".equals(matcher.group())) {
-                sb.append(".");
-            }
-            start = matcher.end();
-        }
-        if (start < pattern.length()) {
-            sb.append(Pattern.quote(pattern.substring(start)));
-        }
-        return Pattern.compile(sb.toString());
-    }
-    
-    /**
      * Returns all {@link Clazz}es in all {@link Path}s matching the specified ANT-style pattern.
      */
     private Collection<Clazz> getMatchingClasses(String pattern) {
-        Pattern regexp = antPatternToRegexp(pattern);
+        AntPathMatcher matcher = new AntPathMatcher(pattern, ".");
         Map<String, Clazz> matches = new HashMap<String, Clazz>();
         for (Path path : config.getClazzes().getPaths()) {
             for (Clazz clazz : path.listClasses()) {
                 if (!matches.containsKey(clazz.getClassName()) 
-                        && regexp.matcher(clazz.getClassName()).matches()) {
+                        && matcher.matches(clazz.getClassName())) {
                     
                     matches.put(clazz.getClassName(), clazz);
                 }
@@ -187,22 +168,22 @@ public class AppCompiler {
             classes.add(clazz);
         }
         
-        if (config.getRoots().isEmpty()) {
+        if (config.getForceLinkClasses().isEmpty()) {
             if (config.getMainClass() == null) {
                 classes.addAll(config.getClazzes().listClasses());
             }
         } else {
-            for (String root : config.getRoots()) {
-                if (root.indexOf('*') == -1) {
-                    Clazz clazz = config.getClazzes().load(root.replace('.', '/'));
+            for (String pattern : config.getForceLinkClasses()) {
+                if (pattern.indexOf('*') == -1) {
+                    Clazz clazz = config.getClazzes().load(pattern.replace('.', '/'));
                     if (clazz == null) {
-                        throw new CompilerException("Root class " + root + " not found");
+                        throw new CompilerException("Root class " + pattern + " not found");
                     }
                     classes.add(clazz);
                 } else {
-                    Collection<Clazz> matches = getMatchingClasses(root);
+                    Collection<Clazz> matches = getMatchingClasses(pattern);
                     if (matches.isEmpty()) {
-                        config.getLogger().warn("Root pattern %s matches no classes", root);
+                        config.getLogger().warn("Root pattern %s matches no classes", pattern);
                     } else {
                         classes.addAll(matches);
                     }
@@ -216,7 +197,7 @@ public class AppCompiler {
         if (config.isClean() || classCompiler.mustCompile(clazz)) {
             classCompiler.compile(clazz);
         }
-        for (Dependency dep : clazz.getDependencies()) {
+        for (Dependency dep : clazz.getClazzInfo().getDependencies()) {
             Clazz depClazz = config.getClazzes().load(dep.getClassName());
             if (depClazz != null && !compiled.contains(depClazz)) {
                 compileQueue.add(depClazz);
@@ -225,14 +206,19 @@ public class AppCompiler {
     }
     
     public void compile() throws IOException {
+        updateCheck();
+        
         TreeSet<Clazz> compileQueue = getRootClasses();
         Set<Clazz> linkClasses = new HashSet<Clazz>();
-        while (!compileQueue.isEmpty()) {
+        while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
             Clazz clazz = compileQueue.pollFirst();
             if (!linkClasses.contains(clazz)) {
                 compile(clazz, compileQueue, linkClasses);
                 linkClasses.add(clazz);
             }
+        }
+        if (Thread.currentThread().isInterrupted()) {
+            return;
         }
         
         if (linkClasses.contains(config.getClazzes().load(TRUSTED_CERTIFICATE_STORE_CLASS))) {
@@ -251,6 +237,7 @@ public class AppCompiler {
         
         boolean verbose = false;
         boolean run = false;
+        boolean createIpa = false;
         String dumpConfigFile = null;
         List<String> runArgs = new ArrayList<String>();
         List<String> launchArgs = new ArrayList<String>();
@@ -294,7 +281,7 @@ public class AppCompiler {
                     if (index <= 0) {
                         throw new IllegalArgumentException("Malformed property: " + args[i]);
                     }
-                    String name = args[i].substring(0, index);
+                    String name = args[i].substring(2, index);
                     String value = args[i].substring(index + 1);
                     builder.addProperty(name, value);
                 } else if ("-debug".equals(args[i])) {
@@ -313,8 +300,6 @@ public class AppCompiler {
                     printVersionAndExit();
                 } else if ("-cc".equals(args[i])) {
                     builder.ccBinPath(new File(args[++i]));
-                } else if ("-llvm-home".equals(args[i])) {
-                    builder.llvmHomeDir(new File(args[++i]));
                 } else if ("-os".equals(args[i])) {
                     String s = args[++i];
                     builder.os("auto".equals(s) ? null : OS.valueOf(s));
@@ -326,22 +311,36 @@ public class AppCompiler {
                 } else if ("-target".equals(args[i])) {
                     String s = args[++i];
                     builder.targetType("auto".equals(s) ? null : TargetType.valueOf(s));
-                } else if ("-roots".equals(args[i])) {
+                } else if ("-forcelinkclasses".equals(args[i])) {
                     for (String p : args[++i].split(":")) {
                         p = p.replace('#', '*');
-                        builder.addRoot(p);
+                        builder.addForceLinkClass(p);
                     }
                 } else if ("-libs".equals(args[i])) {
                     for (String p : args[++i].split(":")) {
                         builder.addLib(p);
                     }
+                } else if ("-exportedsymbols".equals(args[i])) {
+                    for (String p : args[++i].split(":")) {
+                        builder.addExportedSymbol(p);
+                    }
                 } else if ("-frameworks".equals(args[i])) {
                     for (String p : args[++i].split(":")) {
                         builder.addFramework(p);
                     }
+                } else if ("-weakframeworks".equals(args[i])) {
+                    for (String p : args[++i].split(":")) {
+                        builder.addWeakFramework(p);
+                    }
                 } else if ("-resources".equals(args[i])) {
                     for (String p : args[++i].split(":")) {
-                        builder.addResource(new File(p));
+                        if (AntPathMatcher.isPattern(p)) {
+                            File dir = new File(AntPathMatcher.rtrimWildcardTokens(p));
+                            String pattern = AntPathMatcher.extractPattern(p);
+                            builder.addResource(new Resource(dir, null).include(pattern));
+                        } else {
+                            builder.addResource(new Resource(new File(p)));
+                        }
                     }
                 } else if ("-cacerts".equals(args[i])) {
                     String name = args[++i];
@@ -361,7 +360,9 @@ public class AppCompiler {
                 } else if ("-resourcerules".equals(args[i])) {
                     builder.iosResourceRulesPList(new File(args[++i]));
                 } else if ("-signidentity".equals(args[i])) {
-                    builder.iosSignIdentity(args[++i]);
+                    builder.iosSignIdentity(SigningIdentity.find(SigningIdentity.list(), args[++i]));
+                } else if ("-provisioningprofile".equals(args[i])) {
+                    builder.iosProvisioningProfile(ProvisioningProfile.find(ProvisioningProfile.list(), args[++i]));
                 } else if ("-sdk".equals(args[i])) {
                     builder.iosSdkVersion(args[++i]);
                 } else if ("-ios-sim-family".equals(args[i])) {
@@ -370,6 +371,8 @@ public class AppCompiler {
                 } else if ("-ios-sim-sdk".equals(args[i])) {
                     launchArgs.add(args[i++]);
                     launchArgs.add(args[i]);
+                } else if ("-createipa".equals(args[i])) {
+                    createIpa = true;
                 } else if (args[i].startsWith("-D")) {
                 } else if (args[i].startsWith("-X")) {
                 } else if (args[i].startsWith("-rvm:")) {
@@ -387,9 +390,13 @@ public class AppCompiler {
                 runArgs.add(args[i++]);
             }
             
+            if (createIpa && run) {
+                throw new IllegalArgumentException("Specify either -run or -createipa, not both");
+            }
+            
             builder.logger(new ConsoleLogger(verbose));
             builder.skipInstall(run);
-
+            
             if (dumpConfigFile != null) {
                 if (dumpConfigFile.equals("-")) {
                     builder.write(new OutputStreamWriter(System.out), new File("."));
@@ -405,6 +412,14 @@ public class AppCompiler {
             }
             
             compiler = new AppCompiler(builder.build());
+            
+            if (createIpa && (!(compiler.config.getTarget() instanceof IOSTarget) 
+                    || compiler.config.getArch() != Arch.thumbv7 
+                    || compiler.config.getOs() != OS.ios)) {
+                
+                throw new IllegalArgumentException("Must build for iOS thumbv7 when creating IPA");
+            }
+            
         } catch (Throwable t) {
             String message = t.getMessage();
             if (t instanceof ArrayIndexOutOfBoundsException) {
@@ -451,6 +466,8 @@ public class AppCompiler {
                 launchParameters.setArguments(runArgs);
                 Process process = compiler.config.getTarget().launch(launchParameters);
                 process.waitFor();
+            } else if (createIpa) {
+                ((IOSTarget) compiler.config.getTarget()).createIpa();
             } else {
                 compiler.config.getTarget().install();
             }
@@ -501,10 +518,6 @@ public class AppCompiler {
                          + "                        ${java.io.tmpdir}.");
         System.err.println("  -jar <path>           Use main class as specified by the manifest in this JAR \n" 
                          + "                        archive.");
-        System.err.println("  -llvm-home <path>     Path where LLVM has been installed. If not set the LLVM\n" 
-                         + "                        tools will be searched for in the paths in your $PATH\n" 
-                         + "                        environment variable. If not found in $PATH /opt/llvm and\n" 
-                         + "                        /usr/local/llvm will be searched.");
         System.err.println("  -o <name>             The name of the target executable");
         System.err.println("  -os <name>            The name of the OS to build for. Allowed values are \n" 
                          + "                        'auto', 'linux', 'macosx' and 'ios'. Default is 'auto' which\n" 
@@ -516,13 +529,14 @@ public class AppCompiler {
                          + "                        is used if not specified. Use llc to determine allowed values.");
         System.err.println("  -target <name>        The target to build for. Either 'auto', 'console' or 'ios'.\n" 
                          + "                        The default is 'auto' which means use -os to decide.");
-        System.err.println("  -roots <list>         : separated list of class patterns matching\n" 
-                         + "                        classes that must be included when determinig the required\n" 
-                         + "                        classes. If a main class is specified it will automatically\n" 
-                         + "                        become a root. If no main class is specified and no roots\n" 
-                         + "                        all classes will be included. A pattern is an ANT style\n" 
-                         + "                        path pattern, e.g. com.foo.**.bar.*.Main. Alternative\n" 
-                         + "                        syntax using # is also supported, e.g. com.##.#.Main.");
+        System.err.println("  -forcelinkclasses <list>\n" 
+                         + "                        : separated list of class patterns matching\n" 
+                         + "                        classes that must be linked in even if not referenced\n" 
+                         + "                        (directly or indirectly) from the main class. If no main\n" 
+                         + "                        class is specified all classes will be linked in unless this\n" 
+                         + "                        option has been given. A pattern is an ANT style path pattern,\n" 
+                         + "                        e.g. com.foo.**.bar.*.Main. An alternative syntax using # is\n" 
+                         + "                        also supported, e.g. com.##.#.Main.");
         System.err.println("  -run                  Run the executable directly without installing it (-d is\n" 
                          + "                        ignored). The executable will be executed from the\n" 
                          + "                        temporary dir specified with -tmp.");
@@ -535,10 +549,23 @@ public class AppCompiler {
         System.err.println("  -libs <list>          : separated list of static library files (.a), object\n"
                          + "                        files (.o) and system libraries that should be included\n" 
                          + "                        when linking the final executable.");
+        System.err.println("  -exportedsymbols <list>\n" 
+                         + "                        : separated list of symbols that should be exported\n"
+                         + "                        when linking the executable. This can be used when\n" 
+                         + "                        linking in function which will be called using bro.\n" 
+                         + "                        Wildcards can be used. * matches zero or more characters,\n" 
+                         + "                        ? matches one character. [abc], [a-z] matches one character\n" 
+                         + "                        from the specified set of characters.");
         System.err.println("  -frameworks <list>    : separated list of frameworks that should be included\n" 
                          + "                        when linking the final executable.");
+        System.err.println("  -weakframeworks <list>\n" 
+                         + "                        : separated list of frameworks that should be weakly linked\n" 
+                         + "                        into the final executable.");
         System.err.println("  -resources <list>     : separated list of files and directories that should be\n"
-                         + "                        copied to the install dir.");
+                         + "                        copied to the install dir. Accepts Ant-style patterns.\n" 
+                         + "                        If a pattern is specified the left-most path before the\n" 
+                         + "                        first wildcard will be used as base directory and will not\n" 
+                         + "                        be recreated in the install dir.");
         System.err.println("  -cacerts <value>      Use the specified cacerts file. Allowed value are 'none',\n" 
                          + "                        'full'. Default is 'full' but no cacerts will be included\n" 
                          + "                        unless the code actually needs them.");
@@ -557,6 +584,8 @@ public class AppCompiler {
         System.err.println("  -version              Print the version of the compiler and exit");
         System.err.println("  -help, -?             Display this information");
         System.err.println("Target specific options:");
+        System.err.println("  -createipa            (iOS) Create a .IPA file from the app bundle and place it in\n"
+                         + "                        the install dir specified with -d.");
         System.err.println("  -plist <file>         (iOS) Info.plist file to be used by the app. If not specified\n"
                          + "                        a simple Info.plist will be generated with a CFBundleIdentifier\n" 
                          + "                        based on the main class name or executable file name.");
@@ -565,6 +594,11 @@ public class AppCompiler {
         System.err.println("  -resourcerules <file> (iOS) Property list (.plist) file containing resource rules\n" 
                          + "                        passed to codesign when signing the app.");
         System.err.println("  -signidentity <id>    (iOS) Sign using this identity. Default is 'iPhone Developer'.");
+        System.err.println("  -provisioningprofile <file>\n" 
+                         + "                        (iOS) Provisioning profile to use when building for a device.\n" 
+                         + "                        Either a UUID, an app name or app id prefix. If not specified\n" 
+                         + "                        a provisioning profile matching the signing identity and bundle\n" 
+                         + "                        id from the Info.plist file will be used.");
         System.err.println("  -sdk <version>        (iOS) Version number of the iOS SDK to build against. If not\n" 
                          + "                        specified the latest SDK that can be found will be used.");
         System.err.println("iOS simulator launch options:");
@@ -576,4 +610,107 @@ public class AppCompiler {
         System.exit(errorMessage != null ? 1 : 0);
     }
     
+    private class UpdateChecker extends Thread {
+        private final String address;
+        private volatile JSONObject result;
+        public UpdateChecker(String address) {
+            this.address = address;
+            setDaemon(true);
+        }
+        @Override
+        public void run() {
+            result = fetchJson(address);
+        }
+    }
+    
+    /**
+     * Performs a an update check. If a newer version of RoboVM is available
+     * a message will be printed to the log. The update check is also used to
+     * gather some anonymous usage statistics.
+     */
+    private void updateCheck() {
+        try {
+            String uuid = getInstallUuid();
+            if (uuid == null) {
+                return;
+            }
+            long lastCheckTime = getLastUpdateCheckTime();
+            if (System.currentTimeMillis() - lastCheckTime < 6 * 60 * 60 * 1000) {
+                // Only check for an update once every 6 hours
+                return;
+            }
+            updateLastUpdateCheckTime();
+            String osName = System.getProperty("os.name", "Unknown");
+            String osArch = System.getProperty("os.arch", "Unknown");
+            String osVersion = System.getProperty("os.version", "Unknown");
+            UpdateChecker t = new UpdateChecker("http://download.robovm.org/version?"
+                    + "uuid=" + URLEncoder.encode(uuid, "UTF-8") + "&"
+                    + "version=" + URLEncoder.encode(Version.getVersion(), "UTF-8") + "&"
+                    + "osName=" + URLEncoder.encode(osName, "UTF-8") + "&"
+                    + "osArch=" + URLEncoder.encode(osArch, "UTF-8") + "&"
+                    + "osVersion=" + URLEncoder.encode(osVersion, "UTF-8"));
+            t.start();
+            t.join(5 * 1000); // Wait for a maximum of 5 seconds
+            JSONObject result = t.result;
+            if (result != null) {
+                String version = result.optString("version", null);
+                if (version != null && Version.isOlderThan(version)) {
+                    config.getLogger().info("A new version of RoboVM is available. " 
+                            + "Current version: %s. New version: %s.", Version.getVersion(), version);
+                }
+            }
+        } catch (Throwable t) {
+            if (config.getHome().isDev()) {
+                t.printStackTrace();
+            }
+        }
+    }
+
+    private String getInstallUuid() throws IOException {
+        File uuidFile = new File(new File(System.getProperty("user.home"), ".robovm"), "uuid");
+        uuidFile.getParentFile().mkdirs();
+        String uuid = uuidFile.exists() ? FileUtils.readFileToString(uuidFile, "UTF-8") : null;
+        if (uuid == null) {
+            uuid = UUID.randomUUID().toString();
+            FileUtils.writeStringToFile(uuidFile, uuid, "UTF-8");
+        }
+        uuid = uuid.trim();
+        if (uuid.matches("[0-9a-fA-F-]{36}")) {
+            return uuid;
+        }
+        return null;
+    }
+    
+    private long getLastUpdateCheckTime() {
+        try {
+            File timeFile = new File(new File(System.getProperty("user.home"), ".robovm"), "last-update-check");
+            timeFile.getParentFile().mkdirs();
+            return timeFile.exists() ? Long.parseLong(FileUtils.readFileToString(timeFile, "UTF-8").trim()) : 0;
+        } catch (IOException e) {
+            return 0;
+        }
+    }
+
+    private void updateLastUpdateCheckTime() throws IOException {
+        File timeFile = new File(new File(System.getProperty("user.home"), ".robovm"), "last-update-check");
+        timeFile.getParentFile().mkdirs();
+        FileUtils.writeStringToFile(timeFile, String.valueOf(System.currentTimeMillis()), "UTF-8");
+    }
+
+    private JSONObject fetchJson(String address) {
+        try {
+            URL url = new URL(address);
+            URLConnection conn = url.openConnection();
+            conn.setConnectTimeout(5 * 1000);
+            conn.setReadTimeout(5 * 1000);
+            try (InputStream in = new BufferedInputStream(conn.getInputStream())) {
+                return new JSONObject(IOUtils.toString(in, "UTF-8"));
+            }
+        } catch (Exception e) {
+            if (config.getHome().isDev()) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

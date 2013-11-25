@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html">UISlider Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html">UISlider Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UISlider /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UISlider /*</name>*/.class);
 
     public UISlider(CGRect aRect) {
@@ -61,10 +60,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector isContinuous = Selector.register("isContinuous");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isContinuous(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isContinuousSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isContinuous(UISlider __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isContinuousSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/continuous">@property(nonatomic, getter=isContinuous) BOOL continuous</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/continuous">@property(nonatomic, getter=isContinuous) BOOL continuous</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isContinuous() {
@@ -72,10 +71,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setContinuous$ = Selector.register("setContinuous:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setContinuous(UISlider __self__, Selector __cmd__, boolean continuous);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setContinuousSuper(ObjCSuper __super__, Selector __cmd__, boolean continuous);
+    @Bridge private native static void objc_setContinuous(UISlider __self__, Selector __cmd__, boolean continuous);
+    @Bridge private native static void objc_setContinuousSuper(ObjCSuper __super__, Selector __cmd__, boolean continuous);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/continuous">@property(nonatomic, getter=isContinuous) BOOL continuous</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/continuous">@property(nonatomic, getter=isContinuous) BOOL continuous</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setContinuous(boolean continuous) {
@@ -83,10 +82,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector currentMaximumTrackImage = Selector.register("currentMaximumTrackImage");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getCurrentMaximumTrackImage(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getCurrentMaximumTrackImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getCurrentMaximumTrackImage(UISlider __self__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getCurrentMaximumTrackImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/currentMaximumTrackImage">@property(nonatomic, readonly) UIImage *currentMaximumTrackImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/currentMaximumTrackImage">@property(nonatomic, readonly) UIImage *currentMaximumTrackImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getCurrentMaximumTrackImage() {
@@ -94,10 +93,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector currentMinimumTrackImage = Selector.register("currentMinimumTrackImage");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getCurrentMinimumTrackImage(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getCurrentMinimumTrackImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getCurrentMinimumTrackImage(UISlider __self__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getCurrentMinimumTrackImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/currentMinimumTrackImage">@property(nonatomic, readonly) UIImage *currentMinimumTrackImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/currentMinimumTrackImage">@property(nonatomic, readonly) UIImage *currentMinimumTrackImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getCurrentMinimumTrackImage() {
@@ -105,10 +104,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector currentThumbImage = Selector.register("currentThumbImage");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getCurrentThumbImage(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getCurrentThumbImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getCurrentThumbImage(UISlider __self__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getCurrentThumbImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/currentThumbImage">@property(nonatomic, readonly) UIImage *currentThumbImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/currentThumbImage">@property(nonatomic, readonly) UIImage *currentThumbImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getCurrentThumbImage() {
@@ -116,10 +115,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector maximumTrackTintColor = Selector.register("maximumTrackTintColor");
-    @Bridge(symbol = "objc_msgSend") private native static UIColor objc_getMaximumTrackTintColor(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIColor objc_getMaximumTrackTintColorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getMaximumTrackTintColor(UISlider __self__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getMaximumTrackTintColorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumTrackTintColor">@property(nonatomic, retain) UIColor *maximumTrackTintColor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumTrackTintColor">@property(nonatomic, retain) UIColor *maximumTrackTintColor</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIColor getMaximumTrackTintColor() {
@@ -127,10 +126,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMaximumTrackTintColor$ = Selector.register("setMaximumTrackTintColor:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMaximumTrackTintColor(UISlider __self__, Selector __cmd__, UIColor maximumTrackTintColor);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMaximumTrackTintColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor maximumTrackTintColor);
+    @Bridge private native static void objc_setMaximumTrackTintColor(UISlider __self__, Selector __cmd__, UIColor maximumTrackTintColor);
+    @Bridge private native static void objc_setMaximumTrackTintColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor maximumTrackTintColor);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumTrackTintColor">@property(nonatomic, retain) UIColor *maximumTrackTintColor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumTrackTintColor">@property(nonatomic, retain) UIColor *maximumTrackTintColor</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setMaximumTrackTintColor(UIColor maximumTrackTintColor) {
@@ -138,10 +137,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector maximumValue = Selector.register("maximumValue");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getMaximumValue(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getMaximumValueSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getMaximumValue(UISlider __self__, Selector __cmd__);
+    @Bridge private native static float objc_getMaximumValueSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumValue">@property(nonatomic) float maximumValue</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumValue">@property(nonatomic) float maximumValue</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getMaximumValue() {
@@ -149,10 +148,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMaximumValue$ = Selector.register("setMaximumValue:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMaximumValue(UISlider __self__, Selector __cmd__, float maximumValue);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMaximumValueSuper(ObjCSuper __super__, Selector __cmd__, float maximumValue);
+    @Bridge private native static void objc_setMaximumValue(UISlider __self__, Selector __cmd__, float maximumValue);
+    @Bridge private native static void objc_setMaximumValueSuper(ObjCSuper __super__, Selector __cmd__, float maximumValue);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumValue">@property(nonatomic) float maximumValue</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumValue">@property(nonatomic) float maximumValue</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setMaximumValue(float maximumValue) {
@@ -160,10 +159,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector maximumValueImage = Selector.register("maximumValueImage");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getMaximumValueImage(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getMaximumValueImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getMaximumValueImage(UISlider __self__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getMaximumValueImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumValueImage">@property(nonatomic, retain) UIImage *maximumValueImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumValueImage">@property(nonatomic, retain) UIImage *maximumValueImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getMaximumValueImage() {
@@ -171,10 +170,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMaximumValueImage$ = Selector.register("setMaximumValueImage:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMaximumValueImage(UISlider __self__, Selector __cmd__, UIImage maximumValueImage);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMaximumValueImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage maximumValueImage);
+    @Bridge private native static void objc_setMaximumValueImage(UISlider __self__, Selector __cmd__, UIImage maximumValueImage);
+    @Bridge private native static void objc_setMaximumValueImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage maximumValueImage);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumValueImage">@property(nonatomic, retain) UIImage *maximumValueImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/maximumValueImage">@property(nonatomic, retain) UIImage *maximumValueImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setMaximumValueImage(UIImage maximumValueImage) {
@@ -182,10 +181,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector minimumTrackTintColor = Selector.register("minimumTrackTintColor");
-    @Bridge(symbol = "objc_msgSend") private native static UIColor objc_getMinimumTrackTintColor(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIColor objc_getMinimumTrackTintColorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getMinimumTrackTintColor(UISlider __self__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getMinimumTrackTintColorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumTrackTintColor">@property(nonatomic, retain) UIColor *minimumTrackTintColor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumTrackTintColor">@property(nonatomic, retain) UIColor *minimumTrackTintColor</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIColor getMinimumTrackTintColor() {
@@ -193,10 +192,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMinimumTrackTintColor$ = Selector.register("setMinimumTrackTintColor:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMinimumTrackTintColor(UISlider __self__, Selector __cmd__, UIColor minimumTrackTintColor);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMinimumTrackTintColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor minimumTrackTintColor);
+    @Bridge private native static void objc_setMinimumTrackTintColor(UISlider __self__, Selector __cmd__, UIColor minimumTrackTintColor);
+    @Bridge private native static void objc_setMinimumTrackTintColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor minimumTrackTintColor);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumTrackTintColor">@property(nonatomic, retain) UIColor *minimumTrackTintColor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumTrackTintColor">@property(nonatomic, retain) UIColor *minimumTrackTintColor</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setMinimumTrackTintColor(UIColor minimumTrackTintColor) {
@@ -204,10 +203,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector minimumValue = Selector.register("minimumValue");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getMinimumValue(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getMinimumValueSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getMinimumValue(UISlider __self__, Selector __cmd__);
+    @Bridge private native static float objc_getMinimumValueSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumValue">@property(nonatomic) float minimumValue</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumValue">@property(nonatomic) float minimumValue</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getMinimumValue() {
@@ -215,10 +214,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMinimumValue$ = Selector.register("setMinimumValue:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMinimumValue(UISlider __self__, Selector __cmd__, float minimumValue);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMinimumValueSuper(ObjCSuper __super__, Selector __cmd__, float minimumValue);
+    @Bridge private native static void objc_setMinimumValue(UISlider __self__, Selector __cmd__, float minimumValue);
+    @Bridge private native static void objc_setMinimumValueSuper(ObjCSuper __super__, Selector __cmd__, float minimumValue);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumValue">@property(nonatomic) float minimumValue</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumValue">@property(nonatomic) float minimumValue</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setMinimumValue(float minimumValue) {
@@ -226,10 +225,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector minimumValueImage = Selector.register("minimumValueImage");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getMinimumValueImage(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getMinimumValueImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getMinimumValueImage(UISlider __self__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getMinimumValueImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumValueImage">@property(nonatomic, retain) UIImage *minimumValueImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumValueImage">@property(nonatomic, retain) UIImage *minimumValueImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getMinimumValueImage() {
@@ -237,10 +236,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMinimumValueImage$ = Selector.register("setMinimumValueImage:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMinimumValueImage(UISlider __self__, Selector __cmd__, UIImage minimumValueImage);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMinimumValueImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage minimumValueImage);
+    @Bridge private native static void objc_setMinimumValueImage(UISlider __self__, Selector __cmd__, UIImage minimumValueImage);
+    @Bridge private native static void objc_setMinimumValueImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage minimumValueImage);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumValueImage">@property(nonatomic, retain) UIImage *minimumValueImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/minimumValueImage">@property(nonatomic, retain) UIImage *minimumValueImage</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setMinimumValueImage(UIImage minimumValueImage) {
@@ -248,10 +247,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector thumbTintColor = Selector.register("thumbTintColor");
-    @Bridge(symbol = "objc_msgSend") private native static UIColor objc_getThumbTintColor(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIColor objc_getThumbTintColorSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getThumbTintColor(UISlider __self__, Selector __cmd__);
+    @Bridge private native static UIColor objc_getThumbTintColorSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/thumbTintColor">@property(nonatomic, retain) UIColor *thumbTintColor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/thumbTintColor">@property(nonatomic, retain) UIColor *thumbTintColor</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIColor getThumbTintColor() {
@@ -259,10 +258,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setThumbTintColor$ = Selector.register("setThumbTintColor:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setThumbTintColor(UISlider __self__, Selector __cmd__, UIColor thumbTintColor);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setThumbTintColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor thumbTintColor);
+    @Bridge private native static void objc_setThumbTintColor(UISlider __self__, Selector __cmd__, UIColor thumbTintColor);
+    @Bridge private native static void objc_setThumbTintColorSuper(ObjCSuper __super__, Selector __cmd__, UIColor thumbTintColor);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/thumbTintColor">@property(nonatomic, retain) UIColor *thumbTintColor</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/thumbTintColor">@property(nonatomic, retain) UIColor *thumbTintColor</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setThumbTintColor(UIColor thumbTintColor) {
@@ -270,10 +269,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector value = Selector.register("value");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getValue(UISlider __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getValueSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getValue(UISlider __self__, Selector __cmd__);
+    @Bridge private native static float objc_getValueSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/value">@property(nonatomic) float value</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/value">@property(nonatomic) float value</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getValue() {
@@ -281,10 +280,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setValue$ = Selector.register("setValue:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setValue(UISlider __self__, Selector __cmd__, float value);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setValueSuper(ObjCSuper __super__, Selector __cmd__, float value);
+    @Bridge private native static void objc_setValue(UISlider __self__, Selector __cmd__, float value);
+    @Bridge private native static void objc_setValueSuper(ObjCSuper __super__, Selector __cmd__, float value);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/value">@property(nonatomic) float value</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instp/UISlider/value">@property(nonatomic) float value</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setValue(float value) {
@@ -294,10 +293,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector maximumTrackImageForState$ = Selector.register("maximumTrackImageForState:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getMaximumTrackImage(UISlider __self__, Selector __cmd__, UIControlState state);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getMaximumTrackImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state);
+    @Bridge private native static UIImage objc_getMaximumTrackImage(UISlider __self__, Selector __cmd__, UIControlState state);
+    @Bridge private native static UIImage objc_getMaximumTrackImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/maximumTrackImageForState:">- (UIImage *)maximumTrackImageForState:(UIControlState)state</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/maximumTrackImageForState:">- (UIImage *)maximumTrackImageForState:(UIControlState)state</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getMaximumTrackImage(UIControlState state) {
@@ -305,21 +304,21 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector maximumValueImageRectForBounds$ = Selector.register("maximumValueImageRectForBounds:");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getMaximumValueImageRect_stret(@StructRet CGRect __ret__, UISlider __self__, Selector __cmd__, @ByVal CGRect bounds);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getMaximumValueImageRectSuper_stret(@StructRet CGRect __ret__, ObjCSuper __super__, Selector __cmd__, @ByVal CGRect bounds);
+    @Bridge private native static @ByVal CGRect objc_getMaximumValueImageRect(UISlider __self__, Selector __cmd__, @ByVal CGRect bounds);
+    @Bridge private native static @ByVal CGRect objc_getMaximumValueImageRectSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect bounds);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/maximumValueImageRectForBounds:">- (CGRect)maximumValueImageRectForBounds:(CGRect)bounds</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/maximumValueImageRectForBounds:">- (CGRect)maximumValueImageRectForBounds:(CGRect)bounds</a>
      * @since Available in iOS 2.0 and later.
      */
     public CGRect getMaximumValueImageRect(CGRect bounds) {
-        CGRect __ret__ = new CGRect(); if (customClass) { objc_getMaximumValueImageRectSuper_stret(__ret__, getSuper(), maximumValueImageRectForBounds$, bounds); } else { objc_getMaximumValueImageRect_stret(__ret__, this, maximumValueImageRectForBounds$, bounds); } return __ret__;
+        if (customClass) { return objc_getMaximumValueImageRectSuper(getSuper(), maximumValueImageRectForBounds$, bounds); } else { return objc_getMaximumValueImageRect(this, maximumValueImageRectForBounds$, bounds); }
     }
     
     private static final Selector minimumTrackImageForState$ = Selector.register("minimumTrackImageForState:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getMinimumTrackImage(UISlider __self__, Selector __cmd__, UIControlState state);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getMinimumTrackImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state);
+    @Bridge private native static UIImage objc_getMinimumTrackImage(UISlider __self__, Selector __cmd__, UIControlState state);
+    @Bridge private native static UIImage objc_getMinimumTrackImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/minimumTrackImageForState:">- (UIImage *)minimumTrackImageForState:(UIControlState)state</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/minimumTrackImageForState:">- (UIImage *)minimumTrackImageForState:(UIControlState)state</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getMinimumTrackImage(UIControlState state) {
@@ -327,21 +326,21 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector minimumValueImageRectForBounds$ = Selector.register("minimumValueImageRectForBounds:");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getMinimumValueImageRect_stret(@StructRet CGRect __ret__, UISlider __self__, Selector __cmd__, @ByVal CGRect bounds);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getMinimumValueImageRectSuper_stret(@StructRet CGRect __ret__, ObjCSuper __super__, Selector __cmd__, @ByVal CGRect bounds);
+    @Bridge private native static @ByVal CGRect objc_getMinimumValueImageRect(UISlider __self__, Selector __cmd__, @ByVal CGRect bounds);
+    @Bridge private native static @ByVal CGRect objc_getMinimumValueImageRectSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect bounds);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/minimumValueImageRectForBounds:">- (CGRect)minimumValueImageRectForBounds:(CGRect)bounds</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/minimumValueImageRectForBounds:">- (CGRect)minimumValueImageRectForBounds:(CGRect)bounds</a>
      * @since Available in iOS 2.0 and later.
      */
     public CGRect getMinimumValueImageRect(CGRect bounds) {
-        CGRect __ret__ = new CGRect(); if (customClass) { objc_getMinimumValueImageRectSuper_stret(__ret__, getSuper(), minimumValueImageRectForBounds$, bounds); } else { objc_getMinimumValueImageRect_stret(__ret__, this, minimumValueImageRectForBounds$, bounds); } return __ret__;
+        if (customClass) { return objc_getMinimumValueImageRectSuper(getSuper(), minimumValueImageRectForBounds$, bounds); } else { return objc_getMinimumValueImageRect(this, minimumValueImageRectForBounds$, bounds); }
     }
     
     private static final Selector thumbImageForState$ = Selector.register("thumbImageForState:");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getThumbImage(UISlider __self__, Selector __cmd__, UIControlState state);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getThumbImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state);
+    @Bridge private native static UIImage objc_getThumbImage(UISlider __self__, Selector __cmd__, UIControlState state);
+    @Bridge private native static UIImage objc_getThumbImageSuper(ObjCSuper __super__, Selector __cmd__, UIControlState state);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/thumbImageForState:">- (UIImage *)thumbImageForState:(UIControlState)state</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/thumbImageForState:">- (UIImage *)thumbImageForState:(UIControlState)state</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIImage getThumbImage(UIControlState state) {
@@ -349,32 +348,32 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector thumbRectForBounds$trackRect$value$ = Selector.register("thumbRectForBounds:trackRect:value:");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getThumbRect_stret(@StructRet CGRect __ret__, UISlider __self__, Selector __cmd__, @ByVal CGRect bounds, @ByVal CGRect rect, float value);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getThumbRectSuper_stret(@StructRet CGRect __ret__, ObjCSuper __super__, Selector __cmd__, @ByVal CGRect bounds, @ByVal CGRect rect, float value);
+    @Bridge private native static @ByVal CGRect objc_getThumbRect(UISlider __self__, Selector __cmd__, @ByVal CGRect bounds, @ByVal CGRect rect, float value);
+    @Bridge private native static @ByVal CGRect objc_getThumbRectSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect bounds, @ByVal CGRect rect, float value);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/thumbRectForBounds:trackRect:value:">- (CGRect)thumbRectForBounds:(CGRect)bounds trackRect:(CGRect)rect value:(float)value</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/thumbRectForBounds:trackRect:value:">- (CGRect)thumbRectForBounds:(CGRect)bounds trackRect:(CGRect)rect value:(float)value</a>
      * @since Available in iOS 2.0 and later.
      */
     public CGRect getThumbRect(CGRect bounds, CGRect rect, float value) {
-        CGRect __ret__ = new CGRect(); if (customClass) { objc_getThumbRectSuper_stret(__ret__, getSuper(), thumbRectForBounds$trackRect$value$, bounds, rect, value); } else { objc_getThumbRect_stret(__ret__, this, thumbRectForBounds$trackRect$value$, bounds, rect, value); } return __ret__;
+        if (customClass) { return objc_getThumbRectSuper(getSuper(), thumbRectForBounds$trackRect$value$, bounds, rect, value); } else { return objc_getThumbRect(this, thumbRectForBounds$trackRect$value$, bounds, rect, value); }
     }
     
     private static final Selector trackRectForBounds$ = Selector.register("trackRectForBounds:");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getTrackRect_stret(@StructRet CGRect __ret__, UISlider __self__, Selector __cmd__, @ByVal CGRect bounds);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getTrackRectSuper_stret(@StructRet CGRect __ret__, ObjCSuper __super__, Selector __cmd__, @ByVal CGRect bounds);
+    @Bridge private native static @ByVal CGRect objc_getTrackRect(UISlider __self__, Selector __cmd__, @ByVal CGRect bounds);
+    @Bridge private native static @ByVal CGRect objc_getTrackRectSuper(ObjCSuper __super__, Selector __cmd__, @ByVal CGRect bounds);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/trackRectForBounds:">- (CGRect)trackRectForBounds:(CGRect)bounds</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/trackRectForBounds:">- (CGRect)trackRectForBounds:(CGRect)bounds</a>
      * @since Available in iOS 2.0 and later.
      */
     public CGRect getTrackRect(CGRect bounds) {
-        CGRect __ret__ = new CGRect(); if (customClass) { objc_getTrackRectSuper_stret(__ret__, getSuper(), trackRectForBounds$, bounds); } else { objc_getTrackRect_stret(__ret__, this, trackRectForBounds$, bounds); } return __ret__;
+        if (customClass) { return objc_getTrackRectSuper(getSuper(), trackRectForBounds$, bounds); } else { return objc_getTrackRect(this, trackRectForBounds$, bounds); }
     }
     
     private static final Selector setMaximumTrackImage$forState$ = Selector.register("setMaximumTrackImage:forState:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMaximumTrackImage(UISlider __self__, Selector __cmd__, UIImage image, UIControlState state);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMaximumTrackImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage image, UIControlState state);
+    @Bridge private native static void objc_setMaximumTrackImage(UISlider __self__, Selector __cmd__, UIImage image, UIControlState state);
+    @Bridge private native static void objc_setMaximumTrackImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage image, UIControlState state);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/setMaximumTrackImage:forState:">- (void)setMaximumTrackImage:(UIImage *)image forState:(UIControlState)state</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/setMaximumTrackImage:forState:">- (void)setMaximumTrackImage:(UIImage *)image forState:(UIControlState)state</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setMaximumTrackImage(UIImage image, UIControlState state) {
@@ -382,10 +381,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMinimumTrackImage$forState$ = Selector.register("setMinimumTrackImage:forState:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMinimumTrackImage(UISlider __self__, Selector __cmd__, UIImage image, UIControlState state);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMinimumTrackImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage image, UIControlState state);
+    @Bridge private native static void objc_setMinimumTrackImage(UISlider __self__, Selector __cmd__, UIImage image, UIControlState state);
+    @Bridge private native static void objc_setMinimumTrackImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage image, UIControlState state);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/setMinimumTrackImage:forState:">- (void)setMinimumTrackImage:(UIImage *)image forState:(UIControlState)state</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/setMinimumTrackImage:forState:">- (void)setMinimumTrackImage:(UIImage *)image forState:(UIControlState)state</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setMinimumTrackImage(UIImage image, UIControlState state) {
@@ -393,10 +392,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setThumbImage$forState$ = Selector.register("setThumbImage:forState:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setThumbImage(UISlider __self__, Selector __cmd__, UIImage image, UIControlState state);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setThumbImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage image, UIControlState state);
+    @Bridge private native static void objc_setThumbImage(UISlider __self__, Selector __cmd__, UIImage image, UIControlState state);
+    @Bridge private native static void objc_setThumbImageSuper(ObjCSuper __super__, Selector __cmd__, UIImage image, UIControlState state);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/setThumbImage:forState:">- (void)setThumbImage:(UIImage *)image forState:(UIControlState)state</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/setThumbImage:forState:">- (void)setThumbImage:(UIImage *)image forState:(UIControlState)state</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setThumbImage(UIImage image, UIControlState state) {
@@ -404,10 +403,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setValue$animated$ = Selector.register("setValue:animated:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setValue(UISlider __self__, Selector __cmd__, float value, boolean animated);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setValueSuper(ObjCSuper __super__, Selector __cmd__, float value, boolean animated);
+    @Bridge private native static void objc_setValue(UISlider __self__, Selector __cmd__, float value, boolean animated);
+    @Bridge private native static void objc_setValueSuper(ObjCSuper __super__, Selector __cmd__, float value, boolean animated);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/setValue:animated:">- (void)setValue:(float)value animated:(BOOL)animated</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UISlider_Class/Reference/Reference.html#//apple_ref/occ/instm/UISlider/setValue:animated:">- (void)setValue:(float)value animated:(BOOL)animated</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setValue(float value, boolean animated) {

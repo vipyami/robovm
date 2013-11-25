@@ -20,25 +20,24 @@ import static org.robovm.compiler.llvm.Type.*;
 
 import java.nio.CharBuffer;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.OS;
 import org.robovm.compiler.llvm.AggregateType;
-import org.robovm.compiler.llvm.ArrayType;
 import org.robovm.compiler.llvm.Bitcast;
 import org.robovm.compiler.llvm.Constant;
-import org.robovm.compiler.llvm.ConstantAdd;
-import org.robovm.compiler.llvm.ConstantAnd;
 import org.robovm.compiler.llvm.ConstantGetelementptr;
 import org.robovm.compiler.llvm.ConstantPtrtoint;
-import org.robovm.compiler.llvm.ConstantSub;
-import org.robovm.compiler.llvm.ConstantXor;
 import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.FunctionType;
 import org.robovm.compiler.llvm.Getelementptr;
-import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.IntegerType;
 import org.robovm.compiler.llvm.NullConstant;
 import org.robovm.compiler.llvm.OpaqueType;
+import org.robovm.compiler.llvm.PackedStructureType;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.StructureType;
 import org.robovm.compiler.llvm.Type;
@@ -48,10 +47,13 @@ import org.robovm.compiler.llvm.Variable;
 import soot.BooleanType;
 import soot.ByteType;
 import soot.CharType;
+import soot.DoubleType;
 import soot.FloatType;
 import soot.IntType;
 import soot.LongType;
+import soot.Modifier;
 import soot.PrimType;
+import soot.RefLikeType;
 import soot.RefType;
 import soot.ShortType;
 import soot.SootClass;
@@ -83,6 +85,10 @@ public class Types {
     public static final StructureType OBJECT = new StructureType("Object", CLASS_PTR);
     // Dummy DataObject type definition. The real one is in header.ll
     public static final StructureType DATA_OBJECT = new StructureType("DataObject", OBJECT);
+    // Dummy VITable type definition. The real one is in header.ll
+    public static final StructureType VITABLE = new StructureType("VITable", I8_PTR);
+    public static final Type VITABLE_PTR = new PointerType(VITABLE);
+    
     public static final Type OBJECT_PTR = new PointerType(OBJECT);
     public static final Type METHOD_PTR = new PointerType(new OpaqueType("Method"));
     public static final Type FIELD_PTR = new PointerType(new OpaqueType("Field"));
@@ -414,37 +420,104 @@ public class Types {
                         new PointerType(type)), i), I32);
     }
     
-    public static Constant alignedSizeof(AggregateType type) {
-        // return (sizeof(type) + sizeof(i8*) - 1) & ~(sizeof(i8*) - 1);
-        return new ConstantAnd(
-                new ConstantAdd(
-                        sizeof(type), 
-                        new ConstantSub(sizeof(new ArrayType(1, I8_PTR)), new IntegerConstant(1))), 
-                new ConstantXor(
-                        new ConstantSub(sizeof(new ArrayType(1, I8_PTR)), new IntegerConstant(1)), 
-                        new IntegerConstant(-1)));
+    private static PackedStructureType padType(Type t, int padding) {
+        // t = i64, padding = 3 => {{i8, i8, i8}, i64}
+        // t = i8, padding = 0 => {{}, i8}
+        List<Type> paddingType = new ArrayList<Type>();
+        for (int i = 0; i < padding; i++) {
+            paddingType.add(I8);
+        }
+        return new PackedStructureType(new PackedStructureType(paddingType.toArray(new Type[paddingType.size()])), t);
+    }
+
+    private static PackedStructureType getInstanceType0(OS os, Arch arch, SootClass clazz, int subClassAlignment, int[] superSize) {
+        List<Type> types = new ArrayList<Type>();
+        List<SootField> fields = getInstanceFields(os, arch, clazz);
+        int superAlignment = 1;
+        if (!fields.isEmpty()) {
+            // Pad the super type so that the first field is aligned properly
+            SootField field = fields.get(0);
+            superAlignment = getFieldAlignment(os, arch, field);
+        }
+        if (clazz.hasSuperclass()) {
+            types.add(getInstanceType0(os, arch, clazz.getSuperclass(), superAlignment, superSize));
+        }
+        int offset = superSize[0];
+        for (SootField field : fields) {
+            int falign = getFieldAlignment(os, arch, field);
+            int padding = (offset & (falign - 1)) != 0 ? (falign - (offset & (falign - 1))) : 0;
+            types.add(padType(getType(field.getType()), padding));
+            offset += padding + getFieldSize(field);
+        }
+        
+        int padding = (offset & (subClassAlignment - 1)) != 0 
+                ? (subClassAlignment - (offset & (subClassAlignment - 1))) : 0;
+        for (int i = 0; i < padding; i++) {
+            types.add(I8);
+            offset++;
+        }
+        
+        superSize[0] = offset;
+        
+        return new PackedStructureType(types.toArray(new Type[types.size()]));
     }
     
-    public static Constant alignedOffset(SootClass clazz) {
-        Constant offset = new IntegerConstant(0);
-        if (!clazz.isInterface() && clazz.hasSuperclass()) {
-            SootClass zuper = clazz.getSuperclass();
-            if (!zuper.isPhantom() && !"java.lang.Object".equals(clazz.getSuperclass().getName())) {
-                List<Type> types = new ArrayList<Type>();
-                for (SootField f : zuper.getFields()) {
-                    if (!f.isStatic()) {
-                        types.add(getType(f.getType()));
-                    }
-                }
-                if (types.size() > 0) {
-                    offset = alignedSizeof(new StructureType(types.toArray(new Type[types.size()])));
-                }
-                offset = new ConstantAdd(alignedOffset(zuper), offset);
+    public static StructureType getClassType(OS os, Arch arch, SootClass clazz) {
+        List<Type> types = new ArrayList<Type>();
+        int offset = 0;
+        for (SootField field : getClassFields(os, arch, clazz)) {
+            int falign = getFieldAlignment(os, arch, field);
+            int padding = (offset & (falign - 1)) != 0 ? (falign - (offset & (falign - 1))) : 0;
+            types.add(padType(getType(field.getType()), padding));
+            offset += padding + getFieldSize(field);
+        }
+        return new StructureType(CLASS, new StructureType(types.toArray(new Type[types.size()])));
+    }
+
+    public static StructureType getInstanceType(OS os, Arch arch, SootClass clazz) {
+        return new StructureType(DATA_OBJECT, getInstanceType0(os, arch, clazz, 1, new int[] {0}));
+    }
+    
+    public static int getFieldAlignment(OS os, Arch arch, SootField f) {
+        soot.Type t = f.getType();
+        if (arch.isArm()) {
+            if (LongType.v().equals(t) && Modifier.isVolatile(f.getModifiers())) {
+                // On ARM volatile longs must be 8 byte aligned
+                return 8;
+            }
+            if (LongType.v().equals(t) && !f.isStatic() && Modifier.isFinal(f.getModifiers())) {
+                // The Java Memory Model requires final instance fields to be written to using
+                // volatile semantics. Because of ARM's alignment requirements we return 8 here too.
+                return 8;
             }
         }
-        return offset;
+        if (LongType.v().equals(t) || DoubleType.v().equals(t)) {
+            return 4;
+        }
+        return getFieldSize(f);
     }
     
+    public static int getFieldSize(SootField f) {
+        soot.Type t = f.getType();
+        if (LongType.v().equals(t) || DoubleType.v().equals(t)) {
+            return 8;
+        }
+        if (IntType.v().equals(t) || FloatType.v().equals(t)) {
+            return 4;
+        }
+        if (t instanceof RefLikeType) {
+            // Assume pointers are 32-bit
+            return 4;
+        }
+        if (ShortType.v().equals(t) || CharType.v().equals(t)) {
+            return 2;
+        }
+        if (ByteType.v().equals(t) || BooleanType.v().equals(t)) {
+            return 1;
+        }
+        throw new IllegalArgumentException("Unknown Type: " + t);
+    }
+
     public static Value getFieldPtr(Function f, Value base, Constant offset, Type fieldType) {
         Variable baseI8Ptr = f.newVariable(I8_PTR);
         f.add(new Bitcast(baseI8Ptr, base, I8_PTR));
@@ -453,5 +526,62 @@ public class Types {
         Variable fieldPtr = f.newVariable(new PointerType(fieldType));
         f.add(new Bitcast(fieldPtr, fieldI8Ptr.ref(), fieldPtr.getType()));
         return fieldPtr.ref();
+    }
+    
+    public static List<SootField> getFields(final OS os, final Arch arch, SootClass clazz, boolean ztatic) {
+        List<SootField> l = new ArrayList<SootField>();
+        for (SootField f : clazz.getFields()) {
+            if (ztatic == f.isStatic()) {
+                l.add(f);
+            }
+        }
+        // Sort the fields. references, volatile long, double, long, float, int, char, short, boolean, byte.
+        // Fields of same type are sorted by name.
+        Collections.sort(l, new Comparator<SootField>() {
+            @Override
+            public int compare(SootField o1, SootField o2) {
+                soot.Type t1 = o1.getType();
+                soot.Type t2 = o2.getType();
+                if (t1 instanceof RefLikeType) {
+                    if (!(t2 instanceof RefLikeType)) {
+                        return -1;
+                    }
+                }
+                if (t2 instanceof RefLikeType) {
+                    if (!(t1 instanceof RefLikeType)) {
+                        return 1;
+                    }
+                }
+                
+                // Compare alignment. Higher first.
+                int align1 = getFieldAlignment(os, arch, o1);
+                int align2 = getFieldAlignment(os, arch, o2);
+                int c = new Integer(align2).compareTo(align1);
+                if (c == 0) {
+                    // Compare size. Larger first.
+                    int size1 = getFieldSize(o1);
+                    int size2 = getFieldSize(o2);
+                    c = new Integer(size2).compareTo(size1);
+                    if (c == 0) {
+                        // Compare type name.
+                        c = t1.getClass().getSimpleName().compareTo(t2.getClass().getSimpleName());
+                        if (c == 0) {
+                            // Compare name.
+                            c = o1.getName().compareTo(o2.getName());
+                        }
+                    }
+                }
+                return c;
+            }
+        });
+        return l;
+    }
+    
+    public static List<SootField> getClassFields(OS os, Arch arch, SootClass clazz) {
+        return getFields(os, arch, clazz, true);
+    }
+    
+    public static List<SootField> getInstanceFields(OS os, Arch arch, SootClass clazz) {
+        return getFields(os, arch, clazz, false);
     }
 }

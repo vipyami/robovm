@@ -33,7 +33,7 @@ import org.robovm.rt.bro.ptr.*;
 /**
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html">UIActivity Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html">UIActivity Class Reference</a>
  *   @since Available in iOS 6.0 and later.
  * </div>
  */
@@ -46,7 +46,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIActivity /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIActivity /*</name>*/.class);
 
     /*<constructors>*/
@@ -60,10 +59,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector canPerformWithActivityItems$ = Selector.register("canPerformWithActivityItems:");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_canPerform(UIActivity __self__, Selector __cmd__, NSArray activityItems);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_canPerformSuper(ObjCSuper __super__, Selector __cmd__, NSArray activityItems);
+    @Bridge private native static boolean objc_canPerform(UIActivity __self__, Selector __cmd__, NSArray activityItems);
+    @Bridge private native static boolean objc_canPerformSuper(ObjCSuper __super__, Selector __cmd__, NSArray activityItems);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/canPerformWithActivityItems:">- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/canPerformWithActivityItems:">- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems</a>
      * @since Available in iOS 6.0 and later.
      */
     public boolean canPerform(NSArray activityItems) {
@@ -71,10 +70,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector activityDidFinish$ = Selector.register("activityDidFinish:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_didFinish(UIActivity __self__, Selector __cmd__, boolean completed);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_didFinishSuper(ObjCSuper __super__, Selector __cmd__, boolean completed);
+    @Bridge private native static void objc_didFinish(UIActivity __self__, Selector __cmd__, boolean completed);
+    @Bridge private native static void objc_didFinishSuper(ObjCSuper __super__, Selector __cmd__, boolean completed);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityDidFinish:">- (void)activityDidFinish:(BOOL)completed</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityDidFinish:">- (void)activityDidFinish:(BOOL)completed</a>
      * @since Available in iOS 6.0 and later.
      */
     public void didFinish(boolean completed) {
@@ -82,10 +81,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector activityImage = Selector.register("activityImage");
-    @Bridge(symbol = "objc_msgSend") private native static UIImage objc_getImage(UIActivity __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIImage objc_getImageSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getImage(UIActivity __self__, Selector __cmd__);
+    @Bridge private native static UIImage objc_getImageSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityImage">- (UIImage *)activityImage</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityImage">- (UIImage *)activityImage</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIImage getImage() {
@@ -93,10 +92,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector activityTitle = Selector.register("activityTitle");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getTitle(UIActivity __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getTitleSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getTitle(UIActivity __self__, Selector __cmd__);
+    @Bridge private native static String objc_getTitleSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityTitle">- (NSString *)activityTitle</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityTitle">- (NSString *)activityTitle</a>
      * @since Available in iOS 6.0 and later.
      */
     public String getTitle() {
@@ -104,10 +103,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector activityType = Selector.register("activityType");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getType(UIActivity __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getTypeSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getType(UIActivity __self__, Selector __cmd__);
+    @Bridge private native static String objc_getTypeSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityType">- (NSString *)activityType</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityType">- (NSString *)activityType</a>
      * @since Available in iOS 6.0 and later.
      */
     public String getType() {
@@ -115,10 +114,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector activityViewController = Selector.register("activityViewController");
-    @Bridge(symbol = "objc_msgSend") private native static UIViewController objc_getViewController(UIActivity __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIViewController objc_getViewControllerSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIViewController objc_getViewController(UIActivity __self__, Selector __cmd__);
+    @Bridge private native static UIViewController objc_getViewControllerSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityViewController">- (UIViewController *)activityViewController</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/activityViewController">- (UIViewController *)activityViewController</a>
      * @since Available in iOS 6.0 and later.
      */
     public UIViewController getViewController() {
@@ -126,10 +125,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector performActivity = Selector.register("performActivity");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_perform(UIActivity __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_performSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_perform(UIActivity __self__, Selector __cmd__);
+    @Bridge private native static void objc_performSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/performActivity">- (void)performActivity</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/performActivity">- (void)performActivity</a>
      * @since Available in iOS 6.0 and later.
      */
     public void perform() {
@@ -137,10 +136,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector prepareWithActivityItems$ = Selector.register("prepareWithActivityItems:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_prepare(UIActivity __self__, Selector __cmd__, NSArray activityItems);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_prepareSuper(ObjCSuper __super__, Selector __cmd__, NSArray activityItems);
+    @Bridge private native static void objc_prepare(UIActivity __self__, Selector __cmd__, NSArray activityItems);
+    @Bridge private native static void objc_prepareSuper(ObjCSuper __super__, Selector __cmd__, NSArray activityItems);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/prepareWithActivityItems:">- (void)prepareWithActivityItems:(NSArray *)activityItems</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIActivity_Class/Reference/Reference.html#//apple_ref/occ/instm/UIActivity/prepareWithActivityItems:">- (void)prepareWithActivityItems:(NSArray *)activityItems</a>
      * @since Available in iOS 6.0 and later.
      */
     public void prepare(NSArray activityItems) {

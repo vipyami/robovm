@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html">UIWebView Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html">UIWebView Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIWebView /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIWebView /*</name>*/.class);
 
     public UIWebView(CGRect aRect) {
@@ -61,10 +60,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector allowsInlineMediaPlayback = Selector.register("allowsInlineMediaPlayback");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isAllowsInlineMediaPlayback(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isAllowsInlineMediaPlaybackSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isAllowsInlineMediaPlayback(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isAllowsInlineMediaPlaybackSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/allowsInlineMediaPlayback">@property(nonatomic) BOOL allowsInlineMediaPlayback</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/allowsInlineMediaPlayback">@property(nonatomic) BOOL allowsInlineMediaPlayback</a>
      * @since Available in iOS 4.0 and later.
      */
     public boolean isAllowsInlineMediaPlayback() {
@@ -72,10 +71,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setAllowsInlineMediaPlayback$ = Selector.register("setAllowsInlineMediaPlayback:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setAllowsInlineMediaPlayback(UIWebView __self__, Selector __cmd__, boolean allowsInlineMediaPlayback);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setAllowsInlineMediaPlaybackSuper(ObjCSuper __super__, Selector __cmd__, boolean allowsInlineMediaPlayback);
+    @Bridge private native static void objc_setAllowsInlineMediaPlayback(UIWebView __self__, Selector __cmd__, boolean allowsInlineMediaPlayback);
+    @Bridge private native static void objc_setAllowsInlineMediaPlaybackSuper(ObjCSuper __super__, Selector __cmd__, boolean allowsInlineMediaPlayback);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/allowsInlineMediaPlayback">@property(nonatomic) BOOL allowsInlineMediaPlayback</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/allowsInlineMediaPlayback">@property(nonatomic) BOOL allowsInlineMediaPlayback</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setAllowsInlineMediaPlayback(boolean allowsInlineMediaPlayback) {
@@ -83,10 +82,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector canGoBack = Selector.register("canGoBack");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isCanGoBack(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isCanGoBackSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isCanGoBack(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isCanGoBackSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/canGoBack">@property(nonatomic, readonly, getter=canGoBack) BOOL canGoBack</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/canGoBack">@property(nonatomic, readonly, getter=canGoBack) BOOL canGoBack</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isCanGoBack() {
@@ -94,10 +93,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector canGoForward = Selector.register("canGoForward");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isCanGoForward(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isCanGoForwardSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isCanGoForward(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isCanGoForwardSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/canGoForward">@property(nonatomic, readonly, getter=canGoForward) BOOL canGoForward</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/canGoForward">@property(nonatomic, readonly, getter=canGoForward) BOOL canGoForward</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isCanGoForward() {
@@ -105,10 +104,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector dataDetectorTypes = Selector.register("dataDetectorTypes");
-    @Bridge(symbol = "objc_msgSend") private native static UIDataDetectorTypes objc_getDataDetectorTypes(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIDataDetectorTypes objc_getDataDetectorTypesSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIDataDetectorTypes objc_getDataDetectorTypes(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static UIDataDetectorTypes objc_getDataDetectorTypesSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/dataDetectorTypes">@property(nonatomic) UIDataDetectorTypes dataDetectorTypes</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/dataDetectorTypes">@property(nonatomic) UIDataDetectorTypes dataDetectorTypes</a>
      * @since Available in iOS 3.0 and later.
      */
     public UIDataDetectorTypes getDataDetectorTypes() {
@@ -116,10 +115,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setDataDetectorTypes$ = Selector.register("setDataDetectorTypes:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setDataDetectorTypes(UIWebView __self__, Selector __cmd__, UIDataDetectorTypes dataDetectorTypes);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setDataDetectorTypesSuper(ObjCSuper __super__, Selector __cmd__, UIDataDetectorTypes dataDetectorTypes);
+    @Bridge private native static void objc_setDataDetectorTypes(UIWebView __self__, Selector __cmd__, UIDataDetectorTypes dataDetectorTypes);
+    @Bridge private native static void objc_setDataDetectorTypesSuper(ObjCSuper __super__, Selector __cmd__, UIDataDetectorTypes dataDetectorTypes);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/dataDetectorTypes">@property(nonatomic) UIDataDetectorTypes dataDetectorTypes</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/dataDetectorTypes">@property(nonatomic) UIDataDetectorTypes dataDetectorTypes</a>
      * @since Available in iOS 3.0 and later.
      */
     public void setDataDetectorTypes(UIDataDetectorTypes dataDetectorTypes) {
@@ -127,10 +126,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector delegate = Selector.register("delegate");
-    @Bridge(symbol = "objc_msgSend") private native static UIWebViewDelegate objc_getDelegate(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIWebViewDelegate objc_getDelegateSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIWebViewDelegate objc_getDelegate(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static UIWebViewDelegate objc_getDelegateSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/delegate">@property(nonatomic, assign) id&amp;lt;UIWebViewDelegate&amp;gt; delegate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/delegate">@property(nonatomic, assign) id&amp;lt;UIWebViewDelegate&amp;gt; delegate</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIWebViewDelegate getDelegate() {
@@ -138,10 +137,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setDelegate$ = Selector.register("setDelegate:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setDelegate(UIWebView __self__, Selector __cmd__, UIWebViewDelegate delegate);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setDelegateSuper(ObjCSuper __super__, Selector __cmd__, UIWebViewDelegate delegate);
+    @Bridge private native static void objc_setDelegate(UIWebView __self__, Selector __cmd__, UIWebViewDelegate delegate);
+    @Bridge private native static void objc_setDelegateSuper(ObjCSuper __super__, Selector __cmd__, UIWebViewDelegate delegate);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/delegate">@property(nonatomic, assign) id&amp;lt;UIWebViewDelegate&amp;gt; delegate</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/delegate">@property(nonatomic, assign) id&amp;lt;UIWebViewDelegate&amp;gt; delegate</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setDelegate(UIWebViewDelegate delegate) {
@@ -149,10 +148,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector keyboardDisplayRequiresUserAction = Selector.register("keyboardDisplayRequiresUserAction");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isKeyboardDisplayRequiresUserAction(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isKeyboardDisplayRequiresUserActionSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isKeyboardDisplayRequiresUserAction(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isKeyboardDisplayRequiresUserActionSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/keyboardDisplayRequiresUserAction">@property (nonatomic) BOOL keyboardDisplayRequiresUserAction</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/keyboardDisplayRequiresUserAction">@property (nonatomic) BOOL keyboardDisplayRequiresUserAction</a>
      * @since Available in iOS 6.0 and later.
      */
     public boolean isKeyboardDisplayRequiresUserAction() {
@@ -160,10 +159,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setKeyboardDisplayRequiresUserAction$ = Selector.register("setKeyboardDisplayRequiresUserAction:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setKeyboardDisplayRequiresUserAction(UIWebView __self__, Selector __cmd__, boolean keyboardDisplayRequiresUserAction);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setKeyboardDisplayRequiresUserActionSuper(ObjCSuper __super__, Selector __cmd__, boolean keyboardDisplayRequiresUserAction);
+    @Bridge private native static void objc_setKeyboardDisplayRequiresUserAction(UIWebView __self__, Selector __cmd__, boolean keyboardDisplayRequiresUserAction);
+    @Bridge private native static void objc_setKeyboardDisplayRequiresUserActionSuper(ObjCSuper __super__, Selector __cmd__, boolean keyboardDisplayRequiresUserAction);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/keyboardDisplayRequiresUserAction">@property (nonatomic) BOOL keyboardDisplayRequiresUserAction</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/keyboardDisplayRequiresUserAction">@property (nonatomic) BOOL keyboardDisplayRequiresUserAction</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setKeyboardDisplayRequiresUserAction(boolean keyboardDisplayRequiresUserAction) {
@@ -171,10 +170,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector isLoading = Selector.register("isLoading");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isLoading(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isLoadingSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isLoading(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isLoadingSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/loading">@property(nonatomic, readonly, getter=isLoading) BOOL loading</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/loading">@property(nonatomic, readonly, getter=isLoading) BOOL loading</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isLoading() {
@@ -182,10 +181,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector mediaPlaybackAllowsAirPlay = Selector.register("mediaPlaybackAllowsAirPlay");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isMediaPlaybackAllowsAirPlay(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isMediaPlaybackAllowsAirPlaySuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isMediaPlaybackAllowsAirPlay(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isMediaPlaybackAllowsAirPlaySuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/mediaPlaybackAllowsAirPlay">@property(nonatomic) BOOL mediaPlaybackAllowsAirPlay</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/mediaPlaybackAllowsAirPlay">@property(nonatomic) BOOL mediaPlaybackAllowsAirPlay</a>
      * @since Available in iOS 5.0 and later.
      */
     public boolean isMediaPlaybackAllowsAirPlay() {
@@ -193,10 +192,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMediaPlaybackAllowsAirPlay$ = Selector.register("setMediaPlaybackAllowsAirPlay:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMediaPlaybackAllowsAirPlay(UIWebView __self__, Selector __cmd__, boolean mediaPlaybackAllowsAirPlay);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMediaPlaybackAllowsAirPlaySuper(ObjCSuper __super__, Selector __cmd__, boolean mediaPlaybackAllowsAirPlay);
+    @Bridge private native static void objc_setMediaPlaybackAllowsAirPlay(UIWebView __self__, Selector __cmd__, boolean mediaPlaybackAllowsAirPlay);
+    @Bridge private native static void objc_setMediaPlaybackAllowsAirPlaySuper(ObjCSuper __super__, Selector __cmd__, boolean mediaPlaybackAllowsAirPlay);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/mediaPlaybackAllowsAirPlay">@property(nonatomic) BOOL mediaPlaybackAllowsAirPlay</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/mediaPlaybackAllowsAirPlay">@property(nonatomic) BOOL mediaPlaybackAllowsAirPlay</a>
      * @since Available in iOS 5.0 and later.
      */
     public void setMediaPlaybackAllowsAirPlay(boolean mediaPlaybackAllowsAirPlay) {
@@ -204,10 +203,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector mediaPlaybackRequiresUserAction = Selector.register("mediaPlaybackRequiresUserAction");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isMediaPlaybackRequiresUserAction(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isMediaPlaybackRequiresUserActionSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isMediaPlaybackRequiresUserAction(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isMediaPlaybackRequiresUserActionSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/mediaPlaybackRequiresUserAction">@property(nonatomic) BOOL mediaPlaybackRequiresUserAction</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/mediaPlaybackRequiresUserAction">@property(nonatomic) BOOL mediaPlaybackRequiresUserAction</a>
      * @since Available in iOS 4.0 and later.
      */
     public boolean isMediaPlaybackRequiresUserAction() {
@@ -215,10 +214,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setMediaPlaybackRequiresUserAction$ = Selector.register("setMediaPlaybackRequiresUserAction:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setMediaPlaybackRequiresUserAction(UIWebView __self__, Selector __cmd__, boolean mediaPlaybackRequiresUserAction);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setMediaPlaybackRequiresUserActionSuper(ObjCSuper __super__, Selector __cmd__, boolean mediaPlaybackRequiresUserAction);
+    @Bridge private native static void objc_setMediaPlaybackRequiresUserAction(UIWebView __self__, Selector __cmd__, boolean mediaPlaybackRequiresUserAction);
+    @Bridge private native static void objc_setMediaPlaybackRequiresUserActionSuper(ObjCSuper __super__, Selector __cmd__, boolean mediaPlaybackRequiresUserAction);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/mediaPlaybackRequiresUserAction">@property(nonatomic) BOOL mediaPlaybackRequiresUserAction</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/mediaPlaybackRequiresUserAction">@property(nonatomic) BOOL mediaPlaybackRequiresUserAction</a>
      * @since Available in iOS 4.0 and later.
      */
     public void setMediaPlaybackRequiresUserAction(boolean mediaPlaybackRequiresUserAction) {
@@ -226,10 +225,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector request = Selector.register("request");
-    @Bridge(symbol = "objc_msgSend") private native static NSURLRequest objc_getRequest(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSURLRequest objc_getRequestSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSURLRequest objc_getRequest(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static NSURLRequest objc_getRequestSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/request">@property(nonatomic, readonly, retain) NSURLRequest *request</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/request">@property(nonatomic, readonly, retain) NSURLRequest *request</a>
      * @since Available in iOS 2.0 and later.
      */
     public NSURLRequest getRequest() {
@@ -237,10 +236,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector scalesPageToFit = Selector.register("scalesPageToFit");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isScalesPageToFit(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isScalesPageToFitSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isScalesPageToFit(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isScalesPageToFitSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/scalesPageToFit">@property(nonatomic) BOOL scalesPageToFit</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/scalesPageToFit">@property(nonatomic) BOOL scalesPageToFit</a>
      * @since Available in iOS 2.0 and later.
      */
     public boolean isScalesPageToFit() {
@@ -248,10 +247,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setScalesPageToFit$ = Selector.register("setScalesPageToFit:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setScalesPageToFit(UIWebView __self__, Selector __cmd__, boolean scalesPageToFit);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setScalesPageToFitSuper(ObjCSuper __super__, Selector __cmd__, boolean scalesPageToFit);
+    @Bridge private native static void objc_setScalesPageToFit(UIWebView __self__, Selector __cmd__, boolean scalesPageToFit);
+    @Bridge private native static void objc_setScalesPageToFitSuper(ObjCSuper __super__, Selector __cmd__, boolean scalesPageToFit);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/scalesPageToFit">@property(nonatomic) BOOL scalesPageToFit</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/scalesPageToFit">@property(nonatomic) BOOL scalesPageToFit</a>
      * @since Available in iOS 2.0 and later.
      */
     public void setScalesPageToFit(boolean scalesPageToFit) {
@@ -259,10 +258,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector scrollView = Selector.register("scrollView");
-    @Bridge(symbol = "objc_msgSend") private native static UIScrollView objc_getScrollView(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIScrollView objc_getScrollViewSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static UIScrollView objc_getScrollView(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static UIScrollView objc_getScrollViewSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/scrollView">@property(nonatomic, readonly, retain) UIScrollView *scrollView</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/scrollView">@property(nonatomic, readonly, retain) UIScrollView *scrollView</a>
      * @since Available in iOS 5.0 and later.
      */
     public UIScrollView getScrollView() {
@@ -270,10 +269,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector suppressesIncrementalRendering = Selector.register("suppressesIncrementalRendering");
-    @Bridge(symbol = "objc_msgSend") private native static boolean objc_isSuppressesIncrementalRendering(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static boolean objc_isSuppressesIncrementalRenderingSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static boolean objc_isSuppressesIncrementalRendering(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static boolean objc_isSuppressesIncrementalRenderingSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/suppressesIncrementalRendering">@property(nonatomic) BOOL suppressesIncrementalRendering</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/suppressesIncrementalRendering">@property(nonatomic) BOOL suppressesIncrementalRendering</a>
      * @since Available in iOS 6.0 and later.
      */
     public boolean isSuppressesIncrementalRendering() {
@@ -281,10 +280,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setSuppressesIncrementalRendering$ = Selector.register("setSuppressesIncrementalRendering:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setSuppressesIncrementalRendering(UIWebView __self__, Selector __cmd__, boolean suppressesIncrementalRendering);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setSuppressesIncrementalRenderingSuper(ObjCSuper __super__, Selector __cmd__, boolean suppressesIncrementalRendering);
+    @Bridge private native static void objc_setSuppressesIncrementalRendering(UIWebView __self__, Selector __cmd__, boolean suppressesIncrementalRendering);
+    @Bridge private native static void objc_setSuppressesIncrementalRenderingSuper(ObjCSuper __super__, Selector __cmd__, boolean suppressesIncrementalRendering);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/suppressesIncrementalRendering">@property(nonatomic) BOOL suppressesIncrementalRendering</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instp/UIWebView/suppressesIncrementalRendering">@property(nonatomic) BOOL suppressesIncrementalRendering</a>
      * @since Available in iOS 6.0 and later.
      */
     public void setSuppressesIncrementalRendering(boolean suppressesIncrementalRendering) {
@@ -294,10 +293,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector stringByEvaluatingJavaScriptFromString$ = Selector.register("stringByEvaluatingJavaScriptFromString:");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_evaluateJavaScript(UIWebView __self__, Selector __cmd__, String script);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_evaluateJavaScriptSuper(ObjCSuper __super__, Selector __cmd__, String script);
+    @Bridge private native static String objc_evaluateJavaScript(UIWebView __self__, Selector __cmd__, String script);
+    @Bridge private native static String objc_evaluateJavaScriptSuper(ObjCSuper __super__, Selector __cmd__, String script);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/stringByEvaluatingJavaScriptFromString:">- (NSString *)stringByEvaluatingJavaScriptFromString:(NSString *)script</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/stringByEvaluatingJavaScriptFromString:">- (NSString *)stringByEvaluatingJavaScriptFromString:(NSString *)script</a>
      * @since Available in iOS 2.0 and later.
      */
     public String evaluateJavaScript(String script) {
@@ -305,10 +304,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector goBack = Selector.register("goBack");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_goBack(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_goBackSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_goBack(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static void objc_goBackSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/goBack">- (void)goBack</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/goBack">- (void)goBack</a>
      * @since Available in iOS 2.0 and later.
      */
     public void goBack() {
@@ -316,10 +315,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector goForward = Selector.register("goForward");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_goForward(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_goForwardSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_goForward(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static void objc_goForwardSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/goForward">- (void)goForward</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/goForward">- (void)goForward</a>
      * @since Available in iOS 2.0 and later.
      */
     public void goForward() {
@@ -327,10 +326,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector loadData$MIMEType$textEncodingName$baseURL$ = Selector.register("loadData:MIMEType:textEncodingName:baseURL:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_loadData(UIWebView __self__, Selector __cmd__, NSData data, String MIMEType, String encodingName, NSURL baseURL);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_loadDataSuper(ObjCSuper __super__, Selector __cmd__, NSData data, String MIMEType, String encodingName, NSURL baseURL);
+    @Bridge private native static void objc_loadData(UIWebView __self__, Selector __cmd__, NSData data, String MIMEType, String encodingName, NSURL baseURL);
+    @Bridge private native static void objc_loadDataSuper(ObjCSuper __super__, Selector __cmd__, NSData data, String MIMEType, String encodingName, NSURL baseURL);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/loadData:MIMEType:textEncodingName:baseURL:">- (void)loadData:(NSData *)data MIMEType:(NSString *)MIMEType textEncodingName:(NSString *)encodingName baseURL:(NSURL *)baseURL</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/loadData:MIMEType:textEncodingName:baseURL:">- (void)loadData:(NSData *)data MIMEType:(NSString *)MIMEType textEncodingName:(NSString *)encodingName baseURL:(NSURL *)baseURL</a>
      * @since Available in iOS 2.0 and later.
      */
     public void loadData(NSData data, String MIMEType, String encodingName, NSURL baseURL) {
@@ -338,10 +337,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector loadHTMLString$baseURL$ = Selector.register("loadHTMLString:baseURL:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_loadHTML(UIWebView __self__, Selector __cmd__, String string, NSURL baseURL);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_loadHTMLSuper(ObjCSuper __super__, Selector __cmd__, String string, NSURL baseURL);
+    @Bridge private native static void objc_loadHTML(UIWebView __self__, Selector __cmd__, String string, NSURL baseURL);
+    @Bridge private native static void objc_loadHTMLSuper(ObjCSuper __super__, Selector __cmd__, String string, NSURL baseURL);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/loadHTMLString:baseURL:">- (void)loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/loadHTMLString:baseURL:">- (void)loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL</a>
      * @since Available in iOS 2.0 and later.
      */
     public void loadHTML(String string, NSURL baseURL) {
@@ -349,10 +348,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector loadRequest$ = Selector.register("loadRequest:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_loadRequest(UIWebView __self__, Selector __cmd__, NSURLRequest request);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_loadRequestSuper(ObjCSuper __super__, Selector __cmd__, NSURLRequest request);
+    @Bridge private native static void objc_loadRequest(UIWebView __self__, Selector __cmd__, NSURLRequest request);
+    @Bridge private native static void objc_loadRequestSuper(ObjCSuper __super__, Selector __cmd__, NSURLRequest request);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/loadRequest:">- (void)loadRequest:(NSURLRequest *)request</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/loadRequest:">- (void)loadRequest:(NSURLRequest *)request</a>
      * @since Available in iOS 2.0 and later.
      */
     public void loadRequest(NSURLRequest request) {
@@ -360,10 +359,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector reload = Selector.register("reload");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_reload(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_reloadSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_reload(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static void objc_reloadSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/reload">- (void)reload</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/reload">- (void)reload</a>
      * @since Available in iOS 2.0 and later.
      */
     public void reload() {
@@ -371,10 +370,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector stopLoading = Selector.register("stopLoading");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_stopLoading(UIWebView __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_stopLoadingSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static void objc_stopLoading(UIWebView __self__, Selector __cmd__);
+    @Bridge private native static void objc_stopLoadingSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/stopLoading">- (void)stopLoading</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIWebView_Class/Reference/Reference.html#//apple_ref/occ/instm/UIWebView/stopLoading">- (void)stopLoading</a>
      * @since Available in iOS 2.0 and later.
      */
     public void stopLoading() {

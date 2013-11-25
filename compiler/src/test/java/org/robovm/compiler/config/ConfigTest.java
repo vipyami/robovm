@@ -58,8 +58,33 @@ public class ConfigTest {
         assertEquals(Arrays.asList(new File(wd, "foo1.jar"), new File(tmp, "foo2.jar")), config.getClasspath());
         assertEquals(Arrays.asList("Foundation", "AppKit"), config.getFrameworks());
         assertEquals(Arrays.asList("dl", "/tmp/wd/libs/libmy.a", "/tmp/wd/libs/foo.o", "/usr/lib/libbar.a"), config.getLibs());
-        assertEquals(Arrays.asList(new File("/tmp/wd/resources"), new File("/usr/share/resources")), config.getResources());
-        assertEquals(Arrays.asList("javax.**.*"), config.getRoots());
+        assertEquals(Arrays.asList(
+                new Resource(new File(wd, "resources")), 
+                new Resource(new File("/usr/share/resources")),
+                new Resource(null, null).include("data/**/*"),
+                new Resource(null, null).include("videos/**/*.avi"),
+                new Resource(new File(wd, "resources"), "data")
+                    .include("**/*.png")
+                    .exclude("**/foo.png")
+                    .flatten(true)
+                ), config.getResources());
+        assertEquals(Arrays.asList("javax.**.*"), config.getForceLinkClasses());
+        assertEquals(OS.macosx, config.getOs());
+        assertEquals(Arch.x86, config.getArch());
+    }
+    
+    @Test
+    public void testReadOldConsole() throws Exception {
+        Config.Builder builder = new Config.Builder();
+        builder.read(new InputStreamReader(getClass().getResourceAsStream("ConfigTest.old.console.xml"), "utf-8"), wd);
+        Config config = builder.config;
+        assertEquals(Arrays.asList(new File(wd, "foo1.jar"), new File(tmp, "foo2.jar")), config.getClasspath());
+        assertEquals(Arrays.asList("Foundation", "AppKit"), config.getFrameworks());
+        assertEquals(Arrays.asList("dl", "/tmp/wd/libs/libmy.a", "/tmp/wd/libs/foo.o", "/usr/lib/libbar.a"), config.getLibs());
+        assertEquals(Arrays.asList(new Resource(new File("/tmp/wd/resources")), 
+                new Resource(new File("/usr/share/resources"))),
+                config.getResources());
+        assertEquals(Arrays.asList("javax.**.*"), config.getForceLinkClasses());
         assertEquals(OS.macosx, config.getOs());
         assertEquals(Arch.x86, config.getArch());
     }
@@ -75,9 +100,16 @@ public class ConfigTest {
         builder.addLib("libs/libmy.a");
         builder.addLib("libs/foo.o");
         builder.addLib("/usr/lib/libbar.a");
-        builder.addResource(new File("resources"));
-        builder.addResource(new File("/usr/share/resources"));
-        builder.addRoot("javax.**.*");
+        builder.addResource(new Resource(new File("/tmp/wd/resources")));
+        builder.addResource(new Resource(new File("/usr/share/resources")));
+        builder.addResource(new Resource(new File("/tmp/wd"), null).include("data/**/*"));
+        builder.addResource(new Resource(null, null).include("videos/**/*.avi"));
+        builder.addResource(
+                new Resource(new File("/tmp/wd/resources"), "data")
+                    .include("**/*.png")
+                    .exclude("**/foo.png")
+                    .flatten(true));
+        builder.addForceLinkClass("javax.**.*");
         builder.os(OS.macosx);
         builder.arch(Arch.x86);
         
@@ -92,7 +124,6 @@ public class ConfigTest {
         builder.read(new InputStreamReader(getClass().getResourceAsStream("ConfigTest.ios.xml"), "utf-8"), wd);
         Config config = builder.config;
         assertEquals("6.1", config.getIosSdkVersion());
-        assertEquals("FooBar", config.getIosSignIdentity());
         assertEquals(new File(wd, "Info.plist"), config.getIosInfoPList());
         assertEquals(new File(wd, "entitlements.plist"), config.getIosEntitlementsPList());
         assertEquals(new File(tmp, "resourcerules.plist"), config.getIosResourceRulesPList());
@@ -105,7 +136,6 @@ public class ConfigTest {
         builder.iosInfoPList(new File("Info.plist"));
         builder.iosEntitlementsPList(new File("entitlements.plist"));
         builder.iosResourceRulesPList(new File(tmp, "resourcerules.plist"));
-        builder.iosSignIdentity("FooBar");
         builder.targetType(TargetType.ios);
         
         StringWriter out = new StringWriter();

@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html">UIPrintPageRenderer Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html">UIPrintPageRenderer Class Reference</a>
  *   @since Available in iOS 4.2 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIPrintPageRenderer /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIPrintPageRenderer /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector footerHeight = Selector.register("footerHeight");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getFooterHeight(UIPrintPageRenderer __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getFooterHeightSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getFooterHeight(UIPrintPageRenderer __self__, Selector __cmd__);
+    @Bridge private native static float objc_getFooterHeightSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/footerHeight">@property CGFloat footerHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/footerHeight">@property CGFloat footerHeight</a>
      * @since Available in iOS 4.2 and later.
      */
     public float getFooterHeight() {
@@ -69,10 +68,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setFooterHeight$ = Selector.register("setFooterHeight:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setFooterHeight(UIPrintPageRenderer __self__, Selector __cmd__, float footerHeight);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setFooterHeightSuper(ObjCSuper __super__, Selector __cmd__, float footerHeight);
+    @Bridge private native static void objc_setFooterHeight(UIPrintPageRenderer __self__, Selector __cmd__, float footerHeight);
+    @Bridge private native static void objc_setFooterHeightSuper(ObjCSuper __super__, Selector __cmd__, float footerHeight);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/footerHeight">@property CGFloat footerHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/footerHeight">@property CGFloat footerHeight</a>
      * @since Available in iOS 4.2 and later.
      */
     public void setFooterHeight(float footerHeight) {
@@ -80,10 +79,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector headerHeight = Selector.register("headerHeight");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getHeaderHeight(UIPrintPageRenderer __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getHeaderHeightSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getHeaderHeight(UIPrintPageRenderer __self__, Selector __cmd__);
+    @Bridge private native static float objc_getHeaderHeightSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/headerHeight">@property CGFloat headerHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/headerHeight">@property CGFloat headerHeight</a>
      * @since Available in iOS 4.2 and later.
      */
     public float getHeaderHeight() {
@@ -91,10 +90,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setHeaderHeight$ = Selector.register("setHeaderHeight:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setHeaderHeight(UIPrintPageRenderer __self__, Selector __cmd__, float headerHeight);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setHeaderHeightSuper(ObjCSuper __super__, Selector __cmd__, float headerHeight);
+    @Bridge private native static void objc_setHeaderHeight(UIPrintPageRenderer __self__, Selector __cmd__, float headerHeight);
+    @Bridge private native static void objc_setHeaderHeightSuper(ObjCSuper __super__, Selector __cmd__, float headerHeight);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/headerHeight">@property CGFloat headerHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/headerHeight">@property CGFloat headerHeight</a>
      * @since Available in iOS 4.2 and later.
      */
     public void setHeaderHeight(float headerHeight) {
@@ -102,21 +101,21 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector paperRect = Selector.register("paperRect");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getPaperRect_stret(@StructRet CGRect __ret__, UIPrintPageRenderer __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getPaperRectSuper_stret(@StructRet CGRect __ret__, ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static @ByVal CGRect objc_getPaperRect(UIPrintPageRenderer __self__, Selector __cmd__);
+    @Bridge private native static @ByVal CGRect objc_getPaperRectSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/paperRect">@property(readonly) CGRect paperRect</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/paperRect">@property(readonly) CGRect paperRect</a>
      * @since Available in iOS 4.2 and later.
      */
     public CGRect getPaperRect() {
-        CGRect __ret__ = new CGRect(); if (customClass) { objc_getPaperRectSuper_stret(__ret__, getSuper(), paperRect); } else { objc_getPaperRect_stret(__ret__, this, paperRect); } return __ret__;
+        if (customClass) { return objc_getPaperRectSuper(getSuper(), paperRect); } else { return objc_getPaperRect(this, paperRect); }
     }
     
     private static final Selector printFormatters = Selector.register("printFormatters");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getPrintFormatters(UIPrintPageRenderer __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_getPrintFormattersSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getPrintFormatters(UIPrintPageRenderer __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getPrintFormattersSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/printFormatters">@property(copy) NSArray *printFormatters</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/printFormatters">@property(copy) NSArray *printFormatters</a>
      * @since Available in iOS 4.2 and later.
      */
     public NSArray getPrintFormatters() {
@@ -124,10 +123,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setPrintFormatters$ = Selector.register("setPrintFormatters:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setPrintFormatters(UIPrintPageRenderer __self__, Selector __cmd__, NSArray printFormatters);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setPrintFormattersSuper(ObjCSuper __super__, Selector __cmd__, NSArray printFormatters);
+    @Bridge private native static void objc_setPrintFormatters(UIPrintPageRenderer __self__, Selector __cmd__, NSArray printFormatters);
+    @Bridge private native static void objc_setPrintFormattersSuper(ObjCSuper __super__, Selector __cmd__, NSArray printFormatters);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/printFormatters">@property(copy) NSArray *printFormatters</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/printFormatters">@property(copy) NSArray *printFormatters</a>
      * @since Available in iOS 4.2 and later.
      */
     public void setPrintFormatters(NSArray printFormatters) {
@@ -135,23 +134,23 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector printableRect = Selector.register("printableRect");
-    @Bridge(symbol = "objc_msgSend_stret") private native static void objc_getPrintableRect_stret(@StructRet CGRect __ret__, UIPrintPageRenderer __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper_stret") private native static void objc_getPrintableRectSuper_stret(@StructRet CGRect __ret__, ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static @ByVal CGRect objc_getPrintableRect(UIPrintPageRenderer __self__, Selector __cmd__);
+    @Bridge private native static @ByVal CGRect objc_getPrintableRectSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/printableRect">@property(readonly) CGRect printableRect</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIPrintPageRenderer/printableRect">@property(readonly) CGRect printableRect</a>
      * @since Available in iOS 4.2 and later.
      */
     public CGRect getPrintableRect() {
-        CGRect __ret__ = new CGRect(); if (customClass) { objc_getPrintableRectSuper_stret(__ret__, getSuper(), printableRect); } else { objc_getPrintableRect_stret(__ret__, this, printableRect); } return __ret__;
+        if (customClass) { return objc_getPrintableRectSuper(getSuper(), printableRect); } else { return objc_getPrintableRect(this, printableRect); }
     }
     /*</properties>*/
     /*<methods>*/
     
     private static final Selector addPrintFormatter$startingAtPageAtIndex$ = Selector.register("addPrintFormatter:startingAtPageAtIndex:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_addPrintFormatter(UIPrintPageRenderer __self__, Selector __cmd__, UIPrintFormatter formatter, int pageIndex);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_addPrintFormatterSuper(ObjCSuper __super__, Selector __cmd__, UIPrintFormatter formatter, int pageIndex);
+    @Bridge private native static void objc_addPrintFormatter(UIPrintPageRenderer __self__, Selector __cmd__, UIPrintFormatter formatter, int pageIndex);
+    @Bridge private native static void objc_addPrintFormatterSuper(ObjCSuper __super__, Selector __cmd__, UIPrintFormatter formatter, int pageIndex);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/addPrintFormatter:startingAtPageAtIndex:">- (void)addPrintFormatter:(UIPrintFormatter *)formatter startingAtPageAtIndex:(NSInteger)pageIndex</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/addPrintFormatter:startingAtPageAtIndex:">- (void)addPrintFormatter:(UIPrintFormatter *)formatter startingAtPageAtIndex:(NSInteger)pageIndex</a>
      * @since Available in iOS 4.2 and later.
      */
     public void addPrintFormatter(UIPrintFormatter formatter, int pageIndex) {
@@ -159,10 +158,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawContentForPageAtIndex$inRect$ = Selector.register("drawContentForPageAtIndex:inRect:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_drawContent(UIPrintPageRenderer __self__, Selector __cmd__, int index, @ByVal CGRect contentRect);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawContentSuper(ObjCSuper __super__, Selector __cmd__, int index, @ByVal CGRect contentRect);
+    @Bridge private native static void objc_drawContent(UIPrintPageRenderer __self__, Selector __cmd__, int index, @ByVal CGRect contentRect);
+    @Bridge private native static void objc_drawContentSuper(ObjCSuper __super__, Selector __cmd__, int index, @ByVal CGRect contentRect);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawContentForPageAtIndex:inRect:">- (void)drawContentForPageAtIndex:(NSInteger)index inRect:(CGRect)contentRect</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawContentForPageAtIndex:inRect:">- (void)drawContentForPageAtIndex:(NSInteger)index inRect:(CGRect)contentRect</a>
      * @since Available in iOS 4.2 and later.
      */
     public void drawContent(int index, CGRect contentRect) {
@@ -170,10 +169,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawFooterForPageAtIndex$inRect$ = Selector.register("drawFooterForPageAtIndex:inRect:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_drawFooter(UIPrintPageRenderer __self__, Selector __cmd__, int index, @ByVal CGRect footerRect);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawFooterSuper(ObjCSuper __super__, Selector __cmd__, int index, @ByVal CGRect footerRect);
+    @Bridge private native static void objc_drawFooter(UIPrintPageRenderer __self__, Selector __cmd__, int index, @ByVal CGRect footerRect);
+    @Bridge private native static void objc_drawFooterSuper(ObjCSuper __super__, Selector __cmd__, int index, @ByVal CGRect footerRect);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawFooterForPageAtIndex:inRect:">- (void)drawFooterForPageAtIndex:(NSInteger)index inRect:(CGRect)footerRect</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawFooterForPageAtIndex:inRect:">- (void)drawFooterForPageAtIndex:(NSInteger)index inRect:(CGRect)footerRect</a>
      * @since Available in iOS 4.2 and later.
      */
     public void drawFooter(int index, CGRect footerRect) {
@@ -181,10 +180,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawHeaderForPageAtIndex$inRect$ = Selector.register("drawHeaderForPageAtIndex:inRect:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_drawHeader(UIPrintPageRenderer __self__, Selector __cmd__, int index, @ByVal CGRect headerRect);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawHeaderSuper(ObjCSuper __super__, Selector __cmd__, int index, @ByVal CGRect headerRect);
+    @Bridge private native static void objc_drawHeader(UIPrintPageRenderer __self__, Selector __cmd__, int index, @ByVal CGRect headerRect);
+    @Bridge private native static void objc_drawHeaderSuper(ObjCSuper __super__, Selector __cmd__, int index, @ByVal CGRect headerRect);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawHeaderForPageAtIndex:inRect:">- (void)drawHeaderForPageAtIndex:(NSInteger)index inRect:(CGRect)headerRect</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawHeaderForPageAtIndex:inRect:">- (void)drawHeaderForPageAtIndex:(NSInteger)index inRect:(CGRect)headerRect</a>
      * @since Available in iOS 4.2 and later.
      */
     public void drawHeader(int index, CGRect headerRect) {
@@ -192,10 +191,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawPageAtIndex$inRect$ = Selector.register("drawPageAtIndex:inRect:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_drawPage(UIPrintPageRenderer __self__, Selector __cmd__, int index, @ByVal CGRect pageRect);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawPageSuper(ObjCSuper __super__, Selector __cmd__, int index, @ByVal CGRect pageRect);
+    @Bridge private native static void objc_drawPage(UIPrintPageRenderer __self__, Selector __cmd__, int index, @ByVal CGRect pageRect);
+    @Bridge private native static void objc_drawPageSuper(ObjCSuper __super__, Selector __cmd__, int index, @ByVal CGRect pageRect);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawPageAtIndex:inRect:">- (void)drawPageAtIndex:(NSInteger)index inRect:(CGRect)pageRect</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawPageAtIndex:inRect:">- (void)drawPageAtIndex:(NSInteger)index inRect:(CGRect)pageRect</a>
      * @since Available in iOS 4.2 and later.
      */
     public void drawPage(int index, CGRect pageRect) {
@@ -203,10 +202,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector drawPrintFormatter$forPageAtIndex$ = Selector.register("drawPrintFormatter:forPageAtIndex:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_drawPrintFormatter(UIPrintPageRenderer __self__, Selector __cmd__, UIPrintFormatter printFormatter, int index);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_drawPrintFormatterSuper(ObjCSuper __super__, Selector __cmd__, UIPrintFormatter printFormatter, int index);
+    @Bridge private native static void objc_drawPrintFormatter(UIPrintPageRenderer __self__, Selector __cmd__, UIPrintFormatter printFormatter, int index);
+    @Bridge private native static void objc_drawPrintFormatterSuper(ObjCSuper __super__, Selector __cmd__, UIPrintFormatter printFormatter, int index);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawPrintFormatter:forPageAtIndex:">- (void)drawPrintFormatter:(UIPrintFormatter *)printFormatter forPageAtIndex:(NSInteger)index</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/drawPrintFormatter:forPageAtIndex:">- (void)drawPrintFormatter:(UIPrintFormatter *)printFormatter forPageAtIndex:(NSInteger)index</a>
      * @since Available in iOS 4.2 and later.
      */
     public void drawPrintFormatter(UIPrintFormatter printFormatter, int index) {
@@ -214,10 +213,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector numberOfPages = Selector.register("numberOfPages");
-    @Bridge(symbol = "objc_msgSend") private native static int objc_getNumberOfPages(UIPrintPageRenderer __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static int objc_getNumberOfPagesSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static int objc_getNumberOfPages(UIPrintPageRenderer __self__, Selector __cmd__);
+    @Bridge private native static int objc_getNumberOfPagesSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/numberOfPages">- (NSInteger)numberOfPages</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/numberOfPages">- (NSInteger)numberOfPages</a>
      * @since Available in iOS 4.2 and later.
      */
     public int getNumberOfPages() {
@@ -225,10 +224,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector printFormattersForPageAtIndex$ = Selector.register("printFormattersForPageAtIndex:");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getPrintFormatters(UIPrintPageRenderer __self__, Selector __cmd__, int pageIndex);
-    @Bridge(symbol = "objc_msgSendSuper") private native static NSArray objc_getPrintFormattersSuper(ObjCSuper __super__, Selector __cmd__, int pageIndex);
+    @Bridge private native static NSArray objc_getPrintFormatters(UIPrintPageRenderer __self__, Selector __cmd__, int pageIndex);
+    @Bridge private native static NSArray objc_getPrintFormattersSuper(ObjCSuper __super__, Selector __cmd__, int pageIndex);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/printFormattersForPageAtIndex:">- (NSArray *)printFormattersForPageAtIndex:(NSInteger)pageIndex</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/printFormattersForPageAtIndex:">- (NSArray *)printFormattersForPageAtIndex:(NSInteger)pageIndex</a>
      * @since Available in iOS 4.2 and later.
      */
     public NSArray getPrintFormatters(int pageIndex) {
@@ -236,10 +235,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector prepareForDrawingPages$ = Selector.register("prepareForDrawingPages:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_prepareForDrawingPages(UIPrintPageRenderer __self__, Selector __cmd__, @ByVal NSRange range);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_prepareForDrawingPagesSuper(ObjCSuper __super__, Selector __cmd__, @ByVal NSRange range);
+    @Bridge private native static void objc_prepareForDrawingPages(UIPrintPageRenderer __self__, Selector __cmd__, @ByVal NSRange range);
+    @Bridge private native static void objc_prepareForDrawingPagesSuper(ObjCSuper __super__, Selector __cmd__, @ByVal NSRange range);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/prepareForDrawingPages:">- (void)prepareForDrawingPages:(NSRange)range</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../../../iPhone/Reference/UIPrintPageRenderer_Class/Reference/Reference.html#//apple_ref/occ/instm/UIPrintPageRenderer/prepareForDrawingPages:">- (void)prepareForDrawingPages:(NSRange)range</a>
      * @since Available in iOS 4.2 and later.
      */
     public void prepareForDrawingPages(NSRange range) {

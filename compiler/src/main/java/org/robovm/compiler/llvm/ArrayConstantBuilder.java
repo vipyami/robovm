@@ -39,7 +39,21 @@ public class ArrayConstantBuilder {
         values.add(v);
         return this;
     }
-    
+
+    public ArrayConstantBuilder add(List<? extends Value> vs) {
+        for (Value v : vs) {
+            add(v);
+        }
+        return this;
+    }
+
+    public ArrayConstantBuilder add(int ... values) {
+        for (int v : values) {
+            add(new IntegerConstant(v));
+        }
+        return this;
+    }
+
     public ArrayConstant build() {
         return new ArrayConstant(new ArrayType(values.size(), type), 
                 values.toArray(new Value[values.size()]));

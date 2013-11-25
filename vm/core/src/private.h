@@ -25,6 +25,8 @@
 typedef void (*CleanupHandler)(Env*, Object*);
 
 extern jboolean initGC(Options* options);
+extern void gcRegisterCurrentThread();
+extern void gcUnregisterCurrentThread();
 extern void gcAddRoot(void* ptr);
 extern void gcAddRoots(void* start, void* end);
 extern uint32_t gcNewDirectBitmapKind(uint32_t bitmap);
@@ -58,6 +60,7 @@ extern CallStack* captureCallStackFromFrame(Env* env, Frame* fp);
 extern void dumpThreadStackTrace(Env* env, Thread* thread, CallStack* callStack);
 
 /* class.c */
+extern uint32_t nextClassId();
 extern ProxyMethod* addProxyMethod(Env* env, Class* clazz, Method* proxiedMethod, jint access, void* impl);
 
 /* call0-<os>-<arch>.s and proxy0-<os>-<arch>.s */

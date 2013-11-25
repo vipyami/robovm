@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html">UIFont Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html">UIFont Class Reference</a>
  *   @since Available in iOS 2.0 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIFont /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIFont /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector ascender = Selector.register("ascender");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getAscender(UIFont __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getAscenderSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getAscender(UIFont __self__, Selector __cmd__);
+    @Bridge private native static float objc_getAscenderSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/ascender">@property(nonatomic, readonly) CGFloat ascender</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/ascender">@property(nonatomic, readonly) CGFloat ascender</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getAscender() {
@@ -69,10 +68,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector capHeight = Selector.register("capHeight");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getCapHeight(UIFont __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getCapHeightSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getCapHeight(UIFont __self__, Selector __cmd__);
+    @Bridge private native static float objc_getCapHeightSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/capHeight">@property(nonatomic, readonly) CGFloat capHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/capHeight">@property(nonatomic, readonly) CGFloat capHeight</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getCapHeight() {
@@ -80,10 +79,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector descender = Selector.register("descender");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getDescender(UIFont __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getDescenderSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getDescender(UIFont __self__, Selector __cmd__);
+    @Bridge private native static float objc_getDescenderSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/descender">@property(nonatomic, readonly) CGFloat descender</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/descender">@property(nonatomic, readonly) CGFloat descender</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getDescender() {
@@ -91,10 +90,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector familyName = Selector.register("familyName");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getFamilyName(UIFont __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getFamilyNameSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getFamilyName(UIFont __self__, Selector __cmd__);
+    @Bridge private native static String objc_getFamilyNameSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/familyName">@property(nonatomic, readonly, retain) NSString *familyName</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/familyName">@property(nonatomic, readonly, retain) NSString *familyName</a>
      * @since Available in iOS 2.0 and later.
      */
     public String getFamilyName() {
@@ -102,10 +101,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector fontName = Selector.register("fontName");
-    @Bridge(symbol = "objc_msgSend") private native static String objc_getFontName(UIFont __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static String objc_getFontNameSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static String objc_getFontName(UIFont __self__, Selector __cmd__);
+    @Bridge private native static String objc_getFontNameSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/fontName">@property(nonatomic, readonly, retain) NSString *fontName</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/fontName">@property(nonatomic, readonly, retain) NSString *fontName</a>
      * @since Available in iOS 2.0 and later.
      */
     public String getFontName() {
@@ -113,10 +112,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector lineHeight = Selector.register("lineHeight");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getLineHeight(UIFont __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getLineHeightSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getLineHeight(UIFont __self__, Selector __cmd__);
+    @Bridge private native static float objc_getLineHeightSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/lineHeight">@property(nonatomic,readonly) CGFloat lineHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/lineHeight">@property(nonatomic,readonly) CGFloat lineHeight</a>
      * @since Available in iOS 4.0 and later.
      */
     public float getLineHeight() {
@@ -124,10 +123,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector pointSize = Selector.register("pointSize");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getPointSize(UIFont __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getPointSizeSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getPointSize(UIFont __self__, Selector __cmd__);
+    @Bridge private native static float objc_getPointSizeSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/pointSize">@property(nonatomic, readonly) CGFloat pointSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/pointSize">@property(nonatomic, readonly) CGFloat pointSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getPointSize() {
@@ -135,10 +134,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector xHeight = Selector.register("xHeight");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getXHeight(UIFont __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getXHeightSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getXHeight(UIFont __self__, Selector __cmd__);
+    @Bridge private native static float objc_getXHeightSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/xHeight">@property(nonatomic, readonly) CGFloat xHeight</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instp/UIFont/xHeight">@property(nonatomic, readonly) CGFloat xHeight</a>
      * @since Available in iOS 2.0 and later.
      */
     public float getXHeight() {
@@ -148,9 +147,9 @@ import org.robovm.rt.bro.ptr.*;
     /*<methods>*/
     
     private static final Selector boldSystemFontOfSize$ = Selector.register("boldSystemFontOfSize:");
-    @Bridge(symbol = "objc_msgSend") private native static UIFont objc_getBoldSystemFont(ObjCClass __self__, Selector __cmd__, float fontSize);
+    @Bridge private native static UIFont objc_getBoldSystemFont(ObjCClass __self__, Selector __cmd__, float fontSize);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/boldSystemFontOfSize:">+ (UIFont *)boldSystemFontOfSize:(CGFloat)fontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/boldSystemFontOfSize:">+ (UIFont *)boldSystemFontOfSize:(CGFloat)fontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public static UIFont getBoldSystemFont(float fontSize) {
@@ -158,9 +157,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector buttonFontSize = Selector.register("buttonFontSize");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getButtonFontSize(ObjCClass __self__, Selector __cmd__);
+    @Bridge private native static float objc_getButtonFontSize(ObjCClass __self__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/buttonFontSize">+ (CGFloat)buttonFontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/buttonFontSize">+ (CGFloat)buttonFontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public static float getButtonFontSize() {
@@ -168,9 +167,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector familyNames = Selector.register("familyNames");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getFamilyNames(ObjCClass __self__, Selector __cmd__);
+    @Bridge private native static NSArray objc_getFamilyNames(ObjCClass __self__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/familyNames">+ (NSArray *)familyNames</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/familyNames">+ (NSArray *)familyNames</a>
      * @since Available in iOS 2.0 and later.
      */
     public static NSArray getFamilyNames() {
@@ -178,9 +177,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector fontWithName$size$ = Selector.register("fontWithName:size:");
-    @Bridge(symbol = "objc_msgSend") private native static UIFont objc_getFont(ObjCClass __self__, Selector __cmd__, String fontName, float fontSize);
+    @Bridge private native static UIFont objc_getFont(ObjCClass __self__, Selector __cmd__, String fontName, float fontSize);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/fontWithName:size:">+ (UIFont *)fontWithName:(NSString *)fontName size:(CGFloat)fontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/fontWithName:size:">+ (UIFont *)fontWithName:(NSString *)fontName size:(CGFloat)fontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public static UIFont getFont(String fontName, float fontSize) {
@@ -188,9 +187,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector fontNamesForFamilyName$ = Selector.register("fontNamesForFamilyName:");
-    @Bridge(symbol = "objc_msgSend") private native static NSArray objc_getFontNamesForFamilyName(ObjCClass __self__, Selector __cmd__, String familyName);
+    @Bridge private native static NSArray objc_getFontNamesForFamilyName(ObjCClass __self__, Selector __cmd__, String familyName);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/fontNamesForFamilyName:">+ (NSArray *)fontNamesForFamilyName:(NSString *)familyName</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/fontNamesForFamilyName:">+ (NSArray *)fontNamesForFamilyName:(NSString *)familyName</a>
      * @since Available in iOS 2.0 and later.
      */
     public static NSArray getFontNamesForFamilyName(String familyName) {
@@ -198,9 +197,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector italicSystemFontOfSize$ = Selector.register("italicSystemFontOfSize:");
-    @Bridge(symbol = "objc_msgSend") private native static UIFont objc_getItalicSystemFont(ObjCClass __self__, Selector __cmd__, float fontSize);
+    @Bridge private native static UIFont objc_getItalicSystemFont(ObjCClass __self__, Selector __cmd__, float fontSize);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/italicSystemFontOfSize:">+ (UIFont *)italicSystemFontOfSize:(CGFloat)fontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/italicSystemFontOfSize:">+ (UIFont *)italicSystemFontOfSize:(CGFloat)fontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public static UIFont getItalicSystemFont(float fontSize) {
@@ -208,9 +207,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector labelFontSize = Selector.register("labelFontSize");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getLabelFontSize(ObjCClass __self__, Selector __cmd__);
+    @Bridge private native static float objc_getLabelFontSize(ObjCClass __self__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/labelFontSize">+ (CGFloat)labelFontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/labelFontSize">+ (CGFloat)labelFontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public static float getLabelFontSize() {
@@ -218,9 +217,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector smallSystemFontSize = Selector.register("smallSystemFontSize");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getSmallSystemFontSize(ObjCClass __self__, Selector __cmd__);
+    @Bridge private native static float objc_getSmallSystemFontSize(ObjCClass __self__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/smallSystemFontSize">+ (CGFloat)smallSystemFontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/smallSystemFontSize">+ (CGFloat)smallSystemFontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public static float getSmallSystemFontSize() {
@@ -228,9 +227,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector systemFontOfSize$ = Selector.register("systemFontOfSize:");
-    @Bridge(symbol = "objc_msgSend") private native static UIFont objc_getSystemFont(ObjCClass __self__, Selector __cmd__, float fontSize);
+    @Bridge private native static UIFont objc_getSystemFont(ObjCClass __self__, Selector __cmd__, float fontSize);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/systemFontOfSize:">+ (UIFont *)systemFontOfSize:(CGFloat)fontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/systemFontOfSize:">+ (UIFont *)systemFontOfSize:(CGFloat)fontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public static UIFont getSystemFont(float fontSize) {
@@ -238,9 +237,9 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector systemFontSize = Selector.register("systemFontSize");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getSystemFontSize(ObjCClass __self__, Selector __cmd__);
+    @Bridge private native static float objc_getSystemFontSize(ObjCClass __self__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/systemFontSize">+ (CGFloat)systemFontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/clm/UIFont/systemFontSize">+ (CGFloat)systemFontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public static float getSystemFontSize() {
@@ -248,10 +247,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector fontWithSize$ = Selector.register("fontWithSize:");
-    @Bridge(symbol = "objc_msgSend") private native static UIFont objc_getFontWithSize(UIFont __self__, Selector __cmd__, float fontSize);
-    @Bridge(symbol = "objc_msgSendSuper") private native static UIFont objc_getFontWithSizeSuper(ObjCSuper __super__, Selector __cmd__, float fontSize);
+    @Bridge private native static UIFont objc_getFontWithSize(UIFont __self__, Selector __cmd__, float fontSize);
+    @Bridge private native static UIFont objc_getFontWithSizeSuper(ObjCSuper __super__, Selector __cmd__, float fontSize);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instm/UIFont/fontWithSize:">- (UIFont *)fontWithSize:(CGFloat)fontSize</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIFont_Class/Reference/Reference.html#//apple_ref/occ/instm/UIFont/fontWithSize:">- (UIFont *)fontWithSize:(CGFloat)fontSize</a>
      * @since Available in iOS 2.0 and later.
      */
     public UIFont getFontWithSize(float fontSize) {

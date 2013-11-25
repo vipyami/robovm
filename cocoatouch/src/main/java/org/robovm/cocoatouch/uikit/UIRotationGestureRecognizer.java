@@ -34,7 +34,7 @@ import org.robovm.rt.bro.ptr.*;
  *
  *
  * <div class="javadoc">
- *   @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIRotateGestureRecognizer_Class/Reference/Reference.html">UIRotationGestureRecognizer Class Reference</a>
+ *   @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIRotateGestureRecognizer_Class/Reference/Reference.html">UIRotationGestureRecognizer Class Reference</a>
  *   @since Available in iOS 3.2 and later.
  * </div>
  */
@@ -47,7 +47,6 @@ import org.robovm.rt.bro.ptr.*;
         ObjCRuntime.bind(/*<name>*/ UIRotationGestureRecognizer /*</name>*/.class);
     }
 
-    private static final boolean X86 = Bro.IS_X86;
     private static final ObjCClass objCClass = ObjCClass.getByType(/*<name>*/ UIRotationGestureRecognizer /*</name>*/.class);
 
     /*<constructors>*/
@@ -58,10 +57,10 @@ import org.robovm.rt.bro.ptr.*;
     /*<properties>*/
     
     private static final Selector rotation = Selector.register("rotation");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getRotation(UIRotationGestureRecognizer __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getRotationSuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getRotation(UIRotationGestureRecognizer __self__, Selector __cmd__);
+    @Bridge private native static float objc_getRotationSuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIRotateGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIRotationGestureRecognizer/rotation">@property(nonatomic) CGFloat rotation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIRotateGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIRotationGestureRecognizer/rotation">@property(nonatomic) CGFloat rotation</a>
      * @since Available in iOS 3.2 and later.
      */
     public float getRotation() {
@@ -69,10 +68,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector setRotation$ = Selector.register("setRotation:");
-    @Bridge(symbol = "objc_msgSend") private native static void objc_setRotation(UIRotationGestureRecognizer __self__, Selector __cmd__, float rotation);
-    @Bridge(symbol = "objc_msgSendSuper") private native static void objc_setRotationSuper(ObjCSuper __super__, Selector __cmd__, float rotation);
+    @Bridge private native static void objc_setRotation(UIRotationGestureRecognizer __self__, Selector __cmd__, float rotation);
+    @Bridge private native static void objc_setRotationSuper(ObjCSuper __super__, Selector __cmd__, float rotation);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIRotateGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIRotationGestureRecognizer/rotation">@property(nonatomic) CGFloat rotation</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIRotateGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIRotationGestureRecognizer/rotation">@property(nonatomic) CGFloat rotation</a>
      * @since Available in iOS 3.2 and later.
      */
     public void setRotation(float rotation) {
@@ -80,10 +79,10 @@ import org.robovm.rt.bro.ptr.*;
     }
     
     private static final Selector velocity = Selector.register("velocity");
-    @Bridge(symbol = "objc_msgSend") private native static float objc_getVelocity(UIRotationGestureRecognizer __self__, Selector __cmd__);
-    @Bridge(symbol = "objc_msgSendSuper") private native static float objc_getVelocitySuper(ObjCSuper __super__, Selector __cmd__);
+    @Bridge private native static float objc_getVelocity(UIRotationGestureRecognizer __self__, Selector __cmd__);
+    @Bridge private native static float objc_getVelocitySuper(ObjCSuper __super__, Selector __cmd__);
     /**
-     * @see <a href="http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIRotateGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIRotationGestureRecognizer/velocity">@property(nonatomic, readonly) CGFloat velocity</a>
+     * @see <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/../UIRotateGestureRecognizer_Class/Reference/Reference.html#//apple_ref/occ/instp/UIRotationGestureRecognizer/velocity">@property(nonatomic, readonly) CGFloat velocity</a>
      * @since Available in iOS 3.2 and later.
      */
     public float getVelocity() {

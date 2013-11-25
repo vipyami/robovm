@@ -21,25 +21,32 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 
-import org.apache.commons.exec.util.StringUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
-import org.robovm.compiler.log.DebugOutputStream;
-import org.robovm.compiler.log.ErrorOutputStream;
+import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.target.AbstractTarget;
 import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.target.Launcher;
 import org.robovm.compiler.util.Executor;
+import org.robovm.compiler.util.ToolchainUtil;
 import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
+import org.robovm.libimobiledevice.AfcClient.UploadProgressCallback;
+import org.robovm.libimobiledevice.IDevice;
+import org.robovm.libimobiledevice.InstallationProxyClient.StatusCallback;
+import org.robovm.libimobiledevice.util.AppLauncher;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -66,7 +73,8 @@ public class IOSTarget extends AbstractTarget {
     private NSDictionary infoPListDict = null;
     private File resourceRulesPList;
     private File entitlementsPList;
-    private String signIdentity;
+    private SigningIdentity signIdentity;
+    private ProvisioningProfile provisioningProfile;
     
     public IOSTarget() {
     }
@@ -81,7 +89,7 @@ public class IOSTarget extends AbstractTarget {
         if (arch == Arch.x86) {
             return new IOSSimulatorLaunchParameters();
         }
-        return super.createLaunchParameters();
+        return new IOSDeviceLaunchParameters();
     }
     
     public List<SDK> getSDKs() {
@@ -93,17 +101,15 @@ public class IOSTarget extends AbstractTarget {
     }
 
     @Override
-    protected Executor createExecutor(LaunchParameters launchParameters)
-            throws IOException {
-        
+    protected Launcher createLauncher(LaunchParameters launchParameters) throws IOException {
         if (arch == Arch.x86) {
-            return createIOSSimExecutor(launchParameters);
+            return createIOSSimLauncher(launchParameters);
         } else {
-            return createFruitstrapExecutor(launchParameters);
+            return createIOSDevLauncher(launchParameters);
         }
     }
     
-    private Executor createIOSSimExecutor(LaunchParameters launchParameters)
+    private Launcher createIOSSimLauncher(LaunchParameters launchParameters)
             throws IOException {
 
         File dir = getAppDir();
@@ -133,68 +139,91 @@ public class IOSTarget extends AbstractTarget {
             args.addAll(launchParameters.getArguments());
         }
         
-        return super.createExecutor(launchParameters, iosSimPath).args(args);
+        File xcodePath = new File(ToolchainUtil.findXcodePath());
+        Map<String, String> env = Collections.singletonMap("DYLD_FRAMEWORK_PATH", 
+                new File(xcodePath, "Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks").getAbsolutePath() + ":" +
+                new File(xcodePath, "../OtherFrameworks").getAbsolutePath());
+        return new Executor(config.getLogger(), iosSimPath)
+            .args(args)
+            .wd(launchParameters.getWorkingDirectory())
+            .inheritEnv(false)
+            .env(env);
     }
     
-
-    @SuppressWarnings("resource")
-    private Executor createFruitstrapExecutor(LaunchParameters launchParameters)
+    private Launcher createIOSDevLauncher(LaunchParameters launchParameters)
             throws IOException {
-
-        File dir = getAppDir();
         
-        String fruitstrapPath = new File(config.getHome().getBinDir(), "fruitstrap").getAbsolutePath();
-        
-        List<Object> args = new ArrayList<Object>();
-        args.add("--verbose");
-        args.add("--unbuffered");
-        args.add("--debug");
-        args.add("--gdbargs");
-        args.add("-i mi -q");
-        args.add("--nostart");
-        
-        if (!launchParameters.getArguments().isEmpty()) {
-            args.add("--args");
-            args.add(joinArgs(launchParameters.getArguments()));
+        String deviceId = ((IOSDeviceLaunchParameters) launchParameters).getDeviceId();
+        if (deviceId == null) {
+            String[] udids = IDevice.listUdids();
+            if (udids.length == 0) {
+                throw new RuntimeException("No devices connected");
+            }
+            if (udids.length > 1) {
+                config.getLogger().warn("More than 1 device connected (%s). " 
+                        + "Using %s.", Arrays.asList(udids), udids[0]);
+            }
+            deviceId = udids[0];
         }
-
-        args.add("--bundle");
-        args.add(dir.getAbsolutePath());
+        IDevice device = new IDevice(deviceId);
         
-        OutputStream fruitstrapOut = new DebugOutputStream(config.getLogger());
-        OutputStream fruitstrapErr = new ErrorOutputStream(config.getLogger());
         OutputStream out = null;
-        OutputStream err = null;
         if (launchParameters.getStdoutFifo() != null) {
             out = new OpenOnWriteFileOutputStream(launchParameters.getStdoutFifo());
         } else {
             out = System.out;
         }
-        if (launchParameters.getStderrFifo() != null) {
-            err = new OpenOnWriteFileOutputStream(launchParameters.getStderrFifo());
-        } else {
-            err = System.err;
+        
+        Map<String, String> env = launchParameters.getEnvironment();
+        if (env == null) {
+            env = Collections.emptyMap();
         }
         
-        return super.createExecutor(launchParameters, fruitstrapPath)
-                .args(args)
-                .streamHandler(new FruitstrapStreamHandler(out, err, fruitstrapOut, fruitstrapErr));
+        AppLauncher launcher = new AppLauncher(device, getAppDir())
+            .stdout(out)
+            .closeOutOnExit(true)
+            .args(launchParameters.getArguments().toArray(new String[0]))
+            .env(env)
+            .uploadProgressCallback(new UploadProgressCallback() {
+                boolean first = true;
+                public void success() {
+                    config.getLogger().debug("[100%%] Upload complete");
+                }
+                public void progress(File path, int percentComplete) {
+                    if (first) {
+                        config.getLogger().debug("[  0%%] Beginning upload...");
+                    }
+                    first = false;
+                    config.getLogger().debug("[%3d%%] Uploading %s...", percentComplete, path);
+                }
+                public void error(String message) {
+                }
+            })
+            .installStatusCallback(new StatusCallback() {
+                boolean first = true;
+                public void success() {
+                    config.getLogger().debug("[100%%] Install complete");
+                }
+                public void progress(String status, int percentComplete) {
+                    if (first) {
+                        config.getLogger().debug("[  0%%] Beginning installation...");
+                    }
+                    first = false;
+                    config.getLogger().debug("[%3d%%] %s", percentComplete, status);
+                }
+                public void error(String message) {
+                }
+            });
+        
+        return new AppLauncherProcess(config.getLogger(), launcher, launchParameters);
     }
-    
-    private String joinArgs(List<String> args) {
-        StringBuilder sb = new StringBuilder();
-        for (String arg : args) {
-            sb.append(StringUtils.quoteArgument(arg));
-        }
-        return sb.toString();
-    }
-    
+
     @Override
     protected void doBuild(File outFile, List<String> ccArgs,
             List<File> objectFiles, List<String> libArgs)
             throws IOException {
 
-        ccArgs.add("-miphoneos-version-min=3.0");
+        ccArgs.add("-miphoneos-version-min=5.0");
         ccArgs.add("-isysroot");
         ccArgs.add(sdk.getRoot().getAbsolutePath());
         super.doBuild(outFile, ccArgs, objectFiles, libArgs);
@@ -204,8 +233,19 @@ public class IOSTarget extends AbstractTarget {
         createInfoPList(installDir);
         generateDsym(installDir, getExecutable());
         if (arch == Arch.thumbv7) {
+            strip(installDir, getExecutable());
             copyResourcesPList(installDir);
-            codesign(signIdentity, entitlementsPList, installDir);
+            // Copy the provisioning profile
+            config.getLogger().debug("Copying provisioning profile: %s (%s)", 
+                    provisioningProfile.getName(), 
+                    provisioningProfile.getEntitlements().objectForKey("application-identifier"));
+            FileUtils.copyFile(provisioningProfile.getFile(), new File(installDir, "embedded.mobileprovision"));
+            codesign(signIdentity, getOrCreateEntitlementsPList(false), installDir);
+            // For some odd reason there needs to be a symbolic link in the root of
+            // the app bundle named CodeResources pointing at _CodeSignature/CodeResources
+            new Executor(config.getLogger(), "ln")
+                .args("-f", "-s", "_CodeSignature/CodeResources", new File(installDir, "CodeResources"))
+                .exec();
         }
     }
     
@@ -215,25 +255,22 @@ public class IOSTarget extends AbstractTarget {
         generateDsym(appDir, getExecutable());
         if (arch == Arch.thumbv7) {
             copyResourcesPList(appDir);
-            codesign(signIdentity, getOrCreateEntitlementsPList(), appDir);
+            codesign(signIdentity, getOrCreateEntitlementsPList(true), appDir);
         }
     }
     
-    private void codesign(String identity, File entitlementsPList, File appDir) throws IOException {
+    private void codesign(SigningIdentity identity, File entitlementsPList, File appDir) throws IOException {
         List<Object> args = new ArrayList<Object>();
         args.add("-f");
         args.add("-s");
-        args.add(identity);
+        args.add(identity.getName());
         if (entitlementsPList != null) {
             args.add("--entitlements");
             args.add(entitlementsPList);
         }
         args.add(appDir);
         new Executor(config.getLogger(), "codesign")
-            .addEnv("CODESIGN_ALLOCATE", 
-                new Executor(config.getLogger(), "xcrun")
-                    .args("-sdk", "iphoneos", "-f", "codesign_allocate")
-                    .execCapture())
+            .addEnv("CODESIGN_ALLOCATE", ToolchainUtil.findXcodeCommand("codesign_allocate", "iphoneos"))
             .args(args)
             .exec();
     }
@@ -247,16 +284,24 @@ public class IOSTarget extends AbstractTarget {
         }
     }
     
-    private File getOrCreateEntitlementsPList() throws IOException {
+    private File getOrCreateEntitlementsPList(boolean getTaskAllow) throws IOException {
         try {
             File destFile = new File(config.getTmpDir(), "Entitlements.plist");
+            NSDictionary dict = null;
             if (entitlementsPList != null) {
-                NSDictionary dict = (NSDictionary) PropertyListParser.parse(entitlementsPList);
-                dict.put("get-task-allow", true);
-                PropertyListParser.saveAsXML(dict, destFile);
+                dict = (NSDictionary) PropertyListParser.parse(entitlementsPList);
             } else {
-                FileUtils.copyURLToFile(getClass().getResource("/Entitlements.plist"), destFile);
+                dict = (NSDictionary) PropertyListParser.parse(IOUtils.toByteArray(getClass().getResourceAsStream("/Entitlements.plist")));
             }
+            NSDictionary profileEntitlements = provisioningProfile.getEntitlements();
+            for (String key : profileEntitlements.allKeys()) {
+                if (dict.objectForKey(key) == null) {
+                    dict.put(key, profileEntitlements.objectForKey(key));
+                }
+            }
+            dict.put("application-identifier", provisioningProfile.getAppIdPrefix() + "." + getBundleId());
+            dict.put("get-task-allow", getTaskAllow);
+            PropertyListParser.saveAsXML(dict, destFile);
             return destFile;
         } catch (IOException e) {
             throw e;
@@ -273,6 +318,12 @@ public class IOSTarget extends AbstractTarget {
             .exec();
     }
 
+    private void strip(File dir, String executable) throws IOException {
+        new Executor(config.getLogger(), "xcrun")
+            .args("strip", new File(dir, executable))
+            .exec();
+    }
+    
     @Override
     protected void doInstall(File installDir, String executable) throws IOException {
         super.doInstall(installDir, getExecutable());
@@ -285,6 +336,32 @@ public class IOSTarget extends AbstractTarget {
         return super.doLaunch(launchParameters);
     }
 
+    public void createIpa() throws IOException {
+        config.getLogger().debug("Creating IPA in %s", config.getInstallDir());
+        config.getInstallDir().mkdirs();
+        File tmpDir = new File(config.getInstallDir(), getExecutable() + ".app");
+        FileUtils.deleteDirectory(tmpDir);
+        tmpDir.mkdirs();
+        super.doInstall(tmpDir, getExecutable());
+        prepareInstall(tmpDir);
+        ToolchainUtil.packageApplication(config, tmpDir, new File(config.getInstallDir(), getExecutable() + ".ipa"));
+    }
+    
+    @Override
+    protected void copyFile(Resource resource, File file, File destDir)
+            throws IOException {
+        
+        if (arch == Arch.thumbv7 && !resource.isSkipPngCrush() 
+                && file.getName().toLowerCase().endsWith(".png")) {
+            
+            destDir.mkdirs();
+            File outFile = new File(destDir, file.getName());
+            ToolchainUtil.pngcrush(config, file, outFile);
+        } else {
+            super.copyFile(resource, file, destDir);
+        }
+    }
+    
     protected File getAppDir() {
         File dir = null;
         if (!config.isSkipInstall()) {
@@ -306,12 +383,28 @@ public class IOSTarget extends AbstractTarget {
         return config.getExecutableName();
     }
 
+    protected String getBundleId() {
+        if (infoPListDict != null) {
+            NSObject bundleIdentifier = infoPListDict.objectForKey("CFBundleIdentifier");
+            if (bundleIdentifier != null) {
+                return bundleIdentifier.toString();
+            }
+        }
+        return config.getMainClass() != null ? config.getMainClass() : config.getExecutableName();
+    }
+    
     protected void customizeInfoPList(NSDictionary dict) {
         if (arch == Arch.x86) {
             dict.put("CFBundleSupportedPlatforms", new NSArray(new NSString("iPhoneSimulator")));
         } else {
             dict.put("CFBundleResourceSpecification", "ResourceRules.plist");
             dict.put("CFBundleSupportedPlatforms", new NSArray(new NSString("iPhoneOS")));
+            dict.put("DTPlatformVersion", sdk.getPlatformVersion());
+            dict.put("DTPlatformBuild", sdk.getPlatformBuild());
+            dict.put("DTSDKBuild", sdk.getBuild());
+            // Validation fails without these. Let's pretend the app was built with Xcode 4.6.3
+            dict.put("DTXcode", "0463");
+            dict.put("DTXcodeBuild", "4H1503");
         }
     }
     
@@ -322,19 +415,30 @@ public class IOSTarget extends AbstractTarget {
                 dict.put(key, infoPListDict.objectForKey(key));
             }
         } else {
+            dict.put("CFBundleVersion", "1.0");
             dict.put("CFBundleExecutable", config.getExecutableName());
             dict.put("CFBundleName", config.getExecutableName());
-            String identifier = config.getMainClass() != null ? config.getMainClass() : config.getExecutableName();
-            dict.put("CFBundleIdentifier", identifier);
+            dict.put("CFBundleIdentifier", getBundleId());
             dict.put("CFBundlePackageType", "APPL");
             dict.put("LSRequiresIPhoneOS", true);
-            if (sdk.getDefaultProperty("SUPPORTED_DEVICE_FAMILIES") != null) {
-                // Values in SUPPORTED_DEVICE_FAMILIES are NSStrings while UIDeviceFamily
-                // values should be NSNumbers.
-                NSArray defFamilies = (NSArray) sdk.getDefaultProperty("SUPPORTED_DEVICE_FAMILIES");
-                NSArray families = new NSArray(defFamilies.count());
-                for (int i = 0; i < families.count(); i++) {
-                    families.setValue(i, new NSNumber(defFamilies.objectAtIndex(i).toString()));
+            NSObject supportedDeviceFamilies = sdk.getDefaultProperty("SUPPORTED_DEVICE_FAMILIES");
+            if (supportedDeviceFamilies != null) {
+                // SUPPORTED_DEVICE_FAMILIES is either a NSString of comma separated numbers
+                // or an NSArray with NSStrings. UIDeviceFamily values should be NSNumbers.
+                NSArray families = null;
+                if (supportedDeviceFamilies instanceof NSString) {
+                    NSString defFamilies = (NSString) supportedDeviceFamilies;
+                    String[] parts = defFamilies.toString().split(",");
+                    families = new NSArray(parts.length);
+                    for (int i = 0; i < families.count(); i++) {
+                        families.setValue(i, new NSNumber(parts[i].trim()));
+                    }
+                } else {
+                    NSArray defFamilies = (NSArray) supportedDeviceFamilies;
+                    families = new NSArray(defFamilies.count());
+                    for (int i = 0; i < families.count(); i++) {
+                        families.setValue(i, new NSNumber(defFamilies.objectAtIndex(i).toString()));
+                    }
                 }
                 dict.put("UIDeviceFamily", families);
             }
@@ -353,9 +457,13 @@ public class IOSTarget extends AbstractTarget {
             dict.put("UIRequiredDeviceCapabilities", new NSArray(new NSString("armv7")));
         }
 
-        dict.put("DTPlatformName", sdk.getDefaultProperty("PLATFORM_NAME"));
-        dict.put("DTPlatformVersion", sdk.getVersion());
+        dict.put("DTPlatformName", sdk.getPlatformName());
         dict.put("DTSDKName", sdk.getCanonicalName());
+
+        if (dict.objectForKey("MinimumOSVersion") == null) {
+            // This is required
+            dict.put("MinimumOSVersion", "5.0");
+        }
         
         customizeInfoPList(dict);
 
@@ -379,9 +487,11 @@ public class IOSTarget extends AbstractTarget {
             arch = config.getArch();
         }
 
-        signIdentity = config.getIosSignIdentity();
-        if (signIdentity == null) {
-            signIdentity = "iPhone Developer";
+        if (arch == Arch.thumbv7) {
+            signIdentity = config.getIosSignIdentity();
+            if (signIdentity == null) {
+                signIdentity = SigningIdentity.find(SigningIdentity.list(), "iPhone Developer");
+            }
         }
         
         infoPList = config.getIosInfoPList();
@@ -392,10 +502,24 @@ public class IOSTarget extends AbstractTarget {
                 throw new IllegalArgumentException(t);
             }
         }
-        
+
+        if (arch == Arch.thumbv7) {
+            provisioningProfile = config.getIosProvisioningProfile();
+            if (provisioningProfile == null) {
+                NSString bundleId = infoPListDict != null ? (NSString) infoPListDict.objectForKey("CFBundleIdentifier") : null;
+                if (bundleId == null) {
+                    bundleId = new NSString("*");
+                }
+                provisioningProfile = ProvisioningProfile.find(ProvisioningProfile.list(), signIdentity, bundleId.toString());
+            }
+        }
+
         String sdkVersion = config.getIosSdkVersion();
         List<SDK> sdks = getSDKs();
         if (sdkVersion == null) {
+            if (sdks.isEmpty()) {
+                throw new IllegalArgumentException("No " + (arch == Arch.thumbv7 ? "device" : "simulator") + " SDKs installed");
+            }
             Collections.sort(sdks);
             this.sdk = sdks.get(sdks.size() - 1);
         } else {

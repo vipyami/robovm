@@ -19,7 +19,8 @@ package org.robovm.compiler.target.ios;
 import org.robovm.compiler.target.LaunchParameters;
 
 /**
- * {@link LaunchParameters} implementation used by {@link IOSSimulatorTarget}.
+ * {@link LaunchParameters} implementation used by {@link IOSTarget} when
+ * launching on the simulator.
  */
 public class IOSSimulatorLaunchParameters extends LaunchParameters {
 

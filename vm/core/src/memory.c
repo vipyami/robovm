@@ -118,6 +118,9 @@ static struct GC_ms_entry* markObject(GC_word* addr, struct GC_ms_entry* mark_st
         Class* clazz = (Class*) obj;
         mark_stack_ptr = GC_MARK_AND_PUSH(clazz->_data, mark_stack_ptr, mark_stack_limit, NULL);
         mark_stack_ptr = GC_MARK_AND_PUSH((void*) clazz->name, mark_stack_ptr, mark_stack_limit, NULL);
+        mark_stack_ptr = GC_MARK_AND_PUSH(clazz->typeInfo, mark_stack_ptr, mark_stack_limit, NULL);
+        mark_stack_ptr = GC_MARK_AND_PUSH(clazz->vitable, mark_stack_ptr, mark_stack_limit, NULL);
+        mark_stack_ptr = GC_MARK_AND_PUSH(clazz->itables, mark_stack_ptr, mark_stack_limit, NULL);
         mark_stack_ptr = GC_MARK_AND_PUSH(clazz->classLoader, mark_stack_ptr, mark_stack_limit, NULL);
         mark_stack_ptr = GC_MARK_AND_PUSH(clazz->superclass, mark_stack_ptr, mark_stack_limit, NULL);
         mark_stack_ptr = GC_MARK_AND_PUSH(clazz->componentType, mark_stack_ptr, mark_stack_limit, NULL);
@@ -271,8 +274,23 @@ jboolean initGC(Options* options) {
     }
 
     GC_set_warn_proc(gcWarnProc);
+    GC_allow_register_threads();
 
     return TRUE;
+}
+
+void gcRegisterCurrentThread() {
+    struct GC_stack_base stackBase;
+    if (!GC_thread_is_registered()) {
+        assert(GC_get_stack_base(&stackBase) == GC_SUCCESS);
+        assert(GC_register_my_thread(&stackBase) == GC_SUCCESS);
+    }
+}
+
+void gcUnregisterCurrentThread() {
+    if (GC_thread_is_registered()) {
+        GC_unregister_my_thread();
+    }
 }
 
 void gcAddRoot(void* ptr) {
@@ -528,8 +546,14 @@ static void finalizeObject(Env* env, Object* obj) {
 static void _finalizeObject(GC_PTR addr, GC_PTR client_data) {
     Object* obj = (Object*) addr;
     Env* env = rvmGetEnv();
-    assert(env != NULL);
-    finalizeObject(env, obj);
+    // When attaching a thread (except the main thread) there's a slight chance that the call to rvmCreateEnv()
+    // first triggers a GC. If there are finalize objects this function will be called with no Env associated 
+    // with the current thread. In such cases we reregister the object for finalization and it will be finalized later.
+    if (env) {
+        finalizeObject(env, obj);
+    } else {
+        GC_REGISTER_FINALIZER_NO_ORDER(obj, _finalizeObject, NULL, NULL, NULL);
+    }
 }
 
 void rvmRegisterFinalizer(Env* env, Object* obj) {

@@ -39,6 +39,8 @@ import org.apache.commons.io.IOUtils;
 import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.config.Resource;
+import org.robovm.compiler.config.Resource.Walker;
 import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.simpleframework.xml.Transient;
@@ -93,12 +95,16 @@ public abstract class AbstractTarget implements Target {
         } else {
             libs.addAll(Arrays.asList("-Wl,--whole-archive", "-lrobovm-rt" + libSuffix, "-Wl,--no-whole-archive"));            
         }
+        if (config.isSkipInstall()) {
+            libs.add("-lrobovm-debug" + libSuffix);
+        }
         libs.addAll(Arrays.asList(
                 "-lrobovm-core" + libSuffix, "-lgc" + libSuffix, "-lpthread", "-ldl", "-lm", "-lstdc++"));
         if (config.getOs().getFamily() == OS.Family.linux) {
             libs.add("-lrt");
         }
         if (config.getOs().getFamily() == OS.Family.darwin) {
+            libs.add("-lc++");
             libs.add("-liconv");
             libs.add("-lsqlite3");
             libs.add("-framework");
@@ -108,13 +114,22 @@ public abstract class AbstractTarget implements Target {
         ccArgs.add("-L");
         ccArgs.add(config.getOsArchDepLibDir().getAbsolutePath());
         if (config.getOs().getFamily() == OS.Family.linux) {
-            // Create a linker script with all aliases
             ccArgs.add("-Wl,-rpath=$ORIGIN");
             ccArgs.add("-Wl,--gc-sections");
 //            ccArgs.add("-Wl,--print-gc-sections");
         } else if (config.getOs().getFamily() == OS.Family.darwin) {
             File exportedSymbolsFile = new File(config.getTmpDir(), "exported_symbols");
-            FileUtils.writeStringToFile(exportedSymbolsFile, "_catch_exception_raise\n", "ASCII");
+            List<String> exportedSymbols = new ArrayList<String>();
+            if (config.isSkipInstall()) {
+                exportedSymbols.add("catch_exception_raise");
+            }
+            exportedSymbols.addAll(config.getExportedSymbols());
+            for (int i = 0; i < exportedSymbols.size(); i++) {
+                // On Darwin symbols are always prefixed with a '_'. We'll prepend
+                // '_' to each symbol here so the user won't have to.
+                exportedSymbols.set(i, "_" + exportedSymbols.get(i));
+            }
+            FileUtils.writeLines(exportedSymbolsFile, "ASCII", exportedSymbols);
             ccArgs.add("-exported_symbols_list");
             ccArgs.add(exportedSymbolsFile.getAbsolutePath());
             ccArgs.add("-Wl,-no_implicit_dylibs");
@@ -124,6 +139,12 @@ public abstract class AbstractTarget implements Target {
         if (config.getOs().getFamily() == OS.Family.darwin && !config.getFrameworks().isEmpty()) {
             for (String p : config.getFrameworks()) {
                 libs.add("-framework");
+                libs.add(p);
+            }
+        }
+        if (config.getOs().getFamily() == OS.Family.darwin && !config.getWeakFrameworks().isEmpty()) {
+            for (String p : config.getWeakFrameworks()) {
+                libs.add("-weak_framework");
                 libs.add(p);
             }
         }
@@ -158,17 +179,21 @@ public abstract class AbstractTarget implements Target {
     }
     
     protected void copyResources(File destDir) throws IOException {
-        for (File f : config.getResources()) {
-            if (!f.exists()) {
-                config.getLogger().warn("Resource %s not found", f);
-            } else if (f.isDirectory()) {
-                config.getLogger().debug("Copying resource dir %s to %s", f, destDir);
-                FileUtils.copyDirectory(f, new File(destDir, f.getName()));
-            } else {
-                config.getLogger().debug("Copying resource %s to %s", f, destDir);
-                FileUtils.copyFileToDirectory(f, destDir, true);
-            }
+        for (Resource res : config.getResources()) {
+            res.walk(new Walker() {
+                @Override
+                public void process(Resource resource, File file, File destDir)
+                        throws IOException {
+                    
+                    copyFile(resource, file, destDir);
+                }
+            }, destDir);
         }
+    }
+    
+    protected void copyFile(Resource resource, File file, File destDir) throws IOException {
+        config.getLogger().debug("Copying resource %s to %s", file, destDir);
+        FileUtils.copyFileToDirectory(file, destDir, true);
     }
     
     public void install() throws IOException {
@@ -197,29 +222,28 @@ public abstract class AbstractTarget implements Target {
             throw new IllegalStateException("Cannot skip linking if target should be run");
         }
         
+        // Add -rvm:log=warn to command line arguments if no logging level has been set explicitly
+        boolean add = true;
+        for (String arg : launchParameters.getArguments()) {
+            if (arg.startsWith("-rvm:log=")) {
+                add = false;
+                break;
+            }
+        }
+        if (add) {
+            List<String> args = new ArrayList<String>(launchParameters.getArguments());
+            args.add(0, "-rvm:log=warn");
+            launchParameters.setArguments(args);
+        }
+
         return doLaunch(launchParameters);
     }
     
     protected Process doLaunch(LaunchParameters launchParameters) throws IOException {
-        return createExecutor(launchParameters).execAsync();
+        return createLauncher(launchParameters).execAsync();
     }
     
-    protected Executor createExecutor(LaunchParameters launchParameters) throws IOException {
-        File dir = config.getTmpDir();
-        if (!config.isSkipInstall()) {
-            dir = config.getInstallDir();
-        }
-        return createExecutor(launchParameters, new File(dir, config.getExecutableName()).getAbsolutePath());
-    }
-    
-    protected Executor createExecutor(LaunchParameters launchParameters, String cmd) throws IOException {
-        Map<String, String> env = launchParameters.getEnvironment();
-        return new Executor(config.getLogger(), cmd)
-            .args(launchParameters.getArguments())
-            .wd(launchParameters.getWorkingDirectory())
-            .inheritEnv(env == null)
-            .env(env == null ? Collections.<String, String>emptyMap() : env);
-    }
+    protected abstract Launcher createLauncher(LaunchParameters launchParameters) throws IOException;
     
     protected Target build(Config config) {
         return this;

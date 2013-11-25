@@ -16,7 +16,7 @@ license: |
      */
 package: org.robovm.cocoatouch.uikit
 library: UIKit
-base_url: http://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/
+base_url: https://developer.apple.com/library/ios/documentation/uikit/reference/UIKit_Framework/
 data_type_urls: 
     - ../UIKitDataTypesReference/Reference/reference.html
     - ../NSString_UIKit_Additions/Reference/Reference.html
@@ -191,12 +191,13 @@ classes:
         url: ../../../Cocoa/Reference/ApplicationKit/Classes/NSShadow_Class/Reference/Reference.html
     NSStringDrawingContext:
         url: ../NSStringDrawingContext_class/Reference/Reference.html
-#    UIAcceleration:
-#        # Only used by UIAccelerometerDelegate which is deprected in iOS 5
-#        url: ../UIAcceleration_Class/Reference/UIAcceleration.html
-#    UIAccelerometer:
-#        # Unusable since UIAccelerometerDelegate is deprected in iOS 5???
-#        url: ../UIAccelerometer_Class/Reference/UIAccelerometer.html
+    UIAcceleration:
+        url: ../UIAcceleration_Class/Reference/UIAcceleration.html
+    UIAccelerometer:
+        url: ../UIAccelerometer_Class/Reference/UIAccelerometer.html
+        methods:
+            "+sharedAccelerometer":
+                name: getSharedAccelerometer
 #    UIAccessibilityElement:
 #        url: ../UIAccessibilityElement_Class/Reference/Reference.html
     UIActionSheet:
@@ -1054,6 +1055,9 @@ classes:
         url: ../UIStoryboardPopoverSegue_Class/Reference/Reference.html
     UIStoryboardSegue:
         url: ../UIStoryboardSegue_Class/Reference/Reference.html
+        methods:
+            "+segueWithIdentifier:source:destination:performHandler:":
+                name: getSegue
     UISwipeGestureRecognizer:
         url: ../UISwipeGestureRecognizer_Class/Reference/Reference.html
     UISwitch:
@@ -1091,7 +1095,7 @@ classes:
             "-dequeueReusableCellWithIdentifier:forIndexPath:":
                 name: dequeueReusableCell
             "-dequeueReusableHeaderFooterViewWithIdentifier:":
-                name: dequeueReusableHeaderFooterView
+                name: dequeueReusableHeaderFooterView   
             "-deselectRowAtIndexPath:animated:":
                 name: deselectRow
             "-indexPathForCell:":
@@ -1492,9 +1496,11 @@ classes:
             "-convertRect:toWindow:":
                 name: convertRectToWindow
 protocols:
-#    UIAccelerometerDelegate:
-#        # Deprecated in iOS 5
-#        url: ../UIAccelerometerDelegate_Protocol/UIAccelerometerDelegate/UIAccelerometerDelegate.html
+    UIAccelerometerDelegate:
+        urls: [../UIAccelerometerDelegate_Protocol/UIAccelerometerDelegate/UIAccelerometerDelegate.html, ../UIAccelerometerDelegate_Protocol/DeprecationAppendix/AppendixADeprecatedAPI.html]
+        methods:
+            "-accelerometer:didAccelerate:":
+                name: didAccelerate
 #    UIAccessibility:
 #        url: ../UIAccessibility_Protocol/Introduction/Introduction.html
 #    UIAccessibilityAction:

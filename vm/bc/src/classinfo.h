@@ -40,6 +40,9 @@ typedef struct {
     jint flags;
     const char* className;
     void* initializer;
+    TypeInfo* typeInfo;
+    VITable* vitable;
+    ITables* itables;
     jint classDataSize;
     jint instanceDataSize;
     jint instanceDataOffset;
@@ -76,6 +79,7 @@ typedef struct {
 
 typedef struct {
     jint flags;
+    jint vtableIndex;
     jint access;
     const char* name;
     const char* desc;

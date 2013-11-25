@@ -34,6 +34,7 @@ import org.robovm.compiler.llvm.Invoke;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Store;
 import org.robovm.compiler.llvm.Switch;
+import org.robovm.compiler.llvm.TailCall;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
@@ -62,6 +63,7 @@ public class Functions {
     public static final FunctionRef BC_THROW_INSTANTIATION_ERROR = new FunctionRef("_bcThrowInstantiationError", new FunctionType(VOID, ENV_PTR, I8_PTR));
     public static final FunctionRef BC_THROW_INCOMPATIBLE_CLASS_CHANGE_ERROR = new FunctionRef("_bcThrowIncompatibleClassChangeError", new FunctionType(VOID, ENV_PTR, I8_PTR));
     public static final FunctionRef BC_THROW_ABSTRACT_METHOD_ERROR = new FunctionRef("_bcThrowAbstractMethodError", new FunctionType(VOID, ENV_PTR, I8_PTR));
+    public static final FunctionRef BC_THROW_CLASS_CAST_EXCEPTION_ARRAY = new FunctionRef("_bcThrowClassCastExceptionArray", new FunctionType(VOID, ENV_PTR, CLASS_PTR, OBJECT_PTR));
     
     public static final FunctionRef BC_NEW_BOOLEAN_ARRAY = new FunctionRef("_bcNewBooleanArray", new FunctionType(OBJECT_PTR, ENV_PTR, I32));
     public static final FunctionRef BC_NEW_BYTE_ARRAY = new FunctionRef("_bcNewByteArray", new FunctionType(OBJECT_PTR, ENV_PTR, I32));
@@ -73,9 +75,10 @@ public class Functions {
     public static final FunctionRef BC_NEW_DOUBLE_ARRAY = new FunctionRef("_bcNewDoubleArray", new FunctionType(OBJECT_PTR, ENV_PTR, I32));
     public static final FunctionRef BC_MONITOR_ENTER = new FunctionRef("_bcMonitorEnter", new FunctionType(VOID, ENV_PTR, OBJECT_PTR));
     public static final FunctionRef BC_MONITOR_EXIT = new FunctionRef("_bcMonitorExit", new FunctionType(VOID, ENV_PTR, OBJECT_PTR));
-    public static final FunctionRef BC_LDC_STRING = new FunctionRef("_bcLdcString", new FunctionType(OBJECT_PTR, ENV_PTR, I8_PTR));
+    public static final FunctionRef BC_LDC_STRING = new FunctionRef("_bcLdcString", new FunctionType(OBJECT_PTR, ENV_PTR, I8_PTR_PTR, I8_PTR));
     public static final FunctionRef BC_LOOKUP_VIRTUAL_METHOD = new FunctionRef("_bcLookupVirtualMethod", new FunctionType(I8_PTR, ENV_PTR, OBJECT_PTR, I8_PTR, I8_PTR));
     public static final FunctionRef BC_LOOKUP_INTERFACE_METHOD = new FunctionRef("_bcLookupInterfaceMethod", new FunctionType(I8_PTR, ENV_PTR, I8_PTR_PTR, OBJECT_PTR, I8_PTR, I8_PTR));
+    public static final FunctionRef BC_LOOKUP_INTERFACE_METHOD_IMPL = new FunctionRef("_bcLookupInterfaceMethodImpl", new FunctionType(I8_PTR, ENV_PTR, I8_PTR_PTR, OBJECT_PTR, I32));
     public static final FunctionRef BC_CHECKCAST = new FunctionRef("_bcCheckcast", new FunctionType(OBJECT_PTR, ENV_PTR, I8_PTR_PTR, OBJECT_PTR));
     public static final FunctionRef BC_CHECKCAST_ARRAY = new FunctionRef("_bcCheckcastArray", new FunctionType(OBJECT_PTR, ENV_PTR, OBJECT_PTR, OBJECT_PTR));
     public static final FunctionRef BC_INSTANCEOF = new FunctionRef("_bcInstanceof", new FunctionType(I32, ENV_PTR, I8_PTR_PTR, OBJECT_PTR));
@@ -91,8 +94,11 @@ public class Functions {
     public static final FunctionRef BC_DETACH_THREAD_FROM_CALLBACK = new FunctionRef("_bcDetachThreadFromCallback", new FunctionType(VOID, ENV_PTR));
     public static final FunctionRef RVM_TRYCATCH_ENTER = new FunctionRef("rvmTrycatchEnter", new FunctionType(I32, ENV_PTR, TRYCATCH_CONTEXT_PTR));
     public static final FunctionRef BC_TRYCATCH_LEAVE = new FunctionRef("_bcTrycatchLeave", new FunctionType(VOID, ENV_PTR));
+    public static final FunctionRef BC_ABSTRACT_METHOD_CALLED = new FunctionRef("_bcAbstractMethodCalled", new FunctionType(VOID, ENV_PTR, OBJECT_PTR));
+    public static final FunctionRef BC_NON_PUBLIC_METHOD_CALLED = new FunctionRef("_bcNonPublicMethodCalled", new FunctionType(VOID, ENV_PTR, OBJECT_PTR));
 
     public static final FunctionRef LLVM_FRAMEADDRESS = new FunctionRef("llvm.frameaddress", new FunctionType(I8_PTR, I32));
+    public static final FunctionRef LLVM_MEMCPY = new FunctionRef("llvm.memcpy.p0i8.p0i8.i32", new FunctionType(VOID, I8_PTR, I8_PTR, I32, I32, I1));
 
     public static final FunctionRef REGISTER_FINALIZABLE = new FunctionRef("register_finalizable", new FunctionType(VOID, ENV_PTR, OBJECT_PTR));
     public static final FunctionRef CHECK_NULL = new FunctionRef("checknull", new FunctionType(I8, ENV_PTR, OBJECT_PTR));
@@ -135,6 +141,18 @@ public class Functions {
     public static final FunctionRef LDC_CLASS_WRAPPER = new FunctionRef("ldcClassWrapper", new FunctionType(OBJECT_PTR, ENV_PTR, I8_PTR_PTR));
     public static final FunctionRef CHECKCAST_WRAPPER = new FunctionRef("checkcastWrapper", new FunctionType(OBJECT_PTR, ENV_PTR, I8_PTR_PTR, OBJECT_PTR));
     public static final FunctionRef INSTANCEOF_WRAPPER = new FunctionRef("instanceofWrapper", new FunctionType(I32, ENV_PTR, I8_PTR_PTR, OBJECT_PTR));
+    public static final FunctionRef CHECKCAST_CLASS = new FunctionRef("checkcast_class", new FunctionType(OBJECT_PTR, ENV_PTR, I8_PTR_PTR, OBJECT_PTR, I32, I32));
+    public static final FunctionRef CHECKCAST_INTERFACE = new FunctionRef("checkcast_interface", new FunctionType(OBJECT_PTR, ENV_PTR, I8_PTR_PTR, OBJECT_PTR, I32));
+    public static final FunctionRef CHECKCAST_PRIM_ARRAY = new FunctionRef("checkcast_prim_array", new FunctionType(OBJECT_PTR, ENV_PTR, CLASS_PTR, OBJECT_PTR));
+    public static final FunctionRef INSTANCEOF_CLASS = new FunctionRef("instanceof_class", new FunctionType(I32, ENV_PTR, I8_PTR_PTR, OBJECT_PTR, I32, I32));
+    public static final FunctionRef INSTANCEOF_INTERFACE = new FunctionRef("instanceof_interface", new FunctionType(I32, ENV_PTR, I8_PTR_PTR, OBJECT_PTR, I32));
+    public static final FunctionRef INSTANCEOF_PRIM_ARRAY = new FunctionRef("instanceof_prim_array", new FunctionType(I32, ENV_PTR, CLASS_PTR, OBJECT_PTR));
+    public static final FunctionRef OBJECT_CLASS = new FunctionRef("Object_class", new FunctionType(CLASS_PTR, OBJECT_PTR));
+    public static final FunctionRef CLASS_VITABLE = new FunctionRef("Class_vitable", new FunctionType(VITABLE_PTR, CLASS_PTR));
+    public static final FunctionRef MONITORENTER = new FunctionRef("monitorenter", new FunctionType(VOID, ENV_PTR, OBJECT_PTR));
+    public static final FunctionRef MONITOREXIT = new FunctionRef("monitorexit", new FunctionType(VOID, ENV_PTR, OBJECT_PTR));
+    public static final FunctionRef PUSH_NATIVE_FRAME = new FunctionRef("pushNativeFrame", new FunctionType(VOID, ENV_PTR));
+    public static final FunctionRef POP_NATIVE_FRAME = new FunctionRef("popNativeFrame", new FunctionType(VOID, ENV_PTR));
 
     public static FunctionRef getArrayLoad(soot.Type sootType) {
         if (sootType.equals(soot.BooleanType.v())) {
@@ -220,6 +238,16 @@ public class Functions {
         return result == null ? null : result.ref();
     }
     
+    public static Value tailcall(Function currentFunction, Value fn, Value ... args) {
+        Variable result = null;
+        Type returnType = ((FunctionType) fn.getType()).getReturnType();
+        if (returnType != VOID) {
+            result = currentFunction.newVariable(returnType);
+        }
+        currentFunction.add(new TailCall(result, fn, args));
+        return result == null ? null : result.ref();
+    }
+    
     public static Value callWithArguments(Function currentFunction, Value fn, List<Argument> args) {
         return callWithArguments(currentFunction, fn, args.toArray(new Argument[args.size()]));
     }
@@ -253,14 +281,11 @@ public class Functions {
     }
     
     public static void pushNativeFrame(Function fn) {
-        Variable gwFrame = fn.newVariable(GATEWAY_FRAME_PTR);
-        fn.add(new Alloca(gwFrame, GATEWAY_FRAME));
-        Value frameAddress = call(fn, LLVM_FRAMEADDRESS, new IntegerConstant(0));
-        call(fn, BC_PUSH_NATIVE_FRAME, fn.getParameterRef(0), gwFrame.ref(), frameAddress);
+        call(fn, PUSH_NATIVE_FRAME, fn.getParameterRef(0));
     }
 
     public static void popNativeFrame(Function fn) {
-        call(fn, BC_POP_NATIVE_FRAME, fn.getParameterRef(0));
+        call(fn, POP_NATIVE_FRAME, fn.getParameterRef(0));
     }
     
     public static void pushCallbackFrame(Function fn, Value env) {
